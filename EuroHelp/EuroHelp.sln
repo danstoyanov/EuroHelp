@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32112.339
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EuroHelp.Web", "EuroHelp.Web\EuroHelp.Web.csproj", "{0605D982-62A4-4A85-88FF-3AD75B24DB29}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EuroHelp.Web", "EuroHelp.Web\EuroHelp.Web.csproj", "{0605D982-62A4-4A85-88FF-3AD75B24DB29}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EuroHelp.Data", "EuroHelp.Data\EuroHelp.Data.csproj", "{38B4F54B-088B-4244-9C2F-6B6350AB1004}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EuroHelp.Services", "EuroHelp.Services\EuroHelp.Services.csproj", "{E182CDCA-9303-4B12-A3AE-D34B638DF39C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{0605D982-62A4-4A85-88FF-3AD75B24DB29}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0605D982-62A4-4A85-88FF-3AD75B24DB29}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0605D982-62A4-4A85-88FF-3AD75B24DB29}.Release|Any CPU.Build.0 = Release|Any CPU
+		{38B4F54B-088B-4244-9C2F-6B6350AB1004}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38B4F54B-088B-4244-9C2F-6B6350AB1004}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38B4F54B-088B-4244-9C2F-6B6350AB1004}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38B4F54B-088B-4244-9C2F-6B6350AB1004}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E182CDCA-9303-4B12-A3AE-D34B638DF39C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E182CDCA-9303-4B12-A3AE-D34B638DF39C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E182CDCA-9303-4B12-A3AE-D34B638DF39C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E182CDCA-9303-4B12-A3AE-D34B638DF39C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
