@@ -9,7 +9,12 @@ namespace EuroHelp.Web.Controllers
 
         }
 
-        public IActionResult DemageRegister()
+        public IActionResult RegisterDamage()
+        {
+            return View();
+        }
+
+        public IActionResult EditDamage()
         {
             return View();
         }

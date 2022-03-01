@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "Test Page";
+    ViewData["Title"] = "Register Demage";
 }
 
 <form class="row g-3">
@@ -35,8 +35,6 @@
     </div>
     <div>
     </div>
-
-
     <div class="col-3">
         <label for="bulgarianRegNumber" class="form-label">Български регистрационен номер</label>
         <input type="text" class="form-control" id="bulgarianRegNumber" placeholder="номер....">
@@ -60,41 +58,16 @@
         </select>
     </div>
     <div class="col-3">
+        <label for="notifiedBy" class="form-label">Уведомяване от</label>
+        <select id="notifiedBy" class="form-select">
+            <option>.....</option>
+        </select>
+    </div>
+    <div>
+
+    </div>
+    <div class="col-3">
         <button type="button" class="btn btn-primary" name="register">Регистрация</button>
         <button type="button" class="btn btn-secondary" name="cancel">Отказ</button>
     </div>
-
-    @*    <div class="col-12">
-        <label for="inputAddress2" class="form-label">Address 2</label>
-        <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
-        </div>
-        <div class="col-md-6">
-        <label for="inputCity" class="form-label">City</label>
-        <input type="text" class="form-control" id="inputCity">
-        </div>
-        <div class="col-md-4">
-        <label for="inputState" class="form-label">State</label>
-        <select id="inputState" class="form-select">
-        <option selected>Choose...</option>
-        <option>Test1</option>
-        <option>Test2</option>
-        <option>Test3</option>
-        <option>Test4</option>
-        </select>
-        </div>
-        <div class="col-md-2">
-        <label for="inputZip" class="form-label">Zip</label>
-        <input type="text" class="form-control" id="inputZip">
-        </div>
-        <div class="col-12">
-        <div class="form-check">
-        <input class="form-check-input" type="checkbox" id="gridCheck">
-        <label class="form-check-label" for="gridCheck">
-        Check me out
-        </label>
-        </div>
-        </div>
-        <div class="col-12">
-        <button type="submit" class="btn btn-primary">Sign in</button>
-        </div>*@
 </form>
