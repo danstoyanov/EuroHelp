@@ -1,0 +1,100 @@
+﻿@{
+    ViewData["Title"] = "Test Page";
+}
+
+<form class="row g-3">
+
+    <div class="col-12">
+        <label for="inputDamage" class="form-label">Тип щета</label>
+        <input type="text" class="form-control" id="inputDamage" placeholder="Тип щета...">
+    </div>
+    <div class="col-12">
+        <label for="inputInsuranceCompanyName" class="form-label">Застрахователна компания</label>
+        <input type="text" class="form-control" id="inputInsuranceCompanyName" placeholder="Име на компания...">
+    </div>
+    <div class="col-12">
+        <label for="eventType" class="form-label">Вид събитие</label>
+        <select id="eventType" class="form-select">
+            <option>Събитие в чужбина - Каско регрес на Евроинс</option>
+            <option>Събитие в България - Каско регрес на Евроинс</option>
+            <option>Събитие в България - Каско регрес на Български застраховател</option>
+            <option>Събитие в чужбина - Каско регрес на Български застраховател</option>
+            <option>ПТП в България - Каско регрес на чужд застраховател</option>
+            <option>ПТП в чужбина – Каско регрес на чужд застраховател</option>
+        </select>
+    </div>
+    <div class="col-3">
+        <label for="eventDate" class="form-label">Дата на събитие</label>
+        <input type="text" class="form-control" id="eventDate" placeholder="въведи дата...">
+    </div>
+    <div>
+    </div>
+    <div class="col-3">
+        <label for="registerDate" class="form-label">Дата на регистрация</label>
+        <input type="text" class="form-control" id="registerDate" placeholder="въведи дата...">
+    </div>
+    <div>
+    </div>
+
+
+    <div class="col-3">
+        <label for="bulgarianRegNumber" class="form-label">Български регистрационен номер</label>
+        <input type="text" class="form-control" id="bulgarianRegNumber" placeholder="номер....">
+    </div>
+    <div class="col-3">
+        <label for="foreignRegNumber" class="form-label">Чужд регистрационен номер</label>
+        <input type="text" class="form-control" id="foreignRegNumber" placeholder="номер....">
+    </div>
+    <div class="col-3">
+        <label for="property" class="form-label">Имущество</label>
+        <input type="text" class="form-control" id="property" placeholder="имущество...">
+    </div>
+    <div class="col-3">
+        <label for="injuredPerson" class="form-label">Пострадал</label>
+        <select id="injuredPerson" class="form-select">
+            <option>Водач</option>
+            <option>Пътник</option>
+            <option>Мотоциклетист</option>
+            <option>Велосипедист</option>
+            <option>Пешеходец</option>
+        </select>
+    </div>
+    <div class="col-3">
+        <button type="button" class="btn btn-primary" name="register">Регистрация</button>
+        <button type="button" class="btn btn-secondary" name="cancel">Отказ</button>
+    </div>
+
+    @*    <div class="col-12">
+        <label for="inputAddress2" class="form-label">Address 2</label>
+        <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+        </div>
+        <div class="col-md-6">
+        <label for="inputCity" class="form-label">City</label>
+        <input type="text" class="form-control" id="inputCity">
+        </div>
+        <div class="col-md-4">
+        <label for="inputState" class="form-label">State</label>
+        <select id="inputState" class="form-select">
+        <option selected>Choose...</option>
+        <option>Test1</option>
+        <option>Test2</option>
+        <option>Test3</option>
+        <option>Test4</option>
+        </select>
+        </div>
+        <div class="col-md-2">
+        <label for="inputZip" class="form-label">Zip</label>
+        <input type="text" class="form-control" id="inputZip">
+        </div>
+        <div class="col-12">
+        <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="gridCheck">
+        <label class="form-check-label" for="gridCheck">
+        Check me out
+        </label>
+        </div>
+        </div>
+        <div class="col-12">
+        <button type="submit" class="btn btn-primary">Sign in</button>
+        </div>*@
+</form>
