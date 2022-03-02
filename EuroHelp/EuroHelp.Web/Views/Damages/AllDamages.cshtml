@@ -1,0 +1,115 @@
+﻿@{
+    ViewData["Title"] = "List of Damages";
+}
+
+<section class="py-5">
+    <div class="container">
+        <h1 style="margin: 2%; text-align: center;">Списък на всички регистрирани щети</h1>
+        <div>
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">
+                            <h3>Щети</h3>
+                        </th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <tr>
+                        <td>
+                            <div class="col-20">
+                                <label for="opionNumber" class="form-label">Претенция номер: </label>
+                                <input type="text" class="form-control" id="opionNumber" placeholder="...">
+                                <label for="opionNumber" class="form-label">Рег. номер: </label>
+                                <input type="text" class="form-control" id="opionNumber" placeholder="...">
+                                <label for="opionNumber" class="form-label">Полица: </label>
+                                <input type="text" class="form-control" id="opionNumber" placeholder="...">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="col-20">
+                                <label for="opionNumber" class="form-label">Дата на регистрация: </label>
+                                <input type="text" class="form-control" id="opionNumber" placeholder="...">
+                                <label for="opionNumber" class="form-label">Заст. компания: </label>
+                                <input type="text" class="form-control" id="opionNumber" placeholder="...">
+                                <label for="opionNumber" class="form-label">Сертификат номер: </label>
+                                <input type="text" class="form-control" id="opionNumber" placeholder="...">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="col-20">
+                                <label for="opionNumber" class="form-label">Дата на събитие: </label>
+                                <input type="text" class="form-control" id="opionNumber" placeholder="...">
+                                <label for="opionNumber" class="form-label">Вид събиране: </label>
+                                <input type="text" class="form-control" id="opionNumber" placeholder="...">
+                                <label for="opionNumber" class="form-label">Реф. номер на НББАЗ: </label>
+                                <input type="text" class="form-control" id="opionNumber" placeholder="...">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="col-20">
+                                <label for="opionNumber" class="form-label">Тип щета: </label>
+                                <input type="text" class="form-control" id="opionNumber" placeholder="...">
+                                <label for="opionNumber" class="form-label">Реф. номер на заст. комп: </label>
+                                <input type="text" class="form-control" id="opionNumber" placeholder="...">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="col-20">
+                                <label for="opionNumber" class="form-label">Статус: </label>
+                                <input type="text" class="form-control" id="opionNumber" placeholder="великобритания">
+                                <label></label>
+                                <label for="opionNumber" class="form-label">Реф. номер на DEKRA: </label>
+                                <input type="text" class="form-control" id="opionNumber" placeholder="...">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="col-20">
+                                <label for="opionNumber" class="form-label">Държава на събитие: </label>
+                                <input type="text" class="form-control" id="opionNumber" placeholder="великобритания">
+                            </div>
+                        </td>
+
+                        <td>
+                            <div class="button-holder">
+                                <a href="/Damages/EditDamage" class="btn btn-info text-uppercase">Преглед</a>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th scope="row">StartPoint</th>
+                        <td>EndPoint</td>
+                        <td>DepartureTime</td>
+                        <td>Seats</td>
+                        <td>
+                            <div class="button-holder">
+                                <a href="/Trips/Details?tripId=Id" class="btn btn-info text-uppercase">Info</a>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">StartPoint</th>
+                        <td>EndPoint</td>
+                        <td>DepartureTime</td>
+                        <td>Seats</td>
+                        <td>
+                            <div class="button-holder">
+                                <a href="/Trips/Details?tripId=Id" class="btn btn-info text-uppercase">Info</a>
+                            </div>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
