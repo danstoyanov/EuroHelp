@@ -18,5 +18,10 @@ namespace EuroHelp.Web.Controllers
         {
             return View();
         }
+
+        public IActionResult OptionsDemage()
+        {
+            return View();
+        }
     }
 }
