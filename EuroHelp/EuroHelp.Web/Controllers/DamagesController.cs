@@ -2,7 +2,7 @@
 
 namespace EuroHelp.Web.Controllers
 {
-    public class DamagesController : Controller 
+    public class DamagesController : Controller
     {
         public DamagesController()
         {
@@ -30,6 +30,11 @@ namespace EuroHelp.Web.Controllers
         }
 
         public IActionResult AllDamages()
+        {
+            return View();
+        }
+        
+        public IActionResult TestView()
         {
             return View();
         }
