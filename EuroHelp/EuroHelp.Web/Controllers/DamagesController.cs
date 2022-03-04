@@ -22,6 +22,11 @@ namespace EuroHelp.Web.Controllers
         public IActionResult DamageModification()
         {
             return View();
+        }        
+        
+        public IActionResult DamageSearch()
+        {
+            return View();
         }
     }
 }
