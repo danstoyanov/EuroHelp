@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace EuroHelp.Data
 {
-    public class ApplicationDbContext : IdentityDbContext
+    public class EuroHelpDbContext : IdentityDbContext
     {
 
 
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+        public EuroHelpDbContext(DbContextOptions<EuroHelpDbContext> options)
             : base(options)
         {
 
