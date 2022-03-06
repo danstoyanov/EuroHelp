@@ -28,5 +28,10 @@ namespace EuroHelp.Web.Controllers
         {
             return View();
         }
+
+        public IActionResult TestView()
+        {
+            return View();
+        }
     }
 }
