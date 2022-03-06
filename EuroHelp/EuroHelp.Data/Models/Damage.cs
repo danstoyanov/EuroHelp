@@ -2,7 +2,7 @@
 
 using static EuroHelp.Data.DataConstants;
 
-namespace EuroHelp.Data.Data.Models
+namespace EuroHelp.Data.Models
 {
     public class Damage
     {
@@ -33,6 +33,6 @@ namespace EuroHelp.Data.Data.Models
 
         public string? InjuredPerson { get; set; }
 
-        public string NotifiedBy { get; set; }
+        public string? NotifiedBy { get; set; }
     }
 }
