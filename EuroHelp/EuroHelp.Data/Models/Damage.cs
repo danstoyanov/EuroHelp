@@ -25,6 +25,8 @@ namespace EuroHelp.Data.Models
 
         public DateTime RegistrationDate { get; set; }
 
+        public string EventType { get; set; }
+
         public string? BulgarianRegNumber { get; set; }
 
         public string? ForeignRegNumber { get; set; }
