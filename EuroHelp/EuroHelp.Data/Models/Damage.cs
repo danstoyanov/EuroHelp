@@ -6,20 +6,19 @@ namespace EuroHelp.Data.Models
 {
     public class Damage
     {
+        [Key]
         public int Id { get; set; }
 
         [Required]
         [MaxLength(NameMaxLength)]
         public string? Name { get; set; }
 
-        [Required]
-        public int CompanyId { get; set; }
+        //[Required]
+        //public int CompanyId { get; set; }
 
         [Required]
         [MaxLength(CompanyMaxLength)]
         public string? CompanyName { get; set; }
-
-        public Company? Company { get; set; }
 
         public DateTime EventDate { get; set; }
 

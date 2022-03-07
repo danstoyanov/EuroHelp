@@ -49,16 +49,25 @@ namespace EuroHelp.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Company",
+                name: "Damages",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Name = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: false),
+                    CompanyName = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
+                    EventDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    RegistrationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    EventType = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    BulgarianRegNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ForeignRegNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Property = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    InjuredPerson = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    NotifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Company", x => x.Id);
+                    table.PrimaryKey("PK_Damages", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -167,35 +176,6 @@ namespace EuroHelp.Data.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "Damages",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: false),
-                    CompanyId = table.Column<int>(type: "int", nullable: false),
-                    CompanyName = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
-                    EventDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    RegistrationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    EventType = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    BulgarianRegNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ForeignRegNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Property = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    InjuredPerson = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    NotifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Damages", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Damages_Company_CompanyId",
-                        column: x => x.CompanyId,
-                        principalTable: "Company",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -234,11 +214,6 @@ namespace EuroHelp.Data.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Damages_CompanyId",
-                table: "Damages",
-                column: "CompanyId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -266,9 +241,6 @@ namespace EuroHelp.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
-
-            migrationBuilder.DropTable(
-                name: "Company");
         }
     }
 }
