@@ -71,6 +71,28 @@ namespace EuroHelp.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "InsuranceCompanies",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Code = table.Column<int>(type: "int", nullable: false),
+                    Bulstat = table.Column<int>(type: "int", nullable: false),
+                    CompanyEnglName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    MobilePhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    FAX = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Notes = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_InsuranceCompanies", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AspNetRoleClaims",
                 columns: table => new
                 {
@@ -235,6 +257,9 @@ namespace EuroHelp.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "Damages");
+
+            migrationBuilder.DropTable(
+                name: "InsuranceCompanies");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
