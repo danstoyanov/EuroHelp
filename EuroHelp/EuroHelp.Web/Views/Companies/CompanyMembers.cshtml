@@ -1,87 +1,81 @@
-﻿@{
+﻿@model AddCompanyFormModel
+
+@{
     ViewData["Title"] = "Company Members";
 }
 
 <h1 style="margin: 2%; text-align: center;">Застрахователни компании, членове на НББАЗ</h1>
 
-
 <h5>Нова застрахователна компания</h5>
-<form class="row g-3">
-    <div class="col-5">
-        <label for="inputDamage" class="form-label">Застрахователна компания</label>
-        <input type="text" class="form-control" id="inputDamage" placeholder="...">
-    </div>
-
-    <div>
-    </div>
+<form class="row g-3" method="post">
+    <div></div>
 
     <div class="col-1">
-        <label for="compnayId" class="form-label">ID</label>
+        <label asp-for="Id" class="form-label">ID</label>
         <input type="text" class="form-control" id="compnayId" placeholder="...">
     </div>
     <div class="col-4">
-        <label for="companyName" class="form-label">Застрахователна компания</label>
-        <input type="text" class="form-control" id="compnayId" placeholder="...">
+        <label asp-for="Id" class="form-label">Застрахователна компания</label>
+        <input asp-for="Id" class="form-control" placeholder="номер...">
     </div>
     <div class="col-1">
-        <label for="companyCode" class="form-label">Код</label>
-        <input type="text" class="form-control" id="companyCode" placeholder="...">
+        <label asp-for="Id" class="form-label">Код</label>
+        <input asp-for="Id" class="form-control" placeholder="код...">
     </div>
     <div class="col-3">
-        <label for="companyName" class="form-label">Булстат</label>
-        <input type="text" class="form-control" id="compnayId" placeholder="...">
+        <label asp-for="Bulstat" class="form-label">Булстат</label>
+        <input asp-for="Bulstat" class="form-control" placeholder="булстат...">
     </div>
 
     <div></div>
 
     <div class="col-9">
-        <label for="engCompanyName" class="form-label">Наименование на застрахователна компания на английски език</label>
-        <input type="text" class="form-control" id="engCompanyName" placeholder="...">
+        <label asp-for="CompanyEnglName" class="form-label">Наименование на застрахователна компания на английски език</label>
+        <input asp-for="CompanyEnglName" class="form-control" placeholder="английско име ...">
     </div>
 
     <div></div>
 
     <div class="form-group">
-        <label for="companyAddres">Адрес</label>
-        <textarea class="form-control" id="companyAddres" rows="3"></textarea>
+        <label asp-for="Address">Адрес</label>
+        <textarea asp-for="Address" class="form-control" rows="3"></textarea>
     </div>
 
     <div></div>
 
     <div class="col-4">
-        <label for="phoneNumber" class="form-label">Телефон</label>
-        <input type="text" class="form-control" id="phoneNumber" placeholder="...">
+        <label asp-for="PhoneNumber" class="form-label">Телефон</label>
+        <input asp-for="PhoneNumber" class="form-control" placeholder="...">
     </div>
     <div class="col-4">
-        <label for="mobilePhoneNumber" class="form-label">Мобилен телефон</label>
-        <input type="text" class="form-control" id="mobilePhoneNumber" placeholder="...">
+        <label asp-for="MobilePhoneNumber" class="form-label">Мобилен телефон</label>
+        <input asp-for="MobilePhoneNumber" class="form-control" placeholder="...">
     </div>
 
     <div></div>
 
     <div class="col-4">
-        <label for="email" class="form-label">Email</label>
-        <input type="text" class="form-control" id="email" placeholder="...">
+        <label asp-for="Email" class="form-label">Email</label>
+        <input asp-for="Email" class="form-control" placeholder="...">
     </div>
     <div class="col-4">
-        <label for="fax" class="form-label">Факс</label>
-        <input type="text" class="form-control" id="fax" placeholder="...">
+        <label asp-for="FAX" class="form-label">Факс</label>
+        <input asp-for="FAX" class="form-control" placeholder="...">
     </div>
 
     <div></div>
 
     <div class="form-group">
-        <label for="notes">Бележки</label>
-        <textarea class="form-control" id="notes" rows="3"></textarea>
+        <label asp-for="Notes">Бележки</label>
+        <textarea asp-for="Notes" class="form-control" rows="3"></textarea>
     </div>
 
     <div></div>
 
+    <div>
+        <input class="btn btn-primary" type="submit" value="Запиши" />
+        <button class="btn btn-secondary" type="reset">Отказ</button>
+        <button class="btn btn-danger" action="delete">Изтрий</button>
+        <button class="btn btn-secondary" action="redirect">Изход</button>
+    </div>
 </form>
-
-<div>
-    <button type="button" class="btn btn-primary">Запиши</button>
-    <button type="button" class="btn btn-secondary">Отказ</button>
-    <button type="button" class="btn btn-danger">Изтрий</button>
-    <button type="button" class="btn btn-secondary">Изход</button>
-</div>
