@@ -17,6 +17,8 @@ namespace EuroHelp.Data
 
         public DbSet<InsuranceCompany> InsuranceCompanies { get; init; }
 
+        public DbSet<User> Users { get; init; }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);

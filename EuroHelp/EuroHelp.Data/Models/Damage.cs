@@ -7,33 +7,42 @@ namespace EuroHelp.Data.Models
     public class Damage
     {
         [Key]
-        public int Id { get; set; }
+        [MaxLength(IdMaxLength)]
+        public string Id { get; set; } = Guid.NewGuid().ToString();
 
         [Required]
-        [MaxLength(NameMaxLength)]
+        [MaxLength(DamageNameMaxLength)]
         public string? Name { get; set; }
 
-        //[Required]
-        //public int CompanyId { get; set; }
+        public string CompanyName { get; set; }
 
         [Required]
-        [MaxLength(CompanyMaxLength)]
-        public string? CompanyName { get; set; }
+        public string EventDate { get; set; }
 
-        public DateTime EventDate { get; set; }
-
-        public DateTime RegistrationDate { get; set; }
+        [Required]
+        public string RegistrationDate { get; set; }
 
         public string EventType { get; set; }
 
-        public string? BulgarianRegNumber { get; set; }
+        [Range(0, BgRegNumber)]
+        public int? BulgarianRegNumber { get; set; }
 
-        public string? ForeignRegNumber { get; set; }
+        [Range(0, otherRegNumber)]
+        public int? ForeignRegNumber { get; set; }
 
         public string? Property { get; set; }
 
+        [Required]
         public string? InjuredPerson { get; set; }
 
         public string? NotifiedBy { get; set; }
+
+        public int UserId { get; set; }
+
+        public User User { get; set; }
+
+        public int CompanyId { get; set; }
+
+        public InsuranceCompany Company { get; set; }
     }
 }
