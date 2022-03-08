@@ -1,10 +1,12 @@
-﻿namespace EuroHelp.Web.Models.Companies
+﻿using EuroHelp.Data.Models;
+
+namespace EuroHelp.Web.Models.Companies
 {
     public class AddCompanyFormModel
     {
-        public int Id { get; set; }  
+        public string Id { get; set; }
 
-        public string Name { get; set; }   
+        public string Name { get; set; }
 
         public int Code { get; set; }
 
@@ -20,9 +22,14 @@
 
         public string Email { get; set; }
 
-
-        public string FAX { get; set; }
+        public int FAX { get; set; }
 
         public string Notes { get; set; }
+
+        public string UserId { get; set; }
+
+        public User User { get; set; }
+
+        public List<Damage> Damages { get; set; }
     }
 }

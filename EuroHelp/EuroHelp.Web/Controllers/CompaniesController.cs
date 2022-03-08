@@ -21,7 +21,6 @@ namespace EuroHelp.Web.Controllers
             return View();
         }
 
-
         [HttpPost]
         public IActionResult CompanyMembers(AddCompanyFormModel company)
         {
@@ -29,9 +28,12 @@ namespace EuroHelp.Web.Controllers
             //  - make validations !
             //  - make some chakes !
 
-            var iCompanyDb = new InsuranceCompany
+            var testingUser = this.data.Users
+                .Where(u => u.Id == "aa400093-1db9-4766-985f-a32fd2384c52")
+                .FirstOrDefault();
+
+            var newCompany = new InsuranceCompany
             {
-                Id = company.Id,
                 Name = company.Name,
                 Code = company.Code,
                 Bulstat = company.Bulstat,
@@ -41,13 +43,15 @@ namespace EuroHelp.Web.Controllers
                 MobilePhoneNumber = company.MobilePhoneNumber,
                 Email = company.Email,
                 FAX = company.FAX,
-                Notes = company.Notes
+                Notes = company.Notes,
+                UserId = testingUser.Id,
+                User = testingUser
             };
 
-            this.data.InsuranceCompanies.Add(iCompanyDb);
+            this.data.InsuranceCompanies.Add(newCompany);
             this.data.SaveChanges();
 
-            return View();
+            return RedirectToAction("Index", "Home");
         }
     }
 }
