@@ -4,6 +4,7 @@ using EuroHelp.Data;
 using EuroHelp.Data.Models;
 
 using EuroHelp.Web.Models.Damages;
+using EuroHelp.Web.Models.Companies;
 
 namespace EuroHelp.Web.Controllers
 {
@@ -17,9 +18,10 @@ namespace EuroHelp.Web.Controllers
         }
 
         public IActionResult RegisterDamage()
-        {
-            return View();
-        }
+            => View(new RegisterDamageFormModel
+            {
+                Companies = this.GetInsuranceCompanies()
+            });
 
         [HttpPost]
         public IActionResult RegisterDamage(RegisterDamageFormModel damage)
@@ -27,21 +29,33 @@ namespace EuroHelp.Web.Controllers
             // validation
             // and other checks !
 
-            var damageData = new Damage()
+            var testingUser = this.data
+                .Users
+                .Where(u => u.Id == "4b3b8269-e623-470f-8852-a981c08b0f64")
+                .FirstOrDefault();
+
+            var currCompany = this.data
+                .InsuranceCompanies
+                .Where(c => c.Id == damage.CompanyId)
+                .FirstOrDefault();
+
+            var newDamage = new Damage()
             {
                 Name = damage.Name,
-                CompanyName = damage.CompanyName,
-                EventDate = DateTime.Today,
-                RegistrationDate = DateTime.Today,
+                CompanyName = currCompany.Name,
+                EventDate = DateTime.UtcNow.ToString(),
+                RegistrationDate = DateTime.UtcNow.ToString(),
                 EventType = damage.EventType,
                 BulgarianRegNumber = damage.BulgarianRegNumber,
                 ForeignRegNumber = damage.ForeignRegNumber,
                 Property = damage.Property,
                 InjuredPerson = damage.InjuredPerson,
-                NotifiedBy = damage.NotifiedBy
+                NotifiedBy = damage.NotifiedBy,
+                UserId = testingUser.Id,
+                CompanyId = damage.CompanyId
             };
-            
-            this.data.Damages.Add(damageData);
+
+            this.data.Damages.Add(newDamage);
             this.data.SaveChanges();
 
             return RedirectToAction("Index", "Home");
@@ -51,20 +65,25 @@ namespace EuroHelp.Web.Controllers
         {
             return View();
         }
-        
+
         public IActionResult DamageModification()
         {
             return View();
-        }        
-        
+        }
+
         public IActionResult DamageSearch()
         {
             return View();
         }
 
-        public IActionResult TestView()
-        {
-            return View();
-        }
+        private IEnumerable<InsuranceCompanyViewModel> GetInsuranceCompanies()
+            => this.data
+                .InsuranceCompanies
+                .Select(c => new InsuranceCompanyViewModel
+                {
+                    Id = c.Id,
+                    Name = c.Name
+                })
+                .ToList();
     }
 }

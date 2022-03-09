@@ -12,8 +12,13 @@
         <input asp-for="Name" class="form-control" placeholder="Тип щета...">
     </div>
     <div class="col-12">
-        <label asp-for="CompanyName" class="form-label">Застрахователна компания</label>
-        <input asp-for="CompanyName" class="form-control" placeholder="Име на компания...">
+        <label asp-for="CompanyId" class="form-label">Застрахователна компания</label>
+        <select asp-for="CompanyId" class="form-select">
+            @foreach (var company in Model.Companies)
+            {
+                <option value="@company.Id">@company.Name</option>
+            }
+        </select>
     </div>
 
     <!--  HERE I WILL CHANGE IT WITH FOREACH -->

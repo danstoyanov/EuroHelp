@@ -29,7 +29,7 @@ namespace EuroHelp.Web.Controllers
             //  - make some chakes !
 
             var testingUser = this.data.Users
-                .Where(u => u.Id == "aa400093-1db9-4766-985f-a32fd2384c52")
+                .Where(u => u.Id == "4b3b8269-e623-470f-8852-a981c08b0f64")
                 .FirstOrDefault();
 
             var newCompany = new InsuranceCompany

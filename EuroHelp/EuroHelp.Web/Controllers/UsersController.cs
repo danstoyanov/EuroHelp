@@ -44,12 +44,10 @@ namespace EuroHelp.Web.Controllers
                 ConfirmPassword = user.ConfirmPassword
             };
 
-            ;
-
             this.data.Users.Add(newUser);
             this.data.SaveChanges();
 
             return RedirectToAction("Login", "Users");
-        }
+         }
     }
 }
