@@ -17,28 +17,28 @@ namespace EuroHelp.Data.Models
 
         [Required]
         [MaxLength(DefaultUsernameMaxLength)]
-        public string Username { get; set; }
+        public string? Username { get; set; }
 
         [Required]
-        public string FirstName { get; set; }
+        public string? FirstName { get; set; }
 
         [Required]
-        public string SecondNames { get; set; }
+        public string? SecondNames { get; set; }
 
         [Required]
-        public string BirthDate { get; set; }
+        public string? BirthDate { get; set; }
 
         [Required]
-        public string Gender { get; set; }
+        public string? Gender { get; set; }
 
         [Required]
-        public string Email { get; set; }
+        public string? Email { get; set; }
 
         [Required]
-        public string Password { get; set; }
+        public string? Password { get; set; }
 
         [Required]
-        public string ConfirmPassword { get; set; }
+        public string? ConfirmPassword { get; set; }
 
         public List<Damage> Damages { get; set; } = new List<Damage>();
 

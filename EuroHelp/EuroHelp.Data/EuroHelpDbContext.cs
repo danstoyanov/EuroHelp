@@ -19,9 +19,21 @@ namespace EuroHelp.Data
 
         public DbSet<User> Users { get; init; }
 
-        protected override void OnModelCreating(ModelBuilder builder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            base.OnModelCreating(builder);
+            modelBuilder.Entity<Damage>()
+                .HasOne(u => u.User)
+                .WithMany(u => u.Damages)
+                .HasForeignKey(s => s.UserId)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder.Entity<Damage>()
+                .HasOne(c => c.Company)
+                .WithMany(c => c.Damages)
+                .HasForeignKey(c => c.CompanyId)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            base.OnModelCreating(modelBuilder);
         }
     }
 }

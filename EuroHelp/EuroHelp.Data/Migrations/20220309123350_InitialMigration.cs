@@ -216,22 +216,20 @@ namespace EuroHelp.Data.Migrations
                     Property = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     InjuredPerson = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     NotifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    UserId = table.Column<int>(type: "int", nullable: false),
-                    UserId1 = table.Column<string>(type: "nvarchar(40)", nullable: true),
-                    CompanyId = table.Column<int>(type: "int", nullable: false),
-                    CompanyId1 = table.Column<string>(type: "nvarchar(40)", nullable: true)
+                    UserId = table.Column<string>(type: "nvarchar(40)", nullable: false),
+                    CompanyId = table.Column<string>(type: "nvarchar(40)", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Damages", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Damages_InsuranceCompanies_CompanyId1",
-                        column: x => x.CompanyId1,
+                        name: "FK_Damages_InsuranceCompanies_CompanyId",
+                        column: x => x.CompanyId,
                         principalTable: "InsuranceCompanies",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_Damages_Users_UserId1",
-                        column: x => x.UserId1,
+                        name: "FK_Damages_Users_UserId",
+                        column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "Id");
                 });
@@ -276,14 +274,14 @@ namespace EuroHelp.Data.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Damages_CompanyId1",
+                name: "IX_Damages_CompanyId",
                 table: "Damages",
-                column: "CompanyId1");
+                column: "CompanyId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Damages_UserId1",
+                name: "IX_Damages_UserId",
                 table: "Damages",
-                column: "UserId1");
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_InsuranceCompanies_UserId",

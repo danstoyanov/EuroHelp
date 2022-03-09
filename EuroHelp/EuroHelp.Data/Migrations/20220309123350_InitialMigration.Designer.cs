@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EuroHelp.Data.Migrations
 {
     [DbContext(typeof(EuroHelpDbContext))]
-    [Migration("20220308154002_InitialMigration")]
+    [Migration("20220309123350_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -33,10 +33,8 @@ namespace EuroHelp.Data.Migrations
                     b.Property<int?>("BulgarianRegNumber")
                         .HasColumnType("int");
 
-                    b.Property<int>("CompanyId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("CompanyId1")
+                    b.Property<string>("CompanyId")
+                        .IsRequired()
                         .HasColumnType("nvarchar(40)");
 
                     b.Property<string>("CompanyName")
@@ -73,17 +71,15 @@ namespace EuroHelp.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("UserId1")
+                    b.Property<string>("UserId")
+                        .IsRequired()
                         .HasColumnType("nvarchar(40)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CompanyId1");
+                    b.HasIndex("CompanyId");
 
-                    b.HasIndex("UserId1");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Damages");
                 });
@@ -396,11 +392,15 @@ namespace EuroHelp.Data.Migrations
                 {
                     b.HasOne("EuroHelp.Data.Models.InsuranceCompany", "Company")
                         .WithMany("Damages")
-                        .HasForeignKey("CompanyId1");
+                        .HasForeignKey("CompanyId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
 
                     b.HasOne("EuroHelp.Data.Models.User", "User")
                         .WithMany("Damages")
-                        .HasForeignKey("UserId1");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
 
                     b.Navigation("Company");
 

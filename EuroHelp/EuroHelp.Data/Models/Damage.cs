@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 using static EuroHelp.Data.DataConstants;
 
@@ -37,12 +38,14 @@ namespace EuroHelp.Data.Models
 
         public string? NotifiedBy { get; set; }
 
-        public int UserId { get; set; }
+        public string UserId { get; set; }
 
+        [ForeignKey("UserId")]
         public User User { get; set; }
 
-        public int CompanyId { get; set; }
+        public string CompanyId { get; set; }
 
+        [ForeignKey("CompanyId")]
         public InsuranceCompany Company { get; set; }
     }
 }
