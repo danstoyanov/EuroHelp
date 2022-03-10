@@ -1,4 +1,6 @@
-﻿@{
+﻿@model AllDamagesQueryModel
+
+@{
     ViewData["Title"] = "List of Damages";
 }
 
@@ -22,93 +24,56 @@
                         <th scope="col"></th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td>
-                            <div class="col-20">
-                                <label for="opionNumber" class="form-label">Претенция номер: </label>
-                                <input type="text" class="form-control" id="opionNumber" placeholder="...">
-                                <label for="opionNumber" class="form-label">Рег. номер: </label>
-                                <input type="text" class="form-control" id="opionNumber" placeholder="...">
-                                <label for="opionNumber" class="form-label">Полица: </label>
-                                <input type="text" class="form-control" id="opionNumber" placeholder="...">
-                            </div>
-                        </td>
-                        <td>
-                            <div class="col-20">
-                                <label for="opionNumber" class="form-label">Дата на регистрация: </label>
-                                <input type="text" class="form-control" id="opionNumber" placeholder="...">
-                                <label for="opionNumber" class="form-label">Заст. компания: </label>
-                                <input type="text" class="form-control" id="opionNumber" placeholder="...">
-                                <label for="opionNumber" class="form-label">Сертификат номер: </label>
-                                <input type="text" class="form-control" id="opionNumber" placeholder="...">
-                            </div>
-                        </td>
-                        <td>
-                            <div class="col-20">
-                                <label for="opionNumber" class="form-label">Дата на събитие: </label>
-                                <input type="text" class="form-control" id="opionNumber" placeholder="...">
-                                <label for="opionNumber" class="form-label">Вид събиране: </label>
-                                <input type="text" class="form-control" id="opionNumber" placeholder="...">
-                                <label for="opionNumber" class="form-label">Реф. номер на НББАЗ: </label>
-                                <input type="text" class="form-control" id="opionNumber" placeholder="...">
-                            </div>
-                        </td>
-                        <td>
-                            <div class="col-20">
-                                <label for="opionNumber" class="form-label">Тип щета: </label>
-                                <input type="text" class="form-control" id="opionNumber" placeholder="...">
-                                <label for="opionNumber" class="form-label">Реф. номер на заст. комп: </label>
-                                <input type="text" class="form-control" id="opionNumber" placeholder="...">
-                            </div>
-                        </td>
-                        <td>
-                            <div class="col-20">
-                                <label for="opionNumber" class="form-label">Статус: </label>
-                                <input type="text" class="form-control" id="opionNumber" placeholder="великобритания">
-                                <label></label>
-                                <label for="opionNumber" class="form-label">Реф. номер на DEKRA: </label>
-                                <input type="text" class="form-control" id="opionNumber" placeholder="...">
-                            </div>
-                        </td>
-                        <td>
-                            <div class="col-20">
-                                <label for="opionNumber" class="form-label">Държава на събитие: </label>
-                                <input type="text" class="form-control" id="opionNumber" placeholder="великобритания">
-                            </div>
-                        </td>
-
-                        <td>
-                            <div class="button-holder">
-                                <a href="/Damages/DamageModification" class="btn btn-info text-uppercase">Преглед</a>
-                            </div>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <th scope="row">StartPoint</th>
-                        <td>EndPoint</td>
-                        <td>DepartureTime</td>
-                        <td>Seats</td>
-                        <td>
-                            <div class="button-holder">
-                                <a href="/Trips/Details?tripId=Id" class="btn btn-info text-uppercase">Info</a>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">StartPoint</th>
-                        <td>EndPoint</td>
-                        <td>DepartureTime</td>
-                        <td>Seats</td>
-                        <td>
-                            <div class="button-holder">
-                                <a href="/Trips/Details?tripId=Id" class="btn btn-info text-uppercase">Info</a>
-                            </div>
-                        </td>
-                    </tr>
-
-                </tbody>
+                @foreach (var damage in Model.Damages)
+                {
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="col-20">
+                                    <label for="opionNumber" class="form-label">Име на щета: </label>
+                                    <input class="form-control" type="text" placeholder="@damage.Name" aria-label="Disabled input example" disabled>
+                                    <label for="opionNumber" class="form-label">Заст. компания: </label>
+                                    <input class="form-control" type="text" placeholder="@damage.CompanyName" aria-label="Disabled input example" disabled>
+                                    <label for="opionNumber" class="form-label">Тип събитие: </label>
+                                    <input class="form-control" type="text" placeholder="@damage.EventType" aria-label="Disabled input example" disabled>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="col-20">
+                                    <label for="opionNumber" class="form-label">Дата на събитие: </label>
+                                    <input class="form-control" type="text" placeholder="@damage.EventDate" aria-label="Disabled input example" disabled>
+                                    <label for="opionNumber" class="form-label">Дата на регистрация: </label>
+                                    <input class="form-control" type="text" placeholder="@damage.RegistrationDate" aria-label="Disabled input example" disabled>
+                                    <label for="opionNumber" class="form-label">БГ номер: </label>
+                                    <input class="form-control" type="text" placeholder="@damage.BulgarianRegNumber" aria-label="Disabled input example" disabled>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="col-20">
+                                    <label for="opionNumber" class="form-label">Собственост: </label>
+                                    <input class="form-control" type="text" placeholder="@damage.Property" aria-label="Disabled input example" disabled>
+                                    <label for="opionNumber" class="form-label">Пострадал: </label>
+                                    <input class="form-control" type="text" placeholder="@damage.InjuredPerson" aria-label="Disabled input example" disabled>
+                                    <label for="opionNumber" class="form-label">Уведомяване от: </label>
+                                    <input class="form-control" type="text" placeholder="@damage.NotifiedBy" aria-label="Disabled input example" disabled>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="col-20">
+                                    <label for="opionNumber" class="form-label">Реф. номер на DEKRA: </label>
+                                    <input class="form-control" type="text" placeholder="N/A" aria-label="Disabled input example" disabled>
+                                    <label for="opionNumber" class="form-label">Държава на събитие: </label>
+                                    <input class="form-control" type="text" placeholder="N/A" aria-label="Disabled input example" disabled>
+                                    <div class="m-sm-4">
+                                        <a href="/Damages/DamageModification" class="btn btn-info text-uppercase">Преглед</a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                        </tr>
+                    </tbody>
+                }
             </table>
         </div>
     </div>

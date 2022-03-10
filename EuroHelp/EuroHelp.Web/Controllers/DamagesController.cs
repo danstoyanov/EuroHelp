@@ -61,9 +61,29 @@ namespace EuroHelp.Web.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        public IActionResult AllDamages()
+        public IActionResult AllDamages([FromQuery]AllDamagesQueryModel query)
         {
-            return View();
+            var damagesQuery = this.data.Damages.AsQueryable();
+
+            var damages = damagesQuery
+                .Select(d => new DamagesListingViewModel
+                {
+                    Name = d.Name,
+                    CompanyName = d.CompanyName,
+                    EventDate = d.EventDate,
+                    RegistrationDate = d.RegistrationDate,
+                    EventType = d.EventType,
+                    BulgarianRegNumber = d.BulgarianRegNumber,
+                    ForeignRegNumber = d.ForeignRegNumber,
+                    Property = d.Property,
+                    InjuredPerson = d.InjuredPerson,
+                    NotifiedBy = d.NotifiedBy
+                })
+                .ToList();
+
+            query.Damages = damages;
+
+            return View(query);
         }
 
         public IActionResult DamageModification()

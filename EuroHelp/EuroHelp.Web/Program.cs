@@ -35,9 +35,8 @@ else
 app.UseHttpsRedirection()
     .UseStaticFiles()
     .UseRouting()
-    .UseAuthentication();
-
-app.UseAuthorization();
+    .UseAuthentication()
+    .UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
