@@ -1,57 +1,54 @@
-﻿@{
+﻿@model ExportFile
+
+@{
     ViewData["Title"] = "Reference Generator";
 }
 
 <h1 style="margin: 2%; text-align: center;">Справки за претенции по щети гражданска отговорност</h1>
 
-<form class="row g-3">
-    <h5>Справка за плащания по претенции по щети ГО в определен период</h5>
+<form class="row g-3" method="post">
+    <h5>ТЕСТ справка по име на компания</h5>
     <div class="col-3">
-        <label for="fromDate" class="form-label">От Дата</label>
-        <input type="text" class="form-control" id="fromDate" placeholder="...">
+        <label asp-for="StartDate" class="form-label">От Дата</label>
+        <input asp-for="StartDate" type="text" class="form-control" placeholder="">
     </div>
     <div class="col-3">
-        <label for="toDate" class="form-label">До Дата</label>
-        <input type="text" class="form-control" id="toDate" placeholder="...">
+        <label asp-for="EndDate" class="form-label">До Дата</label>
+        <input asp-for="EndDate" class="form-control" placeholder="">
     </div>
     <div>
-        <button type="button" class="btn btn-info">Генерирай справка</button>
+        <input asp-controller="References" asp-action="GenerateByCompanyName" class="btn btn-primary" type="submit" value="Генерирай справка" />
     </div>
-
-    <h5>Справка за регистрирани претенции по претенции по щети ГО в определен период</h5>
+</form>
+<form class="row g-3" method="post">
+    <h5>Генерираш справка по № на претенция</h5>
     <div class="col-3">
-        <label for="fromDate" class="form-label">От Дата</label>
-        <input type="text" class="form-control" id="fromDate" placeholder="...">
+        <label asp-for="StartDate" class="form-label">От Дата</label>
+        <input asp-for="StartDate" class="form-control" placeholder="">
     </div>
     <div class="col-3">
-        <label for="toDate" class="form-label">До Дата</label>
-        <input type="text" class="form-control" id="toDate" placeholder="...">
+        <label asp-for="EndDate" class="form-label">До Дата</label>
+        <input asp-for="EndDate" class="form-control" placeholder="">
     </div>
     <div>
-        <button type="button" class="btn btn-info">Генерирай справка</button>
+        <input asp-controller="References" asp-action="GenerateByPretentionNumber" class="btn btn-primary" type="submit" value="Генерирай справка" />
     </div>
+</form>
 
-    <div></div>
-    <div></div>
-
-    <h5>Справка за претенции по щети ГО със статус "Потвърдена" и дата на потвърждение в определен период</h5>
+<form class="row g-3" method="post">
+    <h5>Генерирай справка по потвърждение на щетата</h5>
     <div class="col-3">
-        <label for="fromDate" class="form-label">От Дата</label>
-        <input type="text" class="form-control" id="fromDate" placeholder="...">
+        <label asp-for="StartDate" class="form-label">От Дата</label>
+        <input asp-for="StartDate" class="form-control" placeholder="">
     </div>
     <div class="col-3">
-        <label for="toDate" class="form-label">До Дата</label>
-        <input type="text" class="form-control" id="toDate" placeholder="...">
+        <label asp-for="EndDate" class="form-label">До Дата</label>
+        <input asp-for="EndDate" class="form-control" placeholder="">
     </div>
     <div>
-        <button type="button" class="btn btn-info">Генерирай справка</button>
+        <input asp-controller="References" asp-action="GenerateByConfirmation" class="btn btn-primary" type="submit" value="Генерирай справка" />
     </div>
-
-    <div></div>
-    <div></div>
-
     <div>
         <button type="button" class="btn btn-danger">Изход</button>
     </div>
-
 </form>
