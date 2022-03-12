@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EuroHelp.Data.Migrations
 {
     [DbContext(typeof(EuroHelpDbContext))]
-    [Migration("20220311174742_InitialMigration")]
+    [Migration("20220312170137_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,23 +27,19 @@ namespace EuroHelp.Data.Migrations
             modelBuilder.Entity("EuroHelp.Data.Models.Damage", b =>
                 {
                     b.Property<string>("Id")
-                        .HasMaxLength(40)
-                        .HasColumnType("nvarchar(40)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<int?>("BulgarianRegNumber")
                         .HasColumnType("int");
 
                     b.Property<string>("CompanyId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(40)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("CompanyName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("EventDate")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTime>("EventDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("EventType")
                         .IsRequired()
@@ -62,16 +58,17 @@ namespace EuroHelp.Data.Migrations
                         .HasColumnType("nvarchar(30)");
 
                     b.Property<string>("NotifiedBy")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Property")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("RegistrationDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("UserId")
-                        .IsRequired()
                         .HasColumnType("nvarchar(40)");
 
                     b.HasKey("Id");
@@ -86,12 +83,11 @@ namespace EuroHelp.Data.Migrations
             modelBuilder.Entity("EuroHelp.Data.Models.InsuranceCompany", b =>
                 {
                     b.Property<string>("Id")
-                        .HasMaxLength(40)
-                        .HasColumnType("nvarchar(40)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Address")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
                     b.Property<int>("Bulstat")
                         .HasColumnType("int");
@@ -100,13 +96,13 @@ namespace EuroHelp.Data.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("CompanyEnglName")
-                        .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
 
                     b.Property<int>("FAX")
                         .HasColumnType("int");
@@ -118,12 +114,12 @@ namespace EuroHelp.Data.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
 
                     b.Property<string>("Notes")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasMaxLength(350)
+                        .HasColumnType("nvarchar(350)");
 
                     b.Property<string>("PhoneNumber")
                         .IsRequired()
@@ -131,7 +127,6 @@ namespace EuroHelp.Data.Migrations
                         .HasColumnType("nvarchar(8)");
 
                     b.Property<string>("UserId")
-                        .IsRequired()
                         .HasColumnType("nvarchar(40)");
 
                     b.HasKey("Id");
@@ -392,14 +387,12 @@ namespace EuroHelp.Data.Migrations
                     b.HasOne("EuroHelp.Data.Models.InsuranceCompany", "Company")
                         .WithMany("Damages")
                         .HasForeignKey("CompanyId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.NoAction);
 
                     b.HasOne("EuroHelp.Data.Models.User", "User")
                         .WithMany("Damages")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.NoAction);
 
                     b.Navigation("Company");
 
@@ -410,9 +403,7 @@ namespace EuroHelp.Data.Migrations
                 {
                     b.HasOne("EuroHelp.Data.Models.User", "User")
                         .WithMany("InsuranceCompanies")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserId");
 
                     b.Navigation("User");
                 });

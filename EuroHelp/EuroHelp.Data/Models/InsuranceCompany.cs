@@ -1,46 +1,55 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
-using static EuroHelp.Data.DataConstants;
+using static EuroHelp.Data.DataConstants.InsuranceCompany;
 
 namespace EuroHelp.Data.Models
 {
     public class InsuranceCompany
     {
         [Key]
-        [MaxLength(IdMaxLength)]
-        public string Id { get; set; }
-
-        public string Name { get; set; }
-
-        public int Code { get; set; }
-
-        public int Bulstat { get; set; }
+        public string? Id { get; set; }
 
         [Required]
-        [MaxLength(CompanyNameMaxLength)]
-        public string CompanyEnglName { get; set; }
+        [MaxLength(NameMaxLength)]
+        public string? Name { get; set; }
 
-        public string Address { get; set; }
+        [Required]
+        [Range(CodeMinValue, CodeMaxValue)]
+        public int Code { get; set; }
+
+        [Required]
+        [Range(BulstatMinValue, BulstatMaxValue)]
+        public int Bulstat { get; set; }
+
+        [MaxLength(NameMaxLength)]
+        public string? CompanyEnglName { get; set; }
+
+        [MaxLength(AddressMaxLength)]
+        public string? Address { get; set; }
 
         [Required]
         [MaxLength(MaxPhoneNumber)]
-        public string PhoneNumber { get; set; }
+        public string? PhoneNumber { get; set; }
 
         [Required]
         [MaxLength(MaxMobilePhoneNumber)]
-        public string MobilePhoneNumber { get; set; }
+        public string? MobilePhoneNumber { get; set; }
 
         [Required]
-        public string Email { get; set; }
+        [MaxLength(EmailMaxLength)]
+        public string? Email { get; set; }
 
+        [Range(FaxMinValue, FaxMaxValue)]
         public int FAX { get; set; }
 
         [MaxLength(NotesMaxLength)]
-        public string Notes { get; set; }
+        public string? Notes { get; set; }
 
-        public string UserId { get; set; }
+        [ForeignKey("User")]
+        public string? UserId { get; set; }
 
-        public User User { get; set; }
+        public User? User { get; set; }
 
         public List<Damage> Damages { get; set; } = new List<Damage>();
     }

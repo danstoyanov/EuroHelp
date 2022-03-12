@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using static EuroHelp.Data.DataConstants;
+using static EuroHelp.Data.DataConstants.User;
 
 namespace EuroHelp.Data.Models
 {

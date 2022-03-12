@@ -1,51 +1,51 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-using static EuroHelp.Data.DataConstants;
+using static EuroHelp.Data.DataConstants.Damage;
 
 namespace EuroHelp.Data.Models
 {
     public class Damage
     {
         [Key]
-        [MaxLength(IdMaxLength)]
-        public string Id { get; set; }
+        public string? Id { get; set; }
 
         [Required]
-        [MaxLength(DamageNameMaxLength)]
+        [MaxLength(NameMaxLength)]
         public string? Name { get; set; }
 
-        public string CompanyName { get; set; }
+        public string? CompanyName { get; set; }
 
-        [Required]
-        public string EventDate { get; set; }
+        public DateTime EventDate { get; set; }
 
-        [Required]
         public DateTime RegistrationDate { get; set; } = DateTime.UtcNow;
 
-        public string EventType { get; set; }
+        [Required]
+        public string? EventType { get; set; }
 
-        [Range(0, BgRegNumber)]
+        [Range(BgRegMinValue, BgRegMaxValue)]
         public int? BulgarianRegNumber { get; set; }
 
-        [Range(0, otherRegNumber)]
+        [Range(OtherRegMinValue, OtherRegMaxValue)]
         public int? ForeignRegNumber { get; set; }
 
+        [Required]
         public string? Property { get; set; }
 
         [Required]
         public string? InjuredPerson { get; set; }
 
+        [Required]
         public string? NotifiedBy { get; set; }
 
-        public string UserId { get; set; }
+        public string? UserId { get; set; }
 
         [ForeignKey("UserId")]
-        public User User { get; set; }
+        public User? User { get; set; }
 
-        public string CompanyId { get; set; }
+        public string? CompanyId { get; set; }
 
         [ForeignKey("CompanyId")]
-        public InsuranceCompany Company { get; set; }
+        public InsuranceCompany? Company { get; set; }
     }
 }

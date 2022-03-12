@@ -177,18 +177,18 @@ namespace EuroHelp.Data.Migrations
                 name: "InsuranceCompanies",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
                     Code = table.Column<int>(type: "int", nullable: false),
                     Bulstat = table.Column<int>(type: "int", nullable: false),
-                    CompanyEnglName = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
-                    Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CompanyEnglName = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: true),
+                    Address = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: true),
                     PhoneNumber = table.Column<string>(type: "nvarchar(8)", maxLength: 8, nullable: false),
                     MobilePhoneNumber = table.Column<string>(type: "nvarchar(12)", maxLength: 12, nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
                     FAX = table.Column<int>(type: "int", nullable: false),
-                    Notes = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    UserId = table.Column<string>(type: "nvarchar(40)", nullable: false)
+                    Notes = table.Column<string>(type: "nvarchar(350)", maxLength: 350, nullable: true),
+                    UserId = table.Column<string>(type: "nvarchar(40)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -197,27 +197,26 @@ namespace EuroHelp.Data.Migrations
                         name: "FK_InsuranceCompanies_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
                 name: "Damages",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: false),
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
-                    CompanyName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    EventDate = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CompanyName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    EventDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     RegistrationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     EventType = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     BulgarianRegNumber = table.Column<int>(type: "int", nullable: true),
                     ForeignRegNumber = table.Column<int>(type: "int", nullable: true),
-                    Property = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Property = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     InjuredPerson = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    NotifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    UserId = table.Column<string>(type: "nvarchar(40)", nullable: false),
-                    CompanyId = table.Column<string>(type: "nvarchar(40)", nullable: false)
+                    NotifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UserId = table.Column<string>(type: "nvarchar(40)", nullable: true),
+                    CompanyId = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>
                 {
