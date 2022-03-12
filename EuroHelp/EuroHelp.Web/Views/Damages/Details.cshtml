@@ -4,7 +4,7 @@
     ViewData["Title"] = "Damage Modification";
 }
 
-<h1 style="margin: 2%; text-align: center;">Модифициране на щета</h1>
+<h1 style="margin: 2%; text-align: center;">✍ Модифициране на щета</h1>
 <hr class="bg-primary w-100">
 
 <ul class="nav nav-tabs">
@@ -42,22 +42,13 @@
                 </select>
             </div>
 
-            <div class="col-3">
+            <div class="col-2">
                 <label asp-for="@Model.EventDate" class="form-label">Дата на събитие</label>
                 <input asp-for="@Model.EventDate" type="date" class="form-control">
             </div>
-
-
-            <div>
-            </div>
-
-
-            <div class="col-3">
+            <div class="col-2">
                 <label asp-for="@Model.RegistrationDate" class="form-label">Дата на регистрация</label>
                 <input class="form-control" type="text" placeholder="@Model.RegistrationDate" aria-label="Disabled input example" disabled>
-            </div>
-
-            <div>
             </div>
             <div class="col-3">
                 <label asp-for="@Model.BulgarianRegNumber" class="form-label">Български регистрационен номер</label>
@@ -67,11 +58,11 @@
                 <label asp-for="@Model.ForeignRegNumber" class="form-label">Чужд регистрационен номер</label>
                 <input asp-for="@Model.ForeignRegNumber" class="form-control">
             </div>
-            <div class="col-3">
+            <div class="col-2">
                 <label asp-for="@Model.Property" class="form-label">Имущество</label>
                 <input asp-for="@Model.Property" class="form-control">
             </div>
-            <div class="col-3">
+            <div class="col-2">
                 <label asp-for="@Model.InjuredPerson" class="form-label">Пострадал</label>
                 <select asp-for="@Model.InjuredPerson" class="form-select">
                     <option>Водач</option>
@@ -81,7 +72,8 @@
                     <option>Пешеходец</option>
                 </select>
             </div>
-                <div class="col-3">
+            <div></div>
+                <div class="col-4">
                     <button asp-controller="Damages" asp-action="Details" type="submit" class="btn btn-primary">Запис</button>
                     <a asp-controller="Damages" asp-action="AllDamages" class="btn btn-secondary">Отказ</a>
                 </div>

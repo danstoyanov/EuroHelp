@@ -4,78 +4,56 @@
     ViewData["Title"] = "Company Members";
 }
 
-<h1 style="margin: 2%; text-align: center;">Регистрация на застрахователна компания</h1>
+<h1 style="margin: 2%; text-align: center;">🛡️ Регистрация на нова застрахователна компания</h1>
+<hr class="bg-primary w-100">
 
-<h5>Нова застрахователна компания</h5>
 <form class="row g-3" method="post">
-    <div></div>
-
     <div class="col-1">
         <label asp-for="Id" class="form-label">ID</label>
-        <input asp-for="Id" class="form-control" placeholder="...">
+        <input asp-for="Id" class="form-control" placeholder="ID...">
     </div>
-    <div class="col-4">
-        <label asp-for="Name" class="form-label">Застрахователна компания</label>
-        <input asp-for="Name" class="form-control" placeholder="наименование...">
+    <div class="col-3">
+        <label asp-for="Name" class="form-label">Име на компания</label>
+        <input asp-for="Name" class="form-control" placeholder="Име на компанията...">
     </div>
     <div class="col-1">
         <label asp-for="Code" class="form-label">Код</label>
-        <input asp-for="Code" class="form-control" placeholder="код...">
+        <input asp-for="Code" class="form-control" placeholder="Код...">
     </div>
     <div class="col-3">
         <label asp-for="Bulstat" class="form-label">Булстат</label>
-        <input asp-for="Bulstat" class="form-control" placeholder="булстат...">
+        <input asp-for="Bulstat" class="form-control" placeholder="Булстат...">
     </div>
-
-    <div></div>
-
-    <div class="col-9">
-        <label asp-for="CompanyEnglName" class="form-label">Наименование на застрахователна компания на английски език</label>
+    <div class="col-4">
+        <label asp-for="CompanyEnglName" class="form-label">Име на компания на анг. език</label>
         <input asp-for="CompanyEnglName" class="form-control" placeholder="английско име ...">
     </div>
-
-    <div></div>
-
     <div class="form-group">
         <label asp-for="Address">Адрес</label>
-        <textarea asp-for="Address" class="form-control" rows="3"></textarea>
+        <textarea asp-for="Address" class="form-control" rows="3" placeholder="гр. София, ул Михайлов № 43...."></textarea>
     </div>
-
-    <div></div>
-
-    <div class="col-4">
+    <div class="col-3">
         <label asp-for="PhoneNumber" class="form-label">Телефон</label>
-        <input asp-for="PhoneNumber" class="form-control" placeholder="...">
+        <input asp-for="PhoneNumber" class="form-control" placeholder="02 2255...">
     </div>
-    <div class="col-4">
+    <div class="col-3">
         <label asp-for="MobilePhoneNumber" class="form-label">Мобилен телефон</label>
-        <input asp-for="MobilePhoneNumber" class="form-control" placeholder="...">
+        <input asp-for="MobilePhoneNumber" class="form-control" placeholder="+359 88...">
     </div>
-
-    <div></div>
-
-    <div class="col-4">
+    <div class="col-3">
         <label asp-for="Email" class="form-label">Email</label>
-        <input asp-for="Email" class="form-control" placeholder="...">
+        <input asp-for="Email" class="form-control" placeholder="Имейл адрес...">
     </div>
-    <div class="col-4">
+    <div class="col-3">
         <label asp-for="FAX" class="form-label">Факс</label>
-        <input asp-for="FAX" class="form-control" placeholder="...">
+        <input asp-for="FAX" class="form-control" placeholder="123 456...">
     </div>
-
-    <div></div>
-
     <div class="form-group">
         <label asp-for="Notes">Бележки</label>
-        <textarea asp-for="Notes" class="form-control" rows="3"></textarea>
+        <textarea asp-for="Notes" class="form-control" rows="3" placeholder="Компанията се занимава с застраховки на ...."></textarea>
     </div>
-
-    <div></div>
-
     <div>
         <input class="btn btn-primary" type="submit" value="Запиши" />
         <button class="btn btn-secondary" type="reset">Отказ</button>
-        <button class="btn btn-danger" action="delete">Изтрий</button>
-        <button class="btn btn-secondary" action="redirect">Изход</button>
     </div>
 </form>

@@ -4,68 +4,65 @@
     ViewData["Title"] = "List of Damages";
 }
 
+<h1 style="margin: 2%; text-align: center;">📝 Списък на всички регистрирани щети</h1>
+<hr class="bg-primary w-100">
+
 <section class="py-5">
-    <div class="container">
-        <h1 style="margin: 2%; text-align: center;">Списък на всички регистрирани щети</h1>
-        <hr class="bg-primary w-100">
-        <div>
-            <table class="table">
-                @foreach (var damage in Model.Damages)
-                {
-                    <tbody>
-                        <tr>
-                            <td>
-                                <div class="col-20">
-                                    <label for="opionNumber" class="form-label">Име на щета: </label>
-                                    <input class="form-control" type="text" placeholder="@damage.Name" aria-label="Disabled input example" disabled>
-                                    <label for="opionNumber" class="form-label">Заст. компания: </label>
-                                    <input class="form-control" type="text" placeholder="@damage.CompanyName" aria-label="Disabled input example" disabled>
-                                    <label for="opionNumber" class="form-label">Тип събитие: </label>
-                                    <input class="form-control" type="text" placeholder="@damage.EventType" aria-label="Disabled input example" disabled>
+    <table class="table">
+        @foreach (var damage in Model.Damages)
+        {
+            <tbody>
+                <tr>
+                    <td>
+                        <div class="col-20">
+                            <label for="opionNumber" class="form-label">Име на щета: </label>
+                            <input class="form-control" type="text" placeholder="@damage.Name" aria-label="Disabled input example" disabled>
+                            <label for="opionNumber" class="form-label">Заст. компания: </label>
+                            <input class="form-control" type="text" placeholder="@damage.CompanyName" aria-label="Disabled input example" disabled>
+                            <label for="opionNumber" class="form-label">Тип събитие: </label>
+                            <input class="form-control" type="text" placeholder="@damage.EventType" aria-label="Disabled input example" disabled>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="col-20">
+                            <label for="opionNumber" class="form-label">Дата на събитие: </label>
+                            <input class="form-control" type="text" placeholder="@damage.EventDate" aria-label="Disabled input example" disabled>
+                            <label for="opionNumber" class="form-label">Дата на регистрация: </label>
+                            <input class="form-control" type="text" placeholder="@damage.RegistrationDate" aria-label="Disabled input example" disabled>
+                            <label for="opionNumber" class="form-label">БГ номер: </label>
+                            <input class="form-control" type="text" placeholder="@damage.BulgarianRegNumber" aria-label="Disabled input example" disabled>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="col-20">
+                            <label for="opionNumber" class="form-label">Собственост: </label>
+                            <input class="form-control" type="text" placeholder="@damage.Property" aria-label="Disabled input example" disabled>
+                            <label for="opionNumber" class="form-label">Пострадал: </label>
+                            <input class="form-control" type="text" placeholder="@damage.InjuredPerson" aria-label="Disabled input example" disabled>
+                            <label for="opionNumber" class="form-label">Уведомяване от: </label>
+                            <input class="form-control" type="text" placeholder="@damage.NotifiedBy" aria-label="Disabled input example" disabled>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="col-20">
+                            <label for="opionNumber" class="form-label">Реф. номер на DEKRA: </label>
+                            <input class="form-control" type="text" placeholder="N/A" aria-label="Disabled input example" disabled>
+                            <label for="opionNumber" class="form-label">Държава на събитие: </label>
+                            <input class="form-control" type="text" placeholder="N/A" aria-label="Disabled input example" disabled>
+                            <form method="post" asp-controller="Damages" asp-action="DeleteDamage" asp-route-id="@damage.Id">
+                                <div class="m-sm-4">
+                                    <a asp-action="Details" asp-controller="Damages" asp-route-id="@damage.Id" class="btn btn-primary">ПРЕГЛЕД</a>
+                                    <button type="submit" class="btn btn-danger m-sm-auto">ИЗТРИЙ</button>
                                 </div>
-                            </td>
-                            <td>
-                                <div class="col-20">
-                                    <label for="opionNumber" class="form-label">Дата на събитие: </label>
-                                    <input class="form-control" type="text" placeholder="@damage.EventDate" aria-label="Disabled input example" disabled>
-                                    <label for="opionNumber" class="form-label">Дата на регистрация: </label>
-                                    <input class="form-control" type="text" placeholder="@damage.RegistrationDate" aria-label="Disabled input example" disabled>
-                                    <label for="opionNumber" class="form-label">БГ номер: </label>
-                                    <input class="form-control" type="text" placeholder="@damage.BulgarianRegNumber" aria-label="Disabled input example" disabled>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="col-20">
-                                    <label for="opionNumber" class="form-label">Собственост: </label>
-                                    <input class="form-control" type="text" placeholder="@damage.Property" aria-label="Disabled input example" disabled>
-                                    <label for="opionNumber" class="form-label">Пострадал: </label>
-                                    <input class="form-control" type="text" placeholder="@damage.InjuredPerson" aria-label="Disabled input example" disabled>
-                                    <label for="opionNumber" class="form-label">Уведомяване от: </label>
-                                    <input class="form-control" type="text" placeholder="@damage.NotifiedBy" aria-label="Disabled input example" disabled>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="col-20">
-                                    <label for="opionNumber" class="form-label">Реф. номер на DEKRA: </label>
-                                    <input class="form-control" type="text" placeholder="N/A" aria-label="Disabled input example" disabled>
-                                    <label for="opionNumber" class="form-label">Държава на събитие: </label>
-                                    <input class="form-control" type="text" placeholder="N/A" aria-label="Disabled input example" disabled>
-                                    <form method="post" asp-controller="Damages" asp-action="DeleteDamage" asp-route-id="@damage.Id">
-                                        <div class="m-sm-4">
-                                            <a asp-action="Details" asp-controller="Damages" asp-route-id="@damage.Id" class="btn btn-primary">ПРЕГЛЕД</a>
-                                            <button type="submit" class="btn btn-danger m-sm-auto">ИЗТРИЙ</button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                        </tr>
-                    </tbody>
-                }
-            </table>
-        </div>
-    </div>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                </tr>
+            </tbody>
+        }
+    </table>
 </section>
 
 <nav aria-label="Page navigation example">

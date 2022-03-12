@@ -4,18 +4,19 @@
     ViewData["Title"] = "Register Demage";
 }
 
+<h1 style="margin: 2%; text-align: center;">🤕 Регистрация на нова щета</h1>
+<hr class="bg-primary w-100">
+
 <form class="row g-3" method="post">
-    <h1 style="margin: 2%; text-align: center;">Регистрация на нова щета</h1>
-    <hr class="bg-primary w-100">
     <div class="col-1">
         <label asp-for="Id" class="form-label">ID</label>
         <input asp-for="Id" class="form-control" placeholder="ID...">
     </div>
-    <div class="col-12">
+    <div class="col-4">
         <label asp-for="Name" class="form-label">Тип щета</label>
         <input asp-for="Name" class="form-control" placeholder="Тип щета...">
     </div>
-    <div class="col-12">
+    <div class="col-7">
         <label asp-for="CompanyId" class="form-label">Застрахователна компания</label>
         <select asp-for="CompanyId" class="form-select">
             @foreach (var company in Model.Companies)
@@ -24,9 +25,6 @@
             }
         </select>
     </div>
-
-    <!--  HERE I WILL CHANGE IT WITH FOREACH -->
-
     <div class="col-12">
         <label asp-for="EventType" class="form-label">Вид събитие</label>
         <select asp-for="EventType" class="form-select">
@@ -46,19 +44,16 @@
     </div>
     <div class="col-3">
         <label asp-for="BulgarianRegNumber" class="form-label">Български регистрационен номер</label>
-        <input asp-for="BulgarianRegNumber" class="form-control" placeholder="номер....">
+        <input asp-for="BulgarianRegNumber" class="form-control" placeholder="Български рег. номер....">
     </div>
     <div class="col-3">
         <label asp-for="ForeignRegNumber" class="form-label">Чужд регистрационен номер</label>
-        <input asp-for="ForeignRegNumber" class="form-control" placeholder="номер....">
+        <input asp-for="ForeignRegNumber" class="form-control" placeholder="Чужд рег. номер....">
     </div>
     <div class="col-3">
         <label asp-for="Property" class="form-label">Имущество</label>
-        <input asp-for="Property" class="form-control" placeholder="имущество...">
+        <input asp-for="Property" class="form-control" placeholder="Вид имущество...">
     </div>
-
-    <!--  HERE I WILL CHANGE IT WITH FOREACH -->
-
     <div class="col-3">
         <label asp-for="InjuredPerson" class="form-label">Пострадал</label>
         <select asp-for="InjuredPerson" class="form-select">

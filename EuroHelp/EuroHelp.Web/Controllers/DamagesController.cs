@@ -163,8 +163,6 @@ namespace EuroHelp.Web.Controllers
                 .OrderByDescending(d => d.CompanyName)
                 .AsQueryable();
 
-            ;
-
             var damages = damagesQuery
                   .Select(d => new DamagesListingViewModel
                   {
