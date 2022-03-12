@@ -155,9 +155,29 @@ namespace EuroHelp.Web.Controllers
             return RedirectToAction("AllDamages", "Damages");
         }
 
-        public IActionResult DamageSearch()
+        public IActionResult DamageSearch([FromQuery] AllDamagesQueryModel query)
         {
-            return View();
+
+            var damagesQuery = this.data.Damages
+                .Where(d => d.Id == query.SearchId)
+                .OrderByDescending(d => d.CompanyName)
+                .AsQueryable();
+
+            ;
+
+            var damages = damagesQuery
+                  .Select(d => new DamagesListingViewModel
+                  {
+                      Id = d.Id,
+                      Name = d.Name,
+                      RegistrationDate = d.RegistrationDate.ToString("f"),
+                      EventDate = d.EventDate,
+                  })
+                  .ToList();
+
+            query.Damages = damages;
+
+            return View(query);
         }
 
         private IEnumerable<InsuranceCompanyViewModel> GetInsuranceCompanies()
