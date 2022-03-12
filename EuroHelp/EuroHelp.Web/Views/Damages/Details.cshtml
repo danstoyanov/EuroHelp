@@ -1,4 +1,5 @@
-﻿<!-- Page Head-->
+﻿@model EditDamageViewModel
+
 @{
     ViewData["Title"] = "Damage Modification";
 }
@@ -6,7 +7,6 @@
 <h1 style="margin: 2%; text-align: center;">Модифициране на щета</h1>
 <hr class="bg-primary w-100">
 
-<!-- Nav tabs -->
 <ul class="nav nav-tabs">
     <li class="nav-item">
         <a class="nav-link active" data-bs-toggle="tab" href="#home">Основни данни</a>
@@ -19,21 +19,20 @@
     </li>
 </ul>
 
-<!-- Tab panes -->
 <div class="tab-content">
     <div class="tab-pane container active" id="home">
-        <form class="row g-3">
+        <form method="post" class="row g-3">
             <div class="col-12">
-                <label for="inputDamage" class="form-label">Тип щета</label>
-                <input type="text" class="form-control" id="inputDamage" placeholder="Тип щета...">
+                <label asp-for="@Model.Name" class="form-label">Тип щета</label>
+                <input asp-for="@Model.Name" class="form-control">
             </div>
             <div class="col-12">
-                <label for="inputInsuranceCompanyName" class="form-label">Застрахователна компания</label>
-                <input type="text" class="form-control" id="inputInsuranceCompanyName" placeholder="Име на компания...">
+                <label asp-for="@Model.CompanyName" class="form-label">Застрахователна компания</label>
+                <input class="form-control" type="text" placeholder="@Model.CompanyName" aria-label="Disabled input example" disabled>
             </div>
             <div class="col-12">
-                <label for="eventType" class="form-label">Вид събитие</label>
-                <select id="eventType" class="form-select">
+                <label asp-for="@Model.EventType" class="form-label">Вид събитие</label>
+                <select asp-for="@Model.EventType" class="form-select">
                     <option>Събитие в чужбина - Каско регрес на Евроинс</option>
                     <option>Събитие в България - Каско регрес на Евроинс</option>
                     <option>Събитие в България - Каско регрес на Български застраховател</option>
@@ -42,33 +41,39 @@
                     <option>ПТП в чужбина – Каско регрес на чужд застраховател</option>
                 </select>
             </div>
+
             <div class="col-3">
-                <label for="eventDate" class="form-label">Дата на събитие</label>
-                <input type="text" class="form-control" id="eventDate" placeholder="въведи дата...">
+                <label asp-for="@Model.EventDate" class="form-label">Дата на събитие</label>
+                <input asp-for="@Model.EventDate" type="date" class="form-control">
             </div>
+
+
+            <div>
+            </div>
+
+
+            <div class="col-3">
+                <label asp-for="@Model.RegistrationDate" class="form-label">Дата на регистрация</label>
+                <input class="form-control" type="text" placeholder="@Model.RegistrationDate" aria-label="Disabled input example" disabled>
+            </div>
+
             <div>
             </div>
             <div class="col-3">
-                <label for="registerDate" class="form-label">Дата на регистрация</label>
-                <input type="text" class="form-control" id="registerDate" placeholder="въведи дата...">
-            </div>
-            <div>
+                <label asp-for="@Model.BulgarianRegNumber" class="form-label">Български регистрационен номер</label>
+                <input asp-for="@Model.BulgarianRegNumber" class="form-control">
             </div>
             <div class="col-3">
-                <label for="bulgarianRegNumber" class="form-label">Български регистрационен номер</label>
-                <input type="text" class="form-control" id="bulgarianRegNumber" placeholder="номер....">
+                <label asp-for="@Model.ForeignRegNumber" class="form-label">Чужд регистрационен номер</label>
+                <input asp-for="@Model.ForeignRegNumber" class="form-control">
             </div>
             <div class="col-3">
-                <label for="foreignRegNumber" class="form-label">Чужд регистрационен номер</label>
-                <input type="text" class="form-control" id="foreignRegNumber" placeholder="номер....">
+                <label asp-for="@Model.Property" class="form-label">Имущество</label>
+                <input asp-for="@Model.Property" class="form-control">
             </div>
             <div class="col-3">
-                <label for="property" class="form-label">Имущество</label>
-                <input type="text" class="form-control" id="property" placeholder="имущество...">
-            </div>
-            <div class="col-3">
-                <label for="injuredPerson" class="form-label">Пострадал</label>
-                <select id="injuredPerson" class="form-select">
+                <label asp-for="@Model.InjuredPerson" class="form-label">Пострадал</label>
+                <select asp-for="@Model.InjuredPerson" class="form-select">
                     <option>Водач</option>
                     <option>Пътник</option>
                     <option>Мотоциклетист</option>
@@ -76,120 +81,13 @@
                     <option>Пешеходец</option>
                 </select>
             </div>
-
-            <div>
-                <!-- --------------------------------------------------------- !!-->
-            </div>
-            <!-- Second part of the ViewPage !!-->
-
-            <div class="col-2">
-                <div class="col-sm-10 offset-sm-2">
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="gridCheck1">
-                        <label class="form-check-label" for="gridCheck1">
-                            За отказ
-                        </label>
-                    </div>
+                <div class="col-3">
+                    <button asp-controller="Damages" asp-action="Details" type="submit" class="btn btn-primary">Запис</button>
+                    <a asp-controller="Damages" asp-action="AllDamages" class="btn btn-secondary">Отказ</a>
                 </div>
-            </div>
-            <div class="col-2">
-                <div class="col-sm-10 offset-sm-2">
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="gridCheck1">
-                        <label class="form-check-label" for="gridCheck1">
-                            Фалшива полица
-                        </label>
-                    </div>
-                </div>
-            </div>
-            <div class="col-2">
-                <div class="col-sm-10 offset-sm-2">
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="gridCheck1">
-                        <label class="form-check-label" for="gridCheck1">
-                            Регрес
-                        </label>
-                    </div>
-                </div>
-            </div>
-            <div class="col-2">
-                <div class="col-sm-10 offset-sm-2">
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="gridCheck1">
-                        <label class="form-check-label" for="gridCheck1">
-                            Съдебна щета
-                        </label>
-                    </div>
-                </div>
-            </div>
-            <div class="col-3">
-                <label for="foreignRegNumber" class="form-label">Номер на съдебно дело</label>
-                <input type="text" class="form-control" id="foreignRegNumber" placeholder="номер....">
-            </div>
-            <div class="form-group">
-                <label for="comment">Забележки</label>
-                <textarea class="form-control" id="comment" rows="3"></textarea>
-            </div>
-
-            <div class="col-3">
-                <label for="officeDekra" class="form-label">Офис на DEKRA</label>
-                <select id="officeDekra" class="form-select">
-                    <option>....</option>
-                </select>
-            </div>
-
-            <div>
-                <div class="col-2">
-                    <label for="materialPrice" class="form-label">Прог. сума за матер.</label>
-                    <input type="text" class="form-control" id="materialPrice" placeholder="">
-                </div>
-                <div class="col-2">
-                    <label for="nonMaterialPrice" class="form-label">Прог. сума за немат.</label>
-                    <input type="text" class="form-control" id="nonMaterialPrice" placeholder="">
-                </div>
-                <div class="col-2">
-                    <label for="paidSum" class="form-label">Изплатена сума</label>
-                    <input type="text" class="form-control" id="paidSum" placeholder="">
-                </div>
-                <div class="col-2">
-                    <label for="claimSum" class="form-label">Претенции сума</label>
-                    <input type="text" class="form-control" id="claimSum" placeholder="">
-                </div>
-                <div class="col-2">
-                    <label for="recoveredSum" class="form-label">Възстановена сума</label>
-                    <input type="text" class="form-control" id="recoveredSum" placeholder="">
-                </div>
-            </div>
-
-            <div>
-                <!-- --------------------------------------------------------- !!-->
-            </div>
-
-            <div>
-                <div class="col-2">
-                    <label for="paidSum" class="form-label">Реф. номер на НББАЗ</label>
-                    <input type="text" class="form-control" id="paidSum" placeholder="">
-                </div>
-                <div class="col-2">
-                    <label for="claimSum" class="form-label">Реф. номер на заст. компания</label>
-                    <input type="text" class="form-control" id="claimSum" placeholder="">
-                </div>
-                <div class="col-2">
-                    <label for="recoveredSum" class="form-label">Реф. номер на DEKRA</label>
-                    <input type="text" class="form-control" id="recoveredSum" placeholder="">
-                </div>
-            </div>
-
-            <div>
-                <!-- --------------------------------------------------------- !!-->
-            </div>
-
-            <div class="col-3">
-                <button type="button" class="btn btn-primary" name="register">Запис</button>
-                <button type="button" class="btn btn-secondary" name="cancel">Отказ</button>
-            </div>
         </form>
     </div>
+
     <div class="tab-pane container fade" id="menu1">
         <form class="row g-3">
             <div class="col-2">

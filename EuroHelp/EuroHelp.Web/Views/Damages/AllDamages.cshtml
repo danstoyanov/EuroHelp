@@ -10,20 +10,6 @@
         <hr class="bg-primary w-100">
         <div>
             <table class="table">
-                <thead class="thead-dark">
-                    <tr>
-                        <th scope="col">
-                            <h3>🤕 Щети</h3>
-                        </th>
-                        <th scope="col"></th>
-                        <th scope="col"></th>
-                        <th scope="col"></th>
-                        <th scope="col"></th>
-                        <th scope="col"></th>
-                        <th scope="col"></th>
-                        <th scope="col"></th>
-                    </tr>
-                </thead>
                 @foreach (var damage in Model.Damages)
                 {
                     <tbody>
@@ -64,10 +50,12 @@
                                     <input class="form-control" type="text" placeholder="N/A" aria-label="Disabled input example" disabled>
                                     <label for="opionNumber" class="form-label">Държава на събитие: </label>
                                     <input class="form-control" type="text" placeholder="N/A" aria-label="Disabled input example" disabled>
-                                    <div class="m-sm-4">
-                                        <a href="/Damages/DamageModification" class="btn btn-info text-uppercase">Преглед</a>
-                                        <a class="btn btn-danger text-uppercase">Изтрий</a>
-                                    </div>
+                                    <form method="post" asp-controller="Damages" asp-action="DeleteDamage" asp-route-id="@damage.Id">
+                                        <div class="m-sm-4">
+                                            <a asp-action="Details" asp-controller="Damages" asp-route-id="@damage.Id" class="btn btn-primary">ПРЕГЛЕД</a>
+                                            <button type="submit" class="btn btn-danger m-sm-auto">ИЗТРИЙ</button>
+                                        </div>
+                                    </form>
                                 </div>
                             </td>
                         </tr>
@@ -79,3 +67,5 @@
         </div>
     </div>
 </section>
+
+@*<a href="/Damages/Details" class="btn btn-info text-uppercase">Преглед</a>*@

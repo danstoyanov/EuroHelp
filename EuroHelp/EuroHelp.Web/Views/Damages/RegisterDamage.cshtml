@@ -7,6 +7,10 @@
 <form class="row g-3" method="post">
     <h1 style="margin: 2%; text-align: center;">Регистрация на нова щета</h1>
     <hr class="bg-primary w-100">
+    <div class="col-1">
+        <label asp-for="Id" class="form-label">ID</label>
+        <input asp-for="Id" class="form-control" placeholder="ID...">
+    </div>
     <div class="col-12">
         <label asp-for="Name" class="form-label">Тип щета</label>
         <input asp-for="Name" class="form-control" placeholder="Тип щета...">
@@ -36,13 +40,7 @@
     </div>
     <div class="col-3">
         <label asp-for="EventDate" class="form-label">Дата на събитие</label>
-        <input asp-for="EventDate" class="form-control" placeholder="въведи дата...">
-    </div>
-    <div>
-    </div>
-    <div class="col-3">
-        <label asp-for="RegistrationDate" class="form-label">Дата на регистрация</label>
-        <input asp-for="RegistrationDate" class="form-control" placeholder="въведи дата...">
+        <input asp-for="EventDate" type="date" class="form-control" placeholder="">
     </div>
     <div>
     </div>
