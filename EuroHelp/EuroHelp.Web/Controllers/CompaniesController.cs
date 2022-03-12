@@ -29,11 +29,12 @@ namespace EuroHelp.Web.Controllers
             //  - make some chakes !
 
             var testingUser = this.data.Users
-                .Where(u => u.Id == "4b3b8269-e623-470f-8852-a981c08b0f64")
+                .Where(u => u.Id == "12")
                 .FirstOrDefault();
 
             var newCompany = new InsuranceCompany
             {
+                Id = company.Id,
                 Name = company.Name,
                 Code = company.Code,
                 Bulstat = company.Bulstat,

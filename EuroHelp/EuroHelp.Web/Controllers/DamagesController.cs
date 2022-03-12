@@ -31,7 +31,7 @@ namespace EuroHelp.Web.Controllers
 
             var testingUser = this.data
                 .Users
-                .Where(u => u.Id == "4b3b8269-e623-470f-8852-a981c08b0f64")
+                .Where(u => u.Id == "12")
                 .FirstOrDefault();
 
             var currCompany = this.data
@@ -41,10 +41,10 @@ namespace EuroHelp.Web.Controllers
 
             var newDamage = new Damage()
             {
+                Id = damage.Id,
                 Name = damage.Name,
                 CompanyName = currCompany.Name,
                 EventDate = DateTime.UtcNow.ToString(),
-                RegistrationDate = DateTime.UtcNow.ToString(),
                 EventType = damage.EventType,
                 BulgarianRegNumber = damage.BulgarianRegNumber,
                 ForeignRegNumber = damage.ForeignRegNumber,
@@ -61,17 +61,20 @@ namespace EuroHelp.Web.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        public IActionResult AllDamages([FromQuery]AllDamagesQueryModel query)
+        public IActionResult AllDamages([FromQuery] AllDamagesQueryModel query)
         {
-            var damagesQuery = this.data.Damages.AsQueryable();
+            var damagesQuery = this.data.Damages
+                .OrderByDescending(d => d.CompanyName)
+                .AsQueryable();
 
             var damages = damagesQuery
                 .Select(d => new DamagesListingViewModel
                 {
+                    Id = d.Id,
                     Name = d.Name,
                     CompanyName = d.CompanyName,
+                    RegistrationDate = d.RegistrationDate.ToString("f"),
                     EventDate = d.EventDate,
-                    RegistrationDate = d.RegistrationDate,
                     EventType = d.EventType,
                     BulgarianRegNumber = d.BulgarianRegNumber,
                     ForeignRegNumber = d.ForeignRegNumber,
@@ -86,9 +89,70 @@ namespace EuroHelp.Web.Controllers
             return View(query);
         }
 
-        public IActionResult DamageModification()
+        [HttpPost]
+        public IActionResult DeleteDamage(string id)
         {
-            return View();
+            var currDamage = this.data
+                .Damages
+                .Where(d => d.Id == id)
+                .FirstOrDefault();
+
+            if (currDamage == null)
+            {
+                return View("Error");
+            }
+            else
+            {
+                this.data.Damages.Remove(currDamage);
+                this.data.SaveChanges();
+            }
+
+            return RedirectToAction("AllDamages", "Damages");
+        }
+
+        [HttpGet]
+        public IActionResult Details(string id)
+        {
+            var currDamage = this.data
+                .Damages
+                .Where(d => d.Id == id)
+                .FirstOrDefault();
+
+            var model = new EditDamageViewModel
+            {
+                Id = currDamage.Id,
+                Name = currDamage.Name,
+                CompanyName = currDamage.CompanyName,
+                EventDate = currDamage.EventDate,
+                RegistrationDate = currDamage.RegistrationDate.ToString(),
+                EventType = currDamage.EventType,
+                BulgarianRegNumber = currDamage.BulgarianRegNumber,
+                ForeignRegNumber = currDamage.ForeignRegNumber,
+                Property = currDamage.Property,
+                InjuredPerson = currDamage.InjuredPerson,
+                NotifiedBy = currDamage.NotifiedBy
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult Details(EditDamageViewModel model)
+        {
+            var damage = this.data
+                .Damages
+                .Where(d => d.Id == model.Id)
+                .FirstOrDefault();
+
+            damage.Name = model.Name;
+            damage.BulgarianRegNumber = model.BulgarianRegNumber;
+            damage.ForeignRegNumber = model.BulgarianRegNumber;
+            damage.Property = model.Property;
+            damage.InjuredPerson = model.InjuredPerson;
+
+            this.data.SaveChanges();
+
+            return RedirectToAction("AllDamages", "Damages");
         }
 
         public IActionResult DamageSearch()

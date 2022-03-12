@@ -36,7 +36,7 @@ namespace EuroHelp.Web.Controllers
             {
                 builder.AppendLine($"{damage.Name}, {damage.CompanyName}");
             }
-            
+
             var data = Encoding.UTF8.GetBytes(builder.ToString());
             var result = Encoding.UTF8.GetPreamble().Concat(data).ToArray();
 

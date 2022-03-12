@@ -6,6 +6,8 @@ namespace EuroHelp.Web.Models.Damages
     public class RegisterDamageFormModel
     {
 
+        public string Id { get; set; }
+
         public string? Name { get; set; }
 
         public string CompanyName { get; set; }
@@ -34,6 +36,6 @@ namespace EuroHelp.Web.Models.Damages
 
         public InsuranceCompany Company { get; set; }
 
-        public IEnumerable<InsuranceCompanyViewModel> Companies { get; set; } 
+        public IEnumerable<InsuranceCompanyViewModel> Companies { get; set; }
     }
 }

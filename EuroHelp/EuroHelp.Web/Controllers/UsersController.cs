@@ -34,6 +34,7 @@ namespace EuroHelp.Web.Controllers
 
             var newUser = new User
             {
+                Id = user.Id,
                 Username = user.Username,
                 FirstName = user.FirstName,
                 SecondNames = user.SecondNames,
