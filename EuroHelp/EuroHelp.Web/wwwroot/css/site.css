@@ -28,3 +28,10 @@ body {
     margin-right: auto;
     width: 40%;
 }
+
+.notFoundPage {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 60%;
+}
