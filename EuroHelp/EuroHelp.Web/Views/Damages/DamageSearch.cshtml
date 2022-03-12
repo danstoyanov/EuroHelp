@@ -59,9 +59,9 @@
                 <th>Име на щета</th>
             </tr>
         </thead>
-        @foreach (var damage in Model.Damages)
-        {
-            <tbody>
+        <tbody>
+            @foreach (var damage in Model.Damages)
+            {
                 <tr>
                     <td>@damage.Id</td>
                     <td>@damage.RegistrationDate</td>
@@ -69,8 +69,8 @@
                     <td>@damage.Name</td>
                     <td><button class="btn-outline-info">Преглед</button></td>
                 </tr>
-            </tbody>
-        }
+            }
+        </tbody>
     </table>
 </div>
 
