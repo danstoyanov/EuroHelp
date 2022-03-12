@@ -209,7 +209,7 @@ namespace EuroHelp.Data.Migrations
                     Name = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
                     CompanyName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     EventDate = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    RegistrationDate = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    RegistrationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     EventType = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     BulgarianRegNumber = table.Column<int>(type: "int", nullable: true),
                     ForeignRegNumber = table.Column<int>(type: "int", nullable: true),

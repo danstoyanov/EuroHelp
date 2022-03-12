@@ -8,7 +8,7 @@ namespace EuroHelp.Data.Models
     {
         [Key]
         [MaxLength(IdMaxLength)]
-        public string Id { get; set; } = Guid.NewGuid().ToString();
+        public string Id { get; set; }
 
         public string Name { get; set; }
 

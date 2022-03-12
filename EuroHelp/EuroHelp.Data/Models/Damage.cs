@@ -9,7 +9,7 @@ namespace EuroHelp.Data.Models
     {
         [Key]
         [MaxLength(IdMaxLength)]
-        public string Id { get; set; } = Guid.NewGuid().ToString();
+        public string Id { get; set; }
 
         [Required]
         [MaxLength(DamageNameMaxLength)]
@@ -21,7 +21,7 @@ namespace EuroHelp.Data.Models
         public string EventDate { get; set; }
 
         [Required]
-        public string RegistrationDate { get; set; }
+        public DateTime RegistrationDate { get; set; } = DateTime.UtcNow;
 
         public string EventType { get; set; }
 

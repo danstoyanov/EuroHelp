@@ -65,9 +65,8 @@ namespace EuroHelp.Data.Migrations
                     b.Property<string>("Property")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("RegistrationDate")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTime>("RegistrationDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("UserId")
                         .IsRequired()

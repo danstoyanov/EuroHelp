@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EuroHelp.Data.Migrations
 {
     [DbContext(typeof(EuroHelpDbContext))]
-    [Migration("20220309123350_InitialMigration")]
+    [Migration("20220311174742_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -67,9 +67,8 @@ namespace EuroHelp.Data.Migrations
                     b.Property<string>("Property")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("RegistrationDate")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTime>("RegistrationDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("UserId")
                         .IsRequired()
