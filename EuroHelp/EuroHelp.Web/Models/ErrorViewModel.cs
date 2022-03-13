@@ -1,4 +1,4 @@
-namespace EuroHelp.Web.Models
+    namespace EuroHelp.Web.Models
 {
     public class ErrorViewModel
     {

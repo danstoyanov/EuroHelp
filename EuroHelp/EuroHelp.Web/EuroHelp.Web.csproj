@@ -25,7 +25,6 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\EuroHelp.Data\EuroHelp.Data.csproj" />
-		<ProjectReference Include="..\EuroHelp.Infrastructure\EuroHelp.Infrastructure.csproj" />
 		<ProjectReference Include="..\EuroHelp.Services\EuroHelp.Services.csproj" />
 	</ItemGroup>
 

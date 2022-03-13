@@ -14,7 +14,13 @@ builder.Services
     .AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services
-    .AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddDefaultIdentity<IdentityUser>(options =>
+    {
+        options.Password.RequireDigit = false;
+        options.Password.RequireLowercase = false;
+        options.Password.RequireNonAlphanumeric = false;
+        options.Password.RequireUppercase = false;
+    })
     .AddEntityFrameworkStores<EuroHelpDbContext>();
 
 builder.Services
@@ -41,6 +47,7 @@ app.Use(async (context, next) =>
         await next();
     }
 });
+
 app.UseHttpsRedirection()
     .UseStaticFiles()
     .UseRouting()

@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 using EuroHelp.Data;
 using EuroHelp.Data.Models;
 
 using EuroHelp.Web.Models.Companies;
+using EuroHelp.Web.Infrastructure;
 
 namespace EuroHelp.Web.Controllers
 {
@@ -11,25 +13,39 @@ namespace EuroHelp.Web.Controllers
     {
         private readonly EuroHelpDbContext data;
 
-        public CompaniesController(EuroHelpDbContext data)
+        public CompaniesController(
+            EuroHelpDbContext data)
         {
             this.data = data;
         }
 
+        [Authorize]
         public IActionResult CompanyMembers()
         {
+            if (!this.IsEmployee())
+            {
+                return RedirectToAction(nameof(EmployeesController.Create), "Employees");
+            }
+
             return View();
         }
 
         [HttpPost]
+        [Authorize]
         public IActionResult CompanyMembers(AddCompanyFormModel company)
         {
-            // TO-DO:
-            //  - make validations !
-            //  - make some chakes !
+            if (!this.IsEmployee())
+            {
+                return RedirectToAction(nameof(EmployeesController.Create), "Employees");
+            }
 
-            var testingUser = this.data.Users
-                .Where(u => u.Id == "12")
+            if (this.data.InsuranceCompanies.Any(c => c.Id == company.Id))
+            {
+                return BadRequest();
+            }
+
+            var employee = this.data.Employees
+                .Where(u => u.Id == this.User.GetId())
                 .FirstOrDefault();
 
             var newCompany = new InsuranceCompany
@@ -45,14 +61,24 @@ namespace EuroHelp.Web.Controllers
                 Email = company.Email,
                 FAX = company.FAX,
                 Notes = company.Notes,
-                UserId = testingUser.Id,
-                User = testingUser
+                EmployeeId = employee.Id,
+                Employee = employee
             };
 
             this.data.InsuranceCompanies.Add(newCompany);
             this.data.SaveChanges();
 
             return RedirectToAction("Index", "Home");
+        }
+
+        private bool IsEmployee()
+        {
+            var isEmployee = this
+                .data
+                .Employees
+                .Any(e => e.Id == this.User.GetId());
+
+            return isEmployee;
         }
     }
 }

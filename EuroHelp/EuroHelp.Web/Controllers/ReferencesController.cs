@@ -26,15 +26,18 @@ namespace EuroHelp.Web.Controllers
         {
             var builder = new StringBuilder();
 
-            builder.AppendLine("Name, CompanyName");
+            var parsedStartDate = DateTime.Parse(file.StartDate);
+            var parsedEndDate = DateTime.Parse(file.EndDate);
+
+            builder.AppendLine("Име на щета, Застрафователна компания, Дата на събитие");
 
             var damages = this.data.Damages
-                .Where(d => d.CompanyName == "Хелпми ООД")
+                .Where(d => d.EventDate >= parsedStartDate && d.EventDate <= parsedEndDate)
                 .ToList();
 
             foreach (var damage in damages)
             {
-                builder.AppendLine($"{damage.Name}, {damage.CompanyName}");
+                builder.AppendLine($"{damage.Name}, {damage.CompanyName}, {damage.EventDate}");
             }
 
             var data = Encoding.UTF8.GetBytes(builder.ToString());
@@ -63,28 +66,6 @@ namespace EuroHelp.Web.Controllers
             var result = Encoding.UTF8.GetPreamble().Concat(data).ToArray();
 
             return File(result, "text/csv", "damagesPretention.csv");
-        }
-
-        [HttpPost]
-        public IActionResult GenerateByConfirmation(ExportFile file)
-        {
-            var builder = new StringBuilder();
-
-            builder.AppendLine("Name, CompanyName");
-
-            var damages = this.data.Damages
-                .Where(d => d.CompanyName == "Хелпми ООД")
-                .ToList();
-
-            foreach (var damage in damages)
-            {
-                builder.AppendLine($"{damage.Name}, {damage.CompanyName}");
-            }
-
-            var data = Encoding.UTF8.GetBytes(builder.ToString());
-            var result = Encoding.UTF8.GetPreamble().Concat(data).ToArray();
-
-            return File(result, "text/csv", "damagesByConfirm.csv");
         }
     }
 }
