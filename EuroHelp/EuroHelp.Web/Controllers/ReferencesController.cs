@@ -1,7 +1,9 @@
 ﻿using System.Text;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 using EuroHelp.Data;
+using EuroHelp.Web.Infrastructure;
 using EuroHelp.Web.Models.References;
 
 namespace EuroHelp.Web.Controllers
@@ -15,15 +17,26 @@ namespace EuroHelp.Web.Controllers
             this.data = data;
         }
 
-
+        [Authorize]
         public IActionResult GenerateReference()
         {
+            if (!this.IsEmployee())
+            {
+                return RedirectToAction("AccessDenied", "Home");
+            }
+
             return View();
         }
 
         [HttpPost]
+        [Authorize]
         public IActionResult GenerateByCompanyName(ExportFile file)
         {
+            if (!this.IsEmployee())
+            {
+                return RedirectToAction("AccessDenied", "Home");
+            }
+
             var builder = new StringBuilder();
 
             var parsedStartDate = DateTime.Parse(file.StartDate);
@@ -47,8 +60,15 @@ namespace EuroHelp.Web.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public IActionResult GenerateByPretentionNumber(ExportFile file)
         {
+            if (!this.IsEmployee())
+            {
+                return RedirectToAction("AccessDenied", "Home");
+            }
+
+
             var builder = new StringBuilder();
 
             builder.AppendLine("Name, Property");
@@ -66,6 +86,16 @@ namespace EuroHelp.Web.Controllers
             var result = Encoding.UTF8.GetPreamble().Concat(data).ToArray();
 
             return File(result, "text/csv", "damagesPretention.csv");
+        }
+
+        private bool IsEmployee()
+        {
+            var isEmployee = this
+                .data
+                .Employees
+                .Any(e => e.Id == this.User.GetId());
+
+            return isEmployee;
         }
     }
 }

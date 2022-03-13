@@ -3,6 +3,7 @@
 using EuroHelp.Web.Models.Users;
 using EuroHelp.Data.Models;
 using EuroHelp.Data;
+using EuroHelp.Web.Infrastructure;
 
 namespace EuroHelp.Web.Controllers
 {
@@ -28,9 +29,11 @@ namespace EuroHelp.Web.Controllers
         [HttpPost]
         public IActionResult Register(RegisterConsumerFormModel consumer)
         {
+            var currUserId = this.User.GetId();
+
             var newUser = new Consumer
             {
-                Id = consumer.Id,
+                Id = currUserId,
                 Username = consumer.Username,
                 FirstName = consumer.FirstName,
                 Gender = consumer.Gender,

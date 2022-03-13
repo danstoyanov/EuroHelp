@@ -23,10 +23,13 @@ namespace EuroHelp.Web.Controllers
 
         [Authorize]
         public IActionResult RegisterDamage()
-            => View(new RegisterDamageFormModel
+        {
+            return View(new RegisterDamageFormModel
             {
                 Companies = this.GetInsuranceCompanies()
-            });
+            }) ;
+        }
+
 
         [HttpPost]
         [Authorize]
@@ -99,6 +102,11 @@ namespace EuroHelp.Web.Controllers
         [Authorize]
         public IActionResult DeleteDamage(string id)
         {
+            if (!this.IsEmployee())
+            {
+                return RedirectToAction("AccessDenied", "Home");
+            }
+
             var currDamage = this.data
                 .Damages
                 .Where(d => d.Id == id)
@@ -121,6 +129,11 @@ namespace EuroHelp.Web.Controllers
         [Authorize]
         public IActionResult Details(string id)
         {
+            if (!this.IsEmployee())
+            {
+                return RedirectToAction("AccessDenied", "Home");
+            }
+
             var currDamage = this.data
                 .Damages
                 .Where(d => d.Id == id)
@@ -148,6 +161,11 @@ namespace EuroHelp.Web.Controllers
         [Authorize]
         public IActionResult Details(EditDamageViewModel model)
         {
+            if (!this.IsEmployee())
+            {
+                return RedirectToAction("AccessDenied", "Home");
+            }
+
             var damage = this.data
                 .Damages
                 .Where(d => d.Id == model.Id)
@@ -168,6 +186,11 @@ namespace EuroHelp.Web.Controllers
         [Authorize]
         public IActionResult DamageSearch([FromQuery] AllDamagesQueryModel query)
         {
+            if (!this.IsEmployee())
+            {
+                return RedirectToAction("AccessDenied", "Home");
+            }
+
             var damagesQuery = this.data.Damages.AsQueryable();
 
             if (query.SearchId != null)
@@ -210,5 +233,25 @@ namespace EuroHelp.Web.Controllers
                     Name = c.Name
                 })
                 .ToList();
+
+        private bool IsEmployee()
+        {
+            var isEmployee = this
+                .data
+                .Employees
+                .Any(e => e.Id == this.User.GetId());
+
+            return isEmployee;
+        }
+
+        private bool IsConsumer()
+        {
+            var isEmployee = this
+                .data
+                .Consumers
+                .Any(e => e.Id == this.User.GetId());
+
+            return isEmployee;
+        }
     }
 }

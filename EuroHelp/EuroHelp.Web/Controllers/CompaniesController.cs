@@ -24,7 +24,7 @@ namespace EuroHelp.Web.Controllers
         {
             if (!this.IsEmployee())
             {
-                return RedirectToAction(nameof(EmployeesController.Create), "Employees");
+                return RedirectToAction("AccessDenied", "Home");
             }
 
             return View();
@@ -34,9 +34,10 @@ namespace EuroHelp.Web.Controllers
         [Authorize]
         public IActionResult CompanyMembers(AddCompanyFormModel company)
         {
+
             if (!this.IsEmployee())
             {
-                return RedirectToAction(nameof(EmployeesController.Create), "Employees");
+                return RedirectToAction("AccessDenied", "Home");
             }
 
             if (this.data.InsuranceCompanies.Any(c => c.Id == company.Id))

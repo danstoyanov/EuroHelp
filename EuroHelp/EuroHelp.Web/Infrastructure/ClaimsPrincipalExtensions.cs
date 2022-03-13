@@ -1,4 +1,5 @@
-﻿using System.Security.Claims;
+﻿using EuroHelp.Data;
+using System.Security.Claims;
 
 namespace EuroHelp.Web.Infrastructure
 {
@@ -6,5 +7,7 @@ namespace EuroHelp.Web.Infrastructure
     {
         public static string GetId(this ClaimsPrincipal user)
             => user.FindFirst(ClaimTypes.NameIdentifier).Value;
+
+
     }
 }
