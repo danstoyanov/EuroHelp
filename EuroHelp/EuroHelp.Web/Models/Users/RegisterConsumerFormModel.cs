@@ -2,17 +2,13 @@
 
 namespace EuroHelp.Web.Models.Users
 {
-    public class RegisterUserFormModel
+    public class RegisterConsumerFormModel
     {
         public string Id { get; set; }
 
         public string Username { get; set; }
 
         public string FirstName { get; set; }
-
-        public string SecondNames { get; set; }
-
-        public string BirthDate { get; set; }
 
         public string Gender { get; set; }
 

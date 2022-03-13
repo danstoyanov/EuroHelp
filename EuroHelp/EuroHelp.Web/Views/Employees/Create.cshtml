@@ -1,0 +1,26 @@
+﻿@model BecomeEmployeeFormModel
+
+@{
+    ViewData["Title"] = "Create Employee";
+}
+
+<h1 class="text-center mt-2">Регистрация служител</h1>
+<hr class="bg-primary w-100">
+
+<form class="mx-auto w-50" method="post">
+    <div class="form-group">
+        <div class="d-flex justify-content-start">
+            <label asp-for="Name" class="h4 mb-2 text-dark">Име на служител</label>
+        </div>
+        <input asp-for="Name" class="form-control" placeholder="Име на профил...">
+    </div>
+    <div class="form-group">
+        <div class="d-flex justify-content-start">
+            <label asp-for="PhoneNumber" class="h4 mb-2 text-dark">Телефонен номер</label>
+        </div>
+        <input asp-for="PhoneNumber" class="form-control" placeholder="088388...">
+    </div>
+    <div class="d-flex justify-content-center">
+        <button type="submit" class="btn btn-block btn-primary text-white mb-3" value="Register">Регистрация служител</button>
+    </div>
+</form>
