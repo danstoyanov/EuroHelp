@@ -11,46 +11,59 @@
     <div class="col-1">
         <label asp-for="Id" class="form-label">ID</label>
         <input asp-for="Id" class="form-control" placeholder="ID...">
+        <span asp-validation-for="Id" class="small text-danger"></span>
     </div>
     <div class="col-3">
         <label asp-for="Name" class="form-label">Име на компания</label>
         <input asp-for="Name" class="form-control" placeholder="Име на компанията...">
+        <span asp-validation-for="Name" class="small text-danger"></span>
     </div>
     <div class="col-1">
         <label asp-for="Code" class="form-label">Код</label>
         <input asp-for="Code" class="form-control" placeholder="Код...">
+        <span asp-validation-for="Code" class="small text-danger"></span>
     </div>
     <div class="col-3">
         <label asp-for="Bulstat" class="form-label">Булстат</label>
         <input asp-for="Bulstat" class="form-control" placeholder="Булстат...">
+        <span asp-validation-for="Code" class="small text-danger"></span>
     </div>
     <div class="col-4">
         <label asp-for="CompanyEnglName" class="form-label">Име на компания на анг. език</label>
         <input asp-for="CompanyEnglName" class="form-control" placeholder="английско име ...">
+        <span asp-validation-for="CompanyEnglName" class="small text-danger"></span>
     </div>
     <div class="form-group">
         <label asp-for="Address">Адрес</label>
         <textarea asp-for="Address" class="form-control" rows="3" placeholder="гр. София, ул Михайлов № 43...."></textarea>
+        <span asp-validation-for="Address" class="small text-danger"></span>
     </div>
     <div class="col-3">
         <label asp-for="PhoneNumber" class="form-label">Телефон</label>
         <input asp-for="PhoneNumber" class="form-control" placeholder="02 2255...">
+        <span asp-validation-for="PhoneNumber" class="small text-danger"></span>
+
     </div>
     <div class="col-3">
         <label asp-for="MobilePhoneNumber" class="form-label">Мобилен телефон</label>
         <input asp-for="MobilePhoneNumber" class="form-control" placeholder="+359 88...">
+        <span asp-validation-for="MobilePhoneNumber" class="small text-danger"></span>
+
     </div>
     <div class="col-3">
         <label asp-for="Email" class="form-label">Email</label>
         <input asp-for="Email" class="form-control" placeholder="Имейл адрес...">
+        <span asp-validation-for="Email" class="small text-danger"></span>
     </div>
     <div class="col-3">
         <label asp-for="FAX" class="form-label">Факс</label>
         <input asp-for="FAX" class="form-control" placeholder="123 456...">
+        <span asp-validation-for="FAX" class="small text-danger"></span>
     </div>
     <div class="form-group">
         <label asp-for="Notes">Бележки</label>
         <textarea asp-for="Notes" class="form-control" rows="3" placeholder="Компанията се занимава с застраховки на ...."></textarea>
+        <span asp-validation-for="Notes" class="small text-danger"></span>
     </div>
     <div>
         <input class="btn btn-primary" type="submit" value="Запиши" />

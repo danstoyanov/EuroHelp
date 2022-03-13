@@ -4,7 +4,7 @@
     ViewData["Title"] = "Damage Search";
 }
 
-<h1 style="margin: 2%; text-align: center;">🔍 Търсене и справка за щети</h1>
+<h1 style="margin: 2%; text-align: center;">🔍 Търсене и редактиране щети</h1>
 <hr class="bg-primary w-100">
 
 <form method="get" class="row g-3">
@@ -42,7 +42,7 @@
             </table>
             <div class="col text-center">
                 <button class="btn btn-primary" type="submit">Търсене</button>
-                <a href="#" class="btn btn-warning">Изход</a>
+                <a asp-action="DamageSearch" class="btn btn-warning" type="submit">Рестартирай</a>
             </div>
         </div>
     </div>
@@ -57,6 +57,7 @@
                 <th>Дата на регистрация</th>
                 <th>Дата на събитие</th>
                 <th>Име на щета</th>
+                <th>Име застрахователна компания</th>
             </tr>
         </thead>
         <tbody>
@@ -67,7 +68,10 @@
                     <td>@damage.RegistrationDate</td>
                     <td>@damage.EventDate</td>
                     <td>@damage.Name</td>
-                    <td><button class="btn-outline-info">Преглед</button></td>
+                    <td>@damage.CompanyName</td>
+                    <td>
+                        <a asp-action="Details" asp-controller="Damages" asp-route-id="@damage.Id" class="btn btn-info">ПРЕГЛЕД</a>
+                    </td>
                 </tr>
             }
         </tbody>

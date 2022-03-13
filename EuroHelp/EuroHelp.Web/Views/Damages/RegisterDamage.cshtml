@@ -11,10 +11,12 @@
     <div class="col-1">
         <label asp-for="Id" class="form-label">ID</label>
         <input asp-for="Id" class="form-control" placeholder="ID...">
+        <span asp-validation-for="Id" class="small text-danger"></span>
     </div>
     <div class="col-4">
         <label asp-for="Name" class="form-label">Тип щета</label>
         <input asp-for="Name" class="form-control" placeholder="Тип щета...">
+        <span asp-validation-for="Name" class="small text-danger"></span>
     </div>
     <div class="col-7">
         <label asp-for="CompanyId" class="form-label">Застрахователна компания</label>
@@ -24,6 +26,7 @@
                 <option value="@company.Id">@company.Name</option>
             }
         </select>
+        <span asp-validation-for="CompanyId" class="small text-danger"></span>
     </div>
     <div class="col-12">
         <label asp-for="EventType" class="form-label">Вид събитие</label>
@@ -35,24 +38,29 @@
             <option>ПТП в България - Каско регрес на чужд застраховател</option>
             <option>ПТП в чужбина – Каско регрес на чужд застраховател</option>
         </select>
+        <span asp-validation-for="EventType" class="small text-danger"></span>
     </div>
     <div class="col-3">
         <label asp-for="EventDate" class="form-label">Дата на събитие</label>
         <input asp-for="EventDate" type="date" class="form-control" placeholder="">
+        <span asp-validation-for="EventDate" class="small text-danger"></span>
     </div>
     <div>
     </div>
     <div class="col-3">
         <label asp-for="BulgarianRegNumber" class="form-label">Български регистрационен номер</label>
         <input asp-for="BulgarianRegNumber" class="form-control" placeholder="Български рег. номер....">
+        <span asp-validation-for="BulgarianRegNumber" class="small text-danger"></span>
     </div>
     <div class="col-3">
         <label asp-for="ForeignRegNumber" class="form-label">Чужд регистрационен номер</label>
         <input asp-for="ForeignRegNumber" class="form-control" placeholder="Чужд рег. номер....">
+        <span asp-validation-for="ForeignRegNumber" class="small text-danger"></span>
     </div>
     <div class="col-3">
         <label asp-for="Property" class="form-label">Имущество</label>
         <input asp-for="Property" class="form-control" placeholder="Вид имущество...">
+        <span asp-validation-for="Property" class="small text-danger"></span>
     </div>
     <div class="col-3">
         <label asp-for="InjuredPerson" class="form-label">Пострадал</label>
@@ -63,10 +71,12 @@
             <option>Велосипедист</option>
             <option>Пешеходец</option>
         </select>
+        <span asp-validation-for="InjuredPerson" class="small text-danger"></span>
     </div>
     <div class="col-3">
         <label asp-for="NotifiedBy" class="form-label">Уведомяване от</label>
         <input asp-for="NotifiedBy" class="form-control" placeholder="Уведомяване от име...">
+        <span asp-validation-for="NotifiedBy" class="small text-danger"></span>
     </div>
     <div>
     </div>
