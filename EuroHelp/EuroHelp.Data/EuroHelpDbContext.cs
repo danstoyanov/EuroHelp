@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 
 using EuroHelp.Data.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace EuroHelp.Data
 {
@@ -17,21 +18,29 @@ namespace EuroHelp.Data
 
         public DbSet<InsuranceCompany> InsuranceCompanies { get; init; }
 
-        public DbSet<User> Users { get; init; }
+        public DbSet<Consumer> Consumers { get; init; }
+
+        public DbSet<Employee> Employees { get; init; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Damage>()
-                .HasOne(u => u.User)
-                .WithMany(u => u.Damages)
-                .HasForeignKey(s => s.UserId)
-                .OnDelete(DeleteBehavior.NoAction);
+            modelBuilder.Entity<Consumer>()
+                .HasOne<IdentityUser>()
+                .WithOne()
+                .HasForeignKey<Consumer>(c => c.UserConsumerId)
+                .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<Damage>()
                 .HasOne(c => c.Company)
                 .WithMany(c => c.Damages)
                 .HasForeignKey(c => c.CompanyId)
                 .OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder.Entity<InsuranceCompany>()
+                .HasOne(c => c.Employee)
+                .WithMany(e => e.Companies)
+                .HasForeignKey(c => c.EmployeeId)
+                .OnDelete(DeleteBehavior.Restrict);
 
             base.OnModelCreating(modelBuilder);
         }

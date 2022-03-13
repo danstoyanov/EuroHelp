@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace EuroHelp.Data.Migrations
 {
-    public partial class InitialMigration : Migration
+    public partial class EmployeeTables : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -46,25 +46,6 @@ namespace EuroHelp.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Users",
-                columns: table => new
-                {
-                    Id = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: false),
-                    Username = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
-                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    SecondNames = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    BirthDate = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Gender = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ConfirmPassword = table.Column<string>(type: "nvarchar(max)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Users", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -174,30 +155,32 @@ namespace EuroHelp.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "InsuranceCompanies",
+                name: "Consumers",
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
-                    Code = table.Column<int>(type: "int", nullable: false),
-                    Bulstat = table.Column<int>(type: "int", nullable: false),
-                    CompanyEnglName = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: true),
-                    Address = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: true),
-                    PhoneNumber = table.Column<string>(type: "nvarchar(8)", maxLength: 8, nullable: false),
-                    MobilePhoneNumber = table.Column<string>(type: "nvarchar(12)", maxLength: 12, nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
-                    FAX = table.Column<int>(type: "int", nullable: false),
-                    Notes = table.Column<string>(type: "nvarchar(350)", maxLength: 350, nullable: true),
-                    UserId = table.Column<string>(type: "nvarchar(40)", nullable: true)
+                    Username = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Gender = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UserConsumerId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    UserConsumerId1 = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_InsuranceCompanies", x => x.Id);
+                    table.PrimaryKey("PK_Consumers", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_InsuranceCompanies_Users_UserId",
-                        column: x => x.UserId,
-                        principalTable: "Users",
-                        principalColumn: "Id");
+                        name: "FK_Consumers_AspNetUsers_UserConsumerId",
+                        column: x => x.UserConsumerId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Consumers_AspNetUsers_UserConsumerId1",
+                        column: x => x.UserConsumerId1,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -215,22 +198,66 @@ namespace EuroHelp.Data.Migrations
                     Property = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     InjuredPerson = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     NotifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    UserId = table.Column<string>(type: "nvarchar(40)", nullable: true),
+                    ConsumerId = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     CompanyId = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Damages", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Damages_InsuranceCompanies_CompanyId",
-                        column: x => x.CompanyId,
-                        principalTable: "InsuranceCompanies",
+                        name: "FK_Damages_Consumers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Consumers",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Employees",
+                columns: table => new
+                {
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    InsuranceCompanyId = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Employees", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "InsuranceCompanies",
+                columns: table => new
+                {
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
+                    Code = table.Column<int>(type: "int", nullable: false),
+                    Bulstat = table.Column<int>(type: "int", nullable: false),
+                    CompanyEnglName = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: true),
+                    Address = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: true),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(8)", maxLength: 8, nullable: false),
+                    MobilePhoneNumber = table.Column<string>(type: "nvarchar(12)", maxLength: 12, nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
+                    FAX = table.Column<int>(type: "int", nullable: false),
+                    Notes = table.Column<string>(type: "nvarchar(350)", maxLength: 350, nullable: true),
+                    EmployeeId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    ConsumerId = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_InsuranceCompanies", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_InsuranceCompanies_Consumers_ConsumerId",
+                        column: x => x.ConsumerId,
+                        principalTable: "Consumers",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_Damages_Users_UserId",
-                        column: x => x.UserId,
-                        principalTable: "Users",
-                        principalColumn: "Id");
+                        name: "FK_InsuranceCompanies_Employees_EmployeeId",
+                        column: x => x.EmployeeId,
+                        principalTable: "Employees",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
@@ -273,6 +300,17 @@ namespace EuroHelp.Data.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Consumers_UserConsumerId",
+                table: "Consumers",
+                column: "UserConsumerId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Consumers_UserConsumerId1",
+                table: "Consumers",
+                column: "UserConsumerId1");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Damages_CompanyId",
                 table: "Damages",
                 column: "CompanyId");
@@ -283,13 +321,53 @@ namespace EuroHelp.Data.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_InsuranceCompanies_UserId",
+                name: "IX_Employees_InsuranceCompanyId",
+                table: "Employees",
+                column: "InsuranceCompanyId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_InsuranceCompanies_ConsumerId",
                 table: "InsuranceCompanies",
-                column: "UserId");
+                column: "ConsumerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_InsuranceCompanies_EmployeeId",
+                table: "InsuranceCompanies",
+                column: "EmployeeId");
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_Damages_InsuranceCompanies_CompanyId",
+                table: "Damages",
+                column: "CompanyId",
+                principalTable: "InsuranceCompanies",
+                principalColumn: "Id");
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_Employees_InsuranceCompanies_InsuranceCompanyId",
+                table: "Employees",
+                column: "InsuranceCompanyId",
+                principalTable: "InsuranceCompanies",
+                principalColumn: "Id");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropForeignKey(
+                name: "FK_Consumers_AspNetUsers_UserConsumerId",
+                table: "Consumers");
+
+            migrationBuilder.DropForeignKey(
+                name: "FK_Consumers_AspNetUsers_UserConsumerId1",
+                table: "Consumers");
+
+            migrationBuilder.DropForeignKey(
+                name: "FK_InsuranceCompanies_Consumers_ConsumerId",
+                table: "InsuranceCompanies");
+
+            migrationBuilder.DropForeignKey(
+                name: "FK_Employees_InsuranceCompanies_InsuranceCompanyId",
+                table: "Employees");
+
             migrationBuilder.DropTable(
                 name: "AspNetRoleClaims");
 
@@ -315,10 +393,13 @@ namespace EuroHelp.Data.Migrations
                 name: "AspNetUsers");
 
             migrationBuilder.DropTable(
+                name: "Consumers");
+
+            migrationBuilder.DropTable(
                 name: "InsuranceCompanies");
 
             migrationBuilder.DropTable(
-                name: "Users");
+                name: "Employees");
         }
     }
 }

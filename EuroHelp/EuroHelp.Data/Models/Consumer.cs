@@ -1,18 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 using static EuroHelp.Data.DataConstants.User;
 
 namespace EuroHelp.Data.Models
 {
-    public class User
+    public class Consumer
     {
         [Key]
-        [MaxLength(IdMaxLength)]
         public string Id { get; set; }
 
         [Required]
@@ -20,25 +16,18 @@ namespace EuroHelp.Data.Models
         public string? Username { get; set; }
 
         [Required]
-        public string? FirstName { get; set; }
+        public string FirstName { get; set; }
 
         [Required]
-        public string? SecondNames { get; set; }
+        public string LastName { get; set; }
 
         [Required]
-        public string? BirthDate { get; set; }
+        public string Gender { get; set; }
 
         [Required]
-        public string? Gender { get; set; }
+        public string UserConsumerId { get; set; }
 
-        [Required]
-        public string? Email { get; set; }
-
-        [Required]
-        public string? Password { get; set; }
-
-        [Required]
-        public string? ConfirmPassword { get; set; }
+        public IdentityUser UserConsumer { get; set; }
 
         public List<Damage> Damages { get; set; } = new List<Damage>();
 

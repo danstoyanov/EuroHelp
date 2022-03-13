@@ -46,10 +46,12 @@ namespace EuroHelp.Data.Models
         [MaxLength(NotesMaxLength)]
         public string? Notes { get; set; }
 
-        [ForeignKey("User")]
-        public string? UserId { get; set; }
+        [ForeignKey("Employee")]
+        public string? EmployeeId { get; set; }
 
-        public User? User { get; set; }
+        public Employee? Employee { get; set; }
+
+        public List<Employee> Employees { get; set; } = new List<Employee>();
 
         public List<Damage> Damages { get; set; } = new List<Damage>();
     }

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EuroHelp.Data.Migrations
 {
     [DbContext(typeof(EuroHelpDbContext))]
-    [Migration("20220312170137_InitialMigration")]
-    partial class InitialMigration
+    [Migration("20220313181551_EmployeeTables")]
+    partial class EmployeeTables
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,6 +23,46 @@ namespace EuroHelp.Data.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+
+            modelBuilder.Entity("EuroHelp.Data.Models.Consumer", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Gender")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserConsumerId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("UserConsumerId1")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Username")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserConsumerId")
+                        .IsUnique();
+
+                    b.HasIndex("UserConsumerId1");
+
+                    b.ToTable("Consumers");
+                });
 
             modelBuilder.Entity("EuroHelp.Data.Models.Damage", b =>
                 {
@@ -36,6 +76,9 @@ namespace EuroHelp.Data.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("CompanyName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ConsumerId")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("EventDate")
@@ -69,7 +112,7 @@ namespace EuroHelp.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(40)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
@@ -78,6 +121,31 @@ namespace EuroHelp.Data.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Damages");
+                });
+
+            modelBuilder.Entity("EuroHelp.Data.Models.Employee", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("InsuranceCompanyId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
+
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("InsuranceCompanyId");
+
+                    b.ToTable("Employees");
                 });
 
             modelBuilder.Entity("EuroHelp.Data.Models.InsuranceCompany", b =>
@@ -99,10 +167,16 @@ namespace EuroHelp.Data.Migrations
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
 
+                    b.Property<string>("ConsumerId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
+
+                    b.Property<string>("EmployeeId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("FAX")
                         .HasColumnType("int");
@@ -126,58 +200,13 @@ namespace EuroHelp.Data.Migrations
                         .HasMaxLength(8)
                         .HasColumnType("nvarchar(8)");
 
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(40)");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("ConsumerId");
+
+                    b.HasIndex("EmployeeId");
 
                     b.ToTable("InsuranceCompanies");
-                });
-
-            modelBuilder.Entity("EuroHelp.Data.Models.User", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasMaxLength(40)
-                        .HasColumnType("nvarchar(40)");
-
-                    b.Property<string>("BirthDate")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ConfirmPassword")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Gender")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("SecondNames")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Username")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -382,6 +411,23 @@ namespace EuroHelp.Data.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("EuroHelp.Data.Models.Consumer", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                        .WithOne()
+                        .HasForeignKey("EuroHelp.Data.Models.Consumer", "UserConsumerId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "UserConsumer")
+                        .WithMany()
+                        .HasForeignKey("UserConsumerId1")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("UserConsumer");
+                });
+
             modelBuilder.Entity("EuroHelp.Data.Models.Damage", b =>
                 {
                     b.HasOne("EuroHelp.Data.Models.InsuranceCompany", "Company")
@@ -389,23 +435,34 @@ namespace EuroHelp.Data.Migrations
                         .HasForeignKey("CompanyId")
                         .OnDelete(DeleteBehavior.NoAction);
 
-                    b.HasOne("EuroHelp.Data.Models.User", "User")
+                    b.HasOne("EuroHelp.Data.Models.Consumer", "Consumer")
                         .WithMany("Damages")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.NoAction);
+                        .HasForeignKey("UserId");
 
                     b.Navigation("Company");
 
-                    b.Navigation("User");
+                    b.Navigation("Consumer");
+                });
+
+            modelBuilder.Entity("EuroHelp.Data.Models.Employee", b =>
+                {
+                    b.HasOne("EuroHelp.Data.Models.InsuranceCompany", null)
+                        .WithMany("Employees")
+                        .HasForeignKey("InsuranceCompanyId");
                 });
 
             modelBuilder.Entity("EuroHelp.Data.Models.InsuranceCompany", b =>
                 {
-                    b.HasOne("EuroHelp.Data.Models.User", "User")
+                    b.HasOne("EuroHelp.Data.Models.Consumer", null)
                         .WithMany("InsuranceCompanies")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("ConsumerId");
 
-                    b.Navigation("User");
+                    b.HasOne("EuroHelp.Data.Models.Employee", "Employee")
+                        .WithMany("Companies")
+                        .HasForeignKey("EmployeeId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.Navigation("Employee");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -459,16 +516,23 @@ namespace EuroHelp.Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("EuroHelp.Data.Models.InsuranceCompany", b =>
-                {
-                    b.Navigation("Damages");
-                });
-
-            modelBuilder.Entity("EuroHelp.Data.Models.User", b =>
+            modelBuilder.Entity("EuroHelp.Data.Models.Consumer", b =>
                 {
                     b.Navigation("Damages");
 
                     b.Navigation("InsuranceCompanies");
+                });
+
+            modelBuilder.Entity("EuroHelp.Data.Models.Employee", b =>
+                {
+                    b.Navigation("Companies");
+                });
+
+            modelBuilder.Entity("EuroHelp.Data.Models.InsuranceCompany", b =>
+                {
+                    b.Navigation("Damages");
+
+                    b.Navigation("Employees");
                 });
 #pragma warning restore 612, 618
         }
