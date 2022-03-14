@@ -68,7 +68,6 @@ namespace EuroHelp.Web.Controllers
                 return RedirectToAction("AccessDenied", "Home");
             }
 
-
             var builder = new StringBuilder();
 
             builder.AppendLine("Name, Property");

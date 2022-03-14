@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EuroHelp.Data.Migrations
 {
     [DbContext(typeof(EuroHelpDbContext))]
-    [Migration("20220313181551_EmployeeTables")]
-    partial class EmployeeTables
+    [Migration("20220314085806_InitialMigration")]
+    partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -41,25 +41,12 @@ namespace EuroHelp.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("UserConsumerId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("UserConsumerId1")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<string>("Username")
                         .IsRequired()
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("UserConsumerId")
-                        .IsUnique();
-
-                    b.HasIndex("UserConsumerId1");
 
                     b.ToTable("Consumers");
                 });
@@ -411,29 +398,12 @@ namespace EuroHelp.Data.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("EuroHelp.Data.Models.Consumer", b =>
-                {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
-                        .WithOne()
-                        .HasForeignKey("EuroHelp.Data.Models.Consumer", "UserConsumerId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "UserConsumer")
-                        .WithMany()
-                        .HasForeignKey("UserConsumerId1")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("UserConsumer");
-                });
-
             modelBuilder.Entity("EuroHelp.Data.Models.Damage", b =>
                 {
                     b.HasOne("EuroHelp.Data.Models.InsuranceCompany", "Company")
                         .WithMany("Damages")
                         .HasForeignKey("CompanyId")
-                        .OnDelete(DeleteBehavior.NoAction);
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("EuroHelp.Data.Models.Consumer", "Consumer")
                         .WithMany("Damages")

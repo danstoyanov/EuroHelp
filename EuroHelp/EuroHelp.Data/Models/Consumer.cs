@@ -24,11 +24,6 @@ namespace EuroHelp.Data.Models
         [Required]
         public string Gender { get; set; }
 
-        [Required]
-        public string UserConsumerId { get; set; }
-
-        public IdentityUser UserConsumer { get; set; }
-
         public List<Damage> Damages { get; set; } = new List<Damage>();
 
         public List<InsuranceCompany> InsuranceCompanies { get; set; } = new List<InsuranceCompany>();

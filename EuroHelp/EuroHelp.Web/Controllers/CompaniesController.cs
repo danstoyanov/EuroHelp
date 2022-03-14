@@ -40,6 +40,11 @@ namespace EuroHelp.Web.Controllers
                 return RedirectToAction("AccessDenied", "Home");
             }
 
+            //if (!ModelState.IsValid)
+            //{
+            //    return View(company);
+            //}
+
             if (this.data.InsuranceCompanies.Any(c => c.Id == company.Id))
             {
                 return BadRequest();

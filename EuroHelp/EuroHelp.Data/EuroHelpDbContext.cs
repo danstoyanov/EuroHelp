@@ -24,17 +24,11 @@ namespace EuroHelp.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Consumer>()
-                .HasOne<IdentityUser>()
-                .WithOne()
-                .HasForeignKey<Consumer>(c => c.UserConsumerId)
-                .OnDelete(DeleteBehavior.Restrict);
-
             modelBuilder.Entity<Damage>()
                 .HasOne(c => c.Company)
                 .WithMany(c => c.Damages)
                 .HasForeignKey(c => c.CompanyId)
-                .OnDelete(DeleteBehavior.NoAction);
+                .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<InsuranceCompany>()
                 .HasOne(c => c.Employee)

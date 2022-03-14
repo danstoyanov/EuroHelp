@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace EuroHelp.Data.Migrations
 {
-    public partial class EmployeeTables : Migration
+    public partial class InitialMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -46,6 +46,21 @@ namespace EuroHelp.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Consumers",
+                columns: table => new
+                {
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Username = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Gender = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Consumers", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -149,35 +164,6 @@ namespace EuroHelp.Data.Migrations
                     table.ForeignKey(
                         name: "FK_AspNetUserTokens_AspNetUsers_UserId",
                         column: x => x.UserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Consumers",
-                columns: table => new
-                {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Username = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
-                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Gender = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    UserConsumerId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    UserConsumerId1 = table.Column<string>(type: "nvarchar(450)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Consumers", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Consumers_AspNetUsers_UserConsumerId",
-                        column: x => x.UserConsumerId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Consumers_AspNetUsers_UserConsumerId1",
-                        column: x => x.UserConsumerId1,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -300,17 +286,6 @@ namespace EuroHelp.Data.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Consumers_UserConsumerId",
-                table: "Consumers",
-                column: "UserConsumerId",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Consumers_UserConsumerId1",
-                table: "Consumers",
-                column: "UserConsumerId1");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Damages_CompanyId",
                 table: "Damages",
                 column: "CompanyId");
@@ -340,7 +315,8 @@ namespace EuroHelp.Data.Migrations
                 table: "Damages",
                 column: "CompanyId",
                 principalTable: "InsuranceCompanies",
-                principalColumn: "Id");
+                principalColumn: "Id",
+                onDelete: ReferentialAction.Restrict);
 
             migrationBuilder.AddForeignKey(
                 name: "FK_Employees_InsuranceCompanies_InsuranceCompanyId",
@@ -352,14 +328,6 @@ namespace EuroHelp.Data.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropForeignKey(
-                name: "FK_Consumers_AspNetUsers_UserConsumerId",
-                table: "Consumers");
-
-            migrationBuilder.DropForeignKey(
-                name: "FK_Consumers_AspNetUsers_UserConsumerId1",
-                table: "Consumers");
-
             migrationBuilder.DropForeignKey(
                 name: "FK_InsuranceCompanies_Consumers_ConsumerId",
                 table: "InsuranceCompanies");

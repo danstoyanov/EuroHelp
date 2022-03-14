@@ -35,7 +35,12 @@ namespace EuroHelp.Web.Controllers
         [Authorize]
         public IActionResult RegisterDamage(RegisterDamageFormModel damage)
         {
-            var testingUser = this.data
+            if (!IsConsumer())
+            {
+                return RedirectToAction("AccessDenied", "Home");
+            }
+
+            var currConsumer = this.data
                 .Users
                 .Where(u => u.Id == this.User.GetId())
                 .FirstOrDefault();
@@ -59,7 +64,7 @@ namespace EuroHelp.Web.Controllers
                 Property = damage.Property,
                 InjuredPerson = damage.InjuredPerson,
                 NotifiedBy = damage.NotifiedBy,
-                ConsumerId = testingUser.Id,
+                ConsumerId = currConsumer.Id,
                 CompanyId = damage.CompanyId
             };
 
@@ -246,12 +251,12 @@ namespace EuroHelp.Web.Controllers
 
         private bool IsConsumer()
         {
-            var isEmployee = this
+            var isConsumer = this
                 .data
                 .Consumers
-                .Any(e => e.Id == this.User.GetId());
+                .Any(c => c.Id == this.User.GetId());
 
-            return isEmployee;
+            return isConsumer;
         }
     }
 }

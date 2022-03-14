@@ -10,7 +10,7 @@ namespace EuroHelp.Web.Infrastructure
 {
     public static class ApplicationBuilderExtensions
     {
-        public static IApplicationBuilder PrepareDatabase 
+        public static IApplicationBuilder PrepareDatabase
             (this IApplicationBuilder app)
         {
             using var scopedServices = app.ApplicationServices.CreateScope();

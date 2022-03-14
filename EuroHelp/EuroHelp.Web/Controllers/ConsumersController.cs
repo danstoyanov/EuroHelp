@@ -36,6 +36,7 @@ namespace EuroHelp.Web.Controllers
                 Id = currUserId,
                 Username = consumer.Username,
                 FirstName = consumer.FirstName,
+                LastName = consumer.LastName,
                 Gender = consumer.Gender,
             };
 
