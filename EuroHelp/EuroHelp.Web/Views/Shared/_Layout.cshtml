@@ -21,22 +21,19 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Начало</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Damages" asp-action="RegisterDamage">Add Damage</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Damages" asp-action="RegisterDamage">Регистриране на нови щета</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Damages" asp-action="AllDamages">All Damages</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Damages" asp-action="AllDamages">Списък на всички щети</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Damages" asp-action="DamageSearch">Search Damage</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Damages" asp-action="DamageSearch">Търсене на щети</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Companies" asp-action="CompanyMembers">Add Insurance Company</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Companies" asp-action="CompanyMembers">Регистрацияна на заст. компания</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="References" asp-action="GenerateReference">Справки щети</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="References" asp-action="GenerateReference">Generate Reference</a>
                         </li>
                     </ul>
                     <partial name="_LoginPartial" />
