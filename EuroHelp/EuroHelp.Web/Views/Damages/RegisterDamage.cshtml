@@ -4,25 +4,25 @@
     ViewData["Title"] = "Register Demage";
 }
 
-<h1 style="margin: 2%; text-align: center;">🤕 Register new damage</h1>
+<h2 style="margin: 2%; text-align: center;">🤕 Register new damage</h2>
 <hr class="bg-primary w-100">
 
-<form class="row g-3" method="post">
+<form class="row g-4" method="post">
     <div class="col-1">
         <label asp-for="Id" class="form-label"><b>ID:</b></label>
         <input asp-for="Id" class="form-control" placeholder="ID...">
         <span asp-validation-for="Id" class="small text-danger"></span>
     </div>
     <div class="col-4">
-        <label asp-for="DamageType" class="form-label"><b>Damage Type:</b></label>
+        <label asp-for="DamageType" class="form-label"><b>Damage type:</b></label>
         <span asp-validation-for="DamageType" class="small text-danger"></span>
         <select asp-for="DamageType" class="form-select">
-            <option>Car Damage</option>
-            <option>Home Damage </option>
-            <option>Pet Damage</option>
-            <option>Travel Damage</option>
-            <option>Medical Damage</option>
-            <option>Business Damage</option>
+            <option>Car damage</option>
+            <option>Home damage </option>
+            <option>Pet damage</option>
+            <option>Travel damage</option>
+            <option>Medical damage</option>
+            <option>Business damage</option>
         </select>
     </div>
     <div class="col-4">
@@ -36,7 +36,7 @@
         <span asp-validation-for="CompanyId" class="small text-danger"></span>
     </div>
     <div class="col-3">
-        <label asp-for="EventDate" class="form-label"><b>Event Date:</b></label>
+        <label asp-for="EventDate" class="form-label"><b>Event date:</b></label>
         <input asp-for="EventDate" type="date" class="form-control" placeholder="">
         <span asp-validation-for="EventDate" class="small text-danger"></span>
     </div>
@@ -46,22 +46,23 @@
         <span asp-validation-for="BulgarianRegNumber" class="small text-danger"></span>
     </div>
     <div class="col-3">
-        <label asp-for="PersonFirstName" class="form-label"><b>Person First Name:</b></label>
+        <label asp-for="PersonFirstName" class="form-label"><b>Person first name:</b></label>
         <input asp-for="PersonFirstName" class="form-control" placeholder="First Name...">
         <span asp-validation-for="PersonFirstName" class="small text-danger"></span>
     </div>
     <div class="col-3">
-        <label asp-for="PersonSecondName" class="form-label"><b>Person Second Name:</b></label>
+        <label asp-for="PersonSecondName" class="form-label"><b>Person second name:</b></label>
         <input asp-for="PersonSecondName" class="form-control" placeholder="Second Name...">
         <span asp-validation-for="PersonSecondName" class="small text-danger"></span>
     </div>
     <div class="col-3">
-        <label asp-for="EventPlace" class="form-label"><b>EventPlace:</b></label>
+        <label asp-for="EventPlace" class="form-label"><b>Event place:</b></label>
         <input asp-for="EventPlace" class="form-control" placeholder="Bulgaria, Sofia...">
         <span asp-validation-for="EventPlace" class="small text-danger"></span>
     </div>
-    <div class="col-3">
+    <div class="row-g text-center">
         <input class="btn btn-primary" type="submit" value="Register" />
         <button class="btn btn-secondary" type="reset">Cancel</button>
     </div>
 </form>
+
