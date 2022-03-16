@@ -49,3 +49,13 @@ body {
     margin-right: auto;
     width: 30%;
 }
+
+.logo {
+    position: relative;
+    float: left;
+    width: 55px;
+    height: 55px;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
