@@ -9,17 +9,24 @@
 
 <form class="row g-3" method="post">
     <div class="col-1">
-        <label asp-for="Id" class="form-label">ID</label>
+        <label asp-for="Id" class="form-label"><b>ID:</b></label>
         <input asp-for="Id" class="form-control" placeholder="ID...">
         <span asp-validation-for="Id" class="small text-danger"></span>
     </div>
     <div class="col-4">
-        <label asp-for="Name" class="form-label">Тип щета</label>
-        <input asp-for="Name" class="form-control" placeholder="Тип щета...">
-        <span asp-validation-for="Name" class="small text-danger"></span>
+        <label asp-for="DamageType" class="form-label"><b>Damage Type:</b></label>
+        <span asp-validation-for="DamageType" class="small text-danger"></span>
+        <select asp-for="DamageType" class="form-select">
+            <option>Car Damage</option>
+            <option>Home Damage </option>
+            <option>Pet Damage</option>
+            <option>Travel Damage</option>
+            <option>Medical Damage</option>
+            <option>Business Damage</option>
+        </select>
     </div>
-    <div class="col-7">
-        <label asp-for="CompanyId" class="form-label">Застрахователна компания</label>
+    <div class="col-4">
+        <label asp-for="CompanyId" class="form-label"><b>Insurance company:</b></label>
         <select asp-for="CompanyId" class="form-select">
             @foreach (var company in Model.Companies)
             {
@@ -28,60 +35,33 @@
         </select>
         <span asp-validation-for="CompanyId" class="small text-danger"></span>
     </div>
-    <div class="col-12">
-        <label asp-for="EventType" class="form-label">Вид събитие</label>
-        <select asp-for="EventType" class="form-select">
-            <option>Събитие в чужбина - Каско регрес на Евроинс</option>
-            <option>Събитие в България - Каско регрес на Евроинс</option>
-            <option>Събитие в България - Каско регрес на Български застраховател</option>
-            <option>Събитие в чужбина - Каско регрес на Български застраховател</option>
-            <option>ПТП в България - Каско регрес на чужд застраховател</option>
-            <option>ПТП в чужбина – Каско регрес на чужд застраховател</option>
-        </select>
-        <span asp-validation-for="EventType" class="small text-danger"></span>
-    </div>
     <div class="col-3">
-        <label asp-for="EventDate" class="form-label">Дата на събитие</label>
+        <label asp-for="EventDate" class="form-label"><b>Event Date:</b></label>
         <input asp-for="EventDate" type="date" class="form-control" placeholder="">
         <span asp-validation-for="EventDate" class="small text-danger"></span>
     </div>
-    <div>
-    </div>
     <div class="col-3">
-        <label asp-for="BulgarianRegNumber" class="form-label">Български регистрационен номер</label>
-        <input asp-for="BulgarianRegNumber" class="form-control" placeholder="Български рег. номер....">
+        <label asp-for="BulgarianRegNumber" class="form-label"><b>National Identification Number:</b></label>
+        <input asp-for="BulgarianRegNumber" class="form-control" placeholder="National Identification Number....">
         <span asp-validation-for="BulgarianRegNumber" class="small text-danger"></span>
     </div>
     <div class="col-3">
-        <label asp-for="ForeignRegNumber" class="form-label">Чужд регистрационен номер</label>
-        <input asp-for="ForeignRegNumber" class="form-control" placeholder="Чужд рег. номер....">
-        <span asp-validation-for="ForeignRegNumber" class="small text-danger"></span>
+        <label asp-for="PersonFirstName" class="form-label"><b>Person First Name:</b></label>
+        <input asp-for="PersonFirstName" class="form-control" placeholder="First Name...">
+        <span asp-validation-for="PersonFirstName" class="small text-danger"></span>
     </div>
     <div class="col-3">
-        <label asp-for="Property" class="form-label">Имущество</label>
-        <input asp-for="Property" class="form-control" placeholder="Вид имущество...">
-        <span asp-validation-for="Property" class="small text-danger"></span>
+        <label asp-for="PersonSecondName" class="form-label"><b>Person Second Name:</b></label>
+        <input asp-for="PersonSecondName" class="form-control" placeholder="Second Name...">
+        <span asp-validation-for="PersonSecondName" class="small text-danger"></span>
     </div>
     <div class="col-3">
-        <label asp-for="InjuredPerson" class="form-label">Пострадал</label>
-        <select asp-for="InjuredPerson" class="form-select">
-            <option>Водач</option>
-            <option>Пътник</option>
-            <option>Мотоциклетист</option>
-            <option>Велосипедист</option>
-            <option>Пешеходец</option>
-        </select>
-        <span asp-validation-for="InjuredPerson" class="small text-danger"></span>
+        <label asp-for="EventPlace" class="form-label"><b>EventPlace:</b></label>
+        <input asp-for="EventPlace" class="form-control" placeholder="Bulgaria, Sofia...">
+        <span asp-validation-for="EventPlace" class="small text-danger"></span>
     </div>
     <div class="col-3">
-        <label asp-for="NotifiedBy" class="form-label">Уведомяване от</label>
-        <input asp-for="NotifiedBy" class="form-control" placeholder="Уведомяване от име...">
-        <span asp-validation-for="NotifiedBy" class="small text-danger"></span>
-    </div>
-    <div>
-    </div>
-    <div class="col-3">
-        <input class="btn btn-primary" type="submit" value="Регистрация" />
-        <button class="btn btn-secondary" type="reset">Отказ</button>
+        <input class="btn btn-primary" type="submit" value="Register" />
+        <button class="btn btn-secondary" type="reset">Cancel</button>
     </div>
 </form>

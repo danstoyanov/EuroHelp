@@ -55,15 +55,11 @@ namespace EuroHelp.Web.Controllers
             var newDamage = new Damage()
             {
                 Id = damage.Id,
-                Name = damage.Name,
+                Name = damage.DamageType,
                 CompanyName = currCompany.Name,
                 EventDate = eventDate,
                 EventType = damage.EventType,
                 BulgarianRegNumber = damage.BulgarianRegNumber,
-                ForeignRegNumber = damage.ForeignRegNumber,
-                Property = damage.Property,
-                InjuredPerson = damage.InjuredPerson,
-                NotifiedBy = damage.NotifiedBy,
                 ConsumerId = currConsumer.Id,
                 CompanyId = damage.CompanyId
             };

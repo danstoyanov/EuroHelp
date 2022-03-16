@@ -14,7 +14,7 @@ namespace EuroHelp.Web.Models.Damages
 
         [StringLength(NameMaxLength, MinimumLength = 2)]
         [Required]
-        public string? Name { get; set; }
+        public string? DamageType { get; set; }
 
         [Required]
         public string EventDate { get; set; }
@@ -25,16 +25,11 @@ namespace EuroHelp.Web.Models.Damages
         [Required]
         public int? BulgarianRegNumber { get; set; }
 
-        [Required]
-        public int? ForeignRegNumber { get; set; }
+        public string EventPlace { get; set; }
 
-        [Required]
-        public string? Property { get; set; }
+        public string PersonFirstName { get; set; }
 
-        public string? InjuredPerson { get; set; }
-
-        [Required]
-        public string? NotifiedBy { get; set; }
+        public string PersonSecondName { get; set; }
 
         public string CompanyId { get; set; }
 
