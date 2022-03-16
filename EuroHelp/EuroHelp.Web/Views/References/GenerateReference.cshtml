@@ -4,35 +4,35 @@
     ViewData["Title"] = "Reference Generator";
 }
 
-<h1 style="margin: 2%; text-align: center;">📆 Generate damage reference</h1>
+<h2 style="margin: 2%; text-align: center;">📆 Generate damage reference</h2>
 <hr class="bg-primary w-100">
 
 <form class="row g-3" method="post">
-    <h5>Справка по име на компания</h5>
+    <h5>Reference by company name:</h5>
     <div class="col-2">
-        <label asp-for="StartDate" class="form-label">От <b>дата</b> на <b>събитие</b></label>
+        <label asp-for="StartDate" class="form-label">From <b>event date</b></label>
         <input asp-for="StartDate" type="date" class="form-control" placeholder="">
     </div>
     <div class="col-2">
-        <label asp-for="EndDate" class="form-label">До <b>дата</b> на <b>събитие</b></label>
+        <label asp-for="EndDate" class="form-label">To  <b>event date</b></label>
         <input asp-for="EndDate" type="date" class="form-control" placeholder="">
     </div>
     <div>
-        <input asp-controller="References" asp-action="GenerateByCompanyName" class="btn btn-primary" type="submit" value="Генерирай справка" />
+        <input asp-controller="References" asp-action="GenerateByCompanyName" class="btn btn-primary" type="submit" value="Generate reference" />
     </div>
 </form>
 <hr class="bg-primary w-50">
 <form class="row g-3" method="post">
-    <h5>Генерирай справка по № на претенция</h5>
+    <h5>Reference by company name:</h5>
     <div class="col-2">
-        <label asp-for="StartDate" class="form-label">От Дата</label>
+        <label asp-for="StartDate" class="form-label">From <b>event date</b></label>
         <input asp-for="StartDate" type="date" class="form-control" placeholder="">
     </div>
     <div class="col-2">
-        <label asp-for="EndDate" class="form-label">До Дата</label>
+        <label asp-for="EndDate" class="form-label">To  <b>event date</b></label>
         <input asp-for="EndDate" type="date" class="form-control" placeholder="">
     </div>
     <div>
-        <input asp-controller="References" asp-action="GenerateByPretentionNumber" class="btn btn-primary" type="submit" value="Генерирай справка" />
+        <input asp-controller="References" asp-action="GenerateByPretentionNumber" class="btn btn-primary" type="submit" value="Generate reference" />
     </div>
 </form>

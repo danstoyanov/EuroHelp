@@ -50,7 +50,7 @@ namespace EuroHelp.Web.Controllers
 
             foreach (var damage in damages)
             {
-                builder.AppendLine($"{damage.Name}, {damage.CompanyName}, {damage.EventDate}");
+                builder.AppendLine($"{damage.DamageType}, {damage.CompanyName}, {damage.EventDate}");
             }
 
             var data = Encoding.UTF8.GetBytes(builder.ToString());
@@ -58,35 +58,6 @@ namespace EuroHelp.Web.Controllers
 
             return File(result, "text/csv", "damagesByCompany.csv");
         }
-
-        [HttpPost]
-        [Authorize]
-        public IActionResult GenerateByPretentionNumber(ExportFile file)
-        {
-            if (!this.IsEmployee())
-            {
-                return RedirectToAction("AccessDenied", "Home");
-            }
-
-            var builder = new StringBuilder();
-
-            builder.AppendLine("Name, Property");
-
-            var damages = this.data.Damages
-                .Where(d => d.Property == "Няма")
-                .ToList();
-
-            foreach (var damage in damages)
-            {
-                builder.AppendLine($"{damage.Name}, {damage.Property}");
-            }
-
-            var data = Encoding.UTF8.GetBytes(builder.ToString());
-            var result = Encoding.UTF8.GetPreamble().Concat(data).ToArray();
-
-            return File(result, "text/csv", "damagesPretention.csv");
-        }
-
         private bool IsEmployee()
         {
             var isEmployee = this

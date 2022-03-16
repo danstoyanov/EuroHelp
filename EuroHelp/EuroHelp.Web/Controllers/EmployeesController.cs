@@ -1,10 +1,10 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 using EuroHelp.Data;
-using EuroHelp.Web.Models.Employees;
-using EuroHelp.Web.Infrastructure;
 using EuroHelp.Data.Models;
+using EuroHelp.Web.Infrastructure;
+using EuroHelp.Web.Models.Employees;
 
 namespace EuroHelp.Web.Controllers
 {

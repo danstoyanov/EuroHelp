@@ -1,6 +1,7 @@
-﻿using EuroHelp.Web.Models;
+﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics;
+
+using EuroHelp.Web.Models;
 
 namespace EuroHelp.Web.Controllers
 {

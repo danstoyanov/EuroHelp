@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Authorization;
 
 using EuroHelp.Data;
 using EuroHelp.Data.Models;
-
 using EuroHelp.Web.Models.Companies;
 using EuroHelp.Web.Infrastructure;
 
@@ -40,11 +39,6 @@ namespace EuroHelp.Web.Controllers
                 return RedirectToAction("AccessDenied", "Home");
             }
 
-            //if (!ModelState.IsValid)
-            //{
-            //    return View(company);
-            //}
-
             if (this.data.InsuranceCompanies.Any(c => c.Id == company.Id))
             {
                 return BadRequest();
@@ -58,9 +52,7 @@ namespace EuroHelp.Web.Controllers
             {
                 Id = company.Id,
                 Name = company.Name,
-                Code = company.Code,
                 Bulstat = company.Bulstat,
-                CompanyEnglName = company.CompanyEnglName,
                 Address = company.Address,
                 PhoneNumber = company.PhoneNumber,
                 MobilePhoneNumber = company.MobilePhoneNumber,

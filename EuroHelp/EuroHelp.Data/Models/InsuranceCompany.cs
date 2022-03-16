@@ -15,15 +15,8 @@ namespace EuroHelp.Data.Models
         public string? Name { get; set; }
 
         [Required]
-        [Range(CodeMinValue, CodeMaxValue)]
-        public int Code { get; set; }
-
-        [Required]
         [Range(BulstatMinValue, BulstatMaxValue)]
         public int Bulstat { get; set; }
-
-        [MaxLength(NameMaxLength)]
-        public string? CompanyEnglName { get; set; }
 
         [MaxLength(AddressMaxLength)]
         public string? Address { get; set; }

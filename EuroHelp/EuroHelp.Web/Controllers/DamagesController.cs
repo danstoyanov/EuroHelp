@@ -53,12 +53,16 @@ namespace EuroHelp.Web.Controllers
             var newDamage = new Damage()
             {
                 Id = damage.Id,
-                Name = damage.DamageType,
+                DamageType = damage.DamageType,
                 CompanyName = currCompany.Name,
                 EventDate = eventDate,
-                EventType = damage.EventType,
+                IdentityNumber = damage.IdentityNumber,
+                PersonFirstName = damage.PersonFirstName,
+                PersonSecondName = damage.PersonSecondName,
+                EventPlace = damage.EventPlace,
+                Comment = damage.Comment,
                 ConsumerId = currConsumer.Id,
-                CompanyId = damage.CompanyId
+                CompanyId = damage.CompanyId,
             };
 
             this.data.Damages.Add(newDamage);
@@ -78,11 +82,14 @@ namespace EuroHelp.Web.Controllers
                 .Select(d => new DamagesListingViewModel
                 {
                     Id = d.Id,
-                    Name = d.Name,
+                    DamageType = d.DamageType,
                     CompanyName = d.CompanyName,
-                    RegistrationDate = d.RegistrationDate.ToString("dd/MM/yyyy"),
                     EventDate = d.EventDate.ToString("dd/MM/yyyy"),
-                    EventType = d.EventType,
+                    RegisterDate = d.RegistrationDate.ToString("dd/MM/yyyy"),
+                    IdentityNumber = d.IdentityNumber,
+                    PersonFirstName = d.PersonFirstName,
+                    PersonSecondName = d.PersonSecondName,
+                    EventPlace = d.EventPlace,
                 })
                 .ToList();
 
@@ -135,11 +142,10 @@ namespace EuroHelp.Web.Controllers
             var model = new EditDamageViewModel
             {
                 Id = currDamage.Id,
-                Name = currDamage.Name,
+                Name = currDamage.DamageType,
                 CompanyName = currDamage.CompanyName,
                 EventDate = currDamage.EventDate.ToString(),
                 RegistrationDate = currDamage.RegistrationDate.ToString(),
-                EventType = currDamage.EventType,
             };
 
             return View(model);
@@ -159,7 +165,7 @@ namespace EuroHelp.Web.Controllers
                 .Where(d => d.Id == model.Id)
                 .FirstOrDefault();
 
-            damage.Name = model.Name;
+            damage.DamageType = model.Name;
             damage.EventDate = DateTime.Parse(model.EventDate);
 
             this.data.SaveChanges();
@@ -196,8 +202,8 @@ namespace EuroHelp.Web.Controllers
                   .Select(d => new DamagesListingViewModel
                   {
                       Id = d.Id,
-                      Name = d.Name,
-                      RegistrationDate = d.RegistrationDate.ToString("dd/MM/yyyy"),
+                      DamageType = d.DamageType,
+                      RegisterDate = d.RegistrationDate.ToString("dd/MM/yyyy"),
                       EventDate = d.EventDate.ToString("dd/MM/yyyy"),
                       CompanyName = d.CompanyName
                   })

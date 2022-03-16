@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-using EuroHelp.Web.Models.Users;
-using EuroHelp.Data.Models;
 using EuroHelp.Data;
+using EuroHelp.Data.Models;
+using EuroHelp.Web.Models.Users;
 using EuroHelp.Web.Infrastructure;
 
 namespace EuroHelp.Web.Controllers

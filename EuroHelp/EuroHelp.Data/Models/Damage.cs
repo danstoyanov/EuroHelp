@@ -12,31 +12,29 @@ namespace EuroHelp.Data.Models
 
         [Required]
         [MaxLength(NameMaxLength)]
-        public string? Name { get; set; }
+        public string? DamageType { get; set; }
 
+        [Required]
         public string? CompanyName { get; set; }
 
+        [Required]
         public DateTime EventDate { get; set; }
 
         public DateTime RegistrationDate { get; set; } = DateTime.UtcNow;
 
         [Required]
-        public string? EventType { get; set; }
-
-        [Range(BgRegMinValue, BgRegMaxValue)]
-        public int? BulgarianRegNumber { get; set; }
-
-        [Range(OtherRegMinValue, OtherRegMaxValue)]
-        public int? ForeignRegNumber { get; set; }
+        public int? IdentityNumber { get; set; }
 
         [Required]
-        public string? Property { get; set; }
+        public string PersonFirstName { get; set; }
 
         [Required]
-        public string? InjuredPerson { get; set; }
+        public string PersonSecondName { get; set; }
 
         [Required]
-        public string? NotifiedBy { get; set; }
+        public string EventPlace { get; set; }
+
+        public string Comment { get; set; }
 
         public string? ConsumerId { get; set; }
 

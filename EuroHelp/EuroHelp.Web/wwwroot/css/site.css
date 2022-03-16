@@ -43,7 +43,7 @@ body {
     width: 60%;
 }
 
-.badPage {
+.badPage1 {
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -58,4 +58,9 @@ body {
     background-position: 50% 50%;
     background-repeat: no-repeat;
     background-size: cover;
+}
+
+h2 {
+    color: #0070FC;
+    text-shadow: 1px 1px 1px;
 }

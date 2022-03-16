@@ -4,24 +4,24 @@
     {
         public string Id { get; set; }
 
-        public string? Name { get; set; }
+        public string? DamageType { get; set; }
 
-        public string CompanyName { get; set; }
+        public string? CompanyName { get; set; }
 
         public string EventDate { get; set; }
 
-        public string RegistrationDate { get; set; }
+        public string RegisterDate { get; set; }
 
         public string EventType { get; set; }
 
-        public int? BulgarianRegNumber { get; set; }
+        public int? IdentityNumber { get; set; }
 
-        public int? ForeignRegNumber { get; set; }
+        public string PersonFirstName { get; set; }
 
-        public string? Property { get; set; }
+        public string PersonSecondName { get; set; }
 
-        public string? InjuredPerson { get; set; }
+        public string EventPlace { get; set; }
 
-        public string? NotifiedBy { get; set; }
+        public string Comment { get; set; }
     }
 }

@@ -4,69 +4,59 @@
     ViewData["Title"] = "Company Members";
 }
 
-<h1 style="margin: 2%; text-align: center;">🛡️ Register new Insurance Company</h1>
+<h2 style="margin: 2%; text-align: center;">🛡️ Register new insurance company</h2>
 <hr class="bg-primary w-100">
 
 <form class="row g-3" method="post">
     <div class="col-1">
-        <label asp-for="Id" class="form-label">ID</label>
+        <label asp-for="Id" class="form-label"><b>ID:</b></label>
         <input asp-for="Id" class="form-control" placeholder="ID...">
         <span asp-validation-for="Id" class="small text-danger"></span>
     </div>
     <div class="col-3">
-        <label asp-for="Name" class="form-label">Име на компания</label>
-        <input asp-for="Name" class="form-control" placeholder="Име на компанията...">
+        <label asp-for="Name" class="form-label"><b>Company name:</b></label>
+        <input asp-for="Name" class="form-control" placeholder="Protect Auto...">
         <span asp-validation-for="Name" class="small text-danger"></span>
     </div>
-    <div class="col-1">
-        <label asp-for="Code" class="form-label">Код</label>
-        <input asp-for="Code" class="form-control" placeholder="Код...">
-        <span asp-validation-for="Code" class="small text-danger"></span>
-    </div>
     <div class="col-3">
-        <label asp-for="Bulstat" class="form-label">Булстат</label>
-        <input asp-for="Bulstat" class="form-control" placeholder="Булстат...">
+        <label asp-for="Bulstat" class="form-label"><b>Bulstat:</b></label>
+        <input asp-for="Bulstat" class="form-control" placeholder="65985...">
         <span asp-validation-for="Code" class="small text-danger"></span>
     </div>
     <div class="col-4">
-        <label asp-for="CompanyEnglName" class="form-label">Име на компания на анг. език</label>
-        <input asp-for="CompanyEnglName" class="form-control" placeholder="английско име ...">
-        <span asp-validation-for="CompanyEnglName" class="small text-danger"></span>
+        <label asp-for="FAX" class="form-label"><b>FAX:</b></label>
+        <input asp-for="FAX" class="form-control" placeholder="123456...">
+        <span asp-validation-for="FAX" class="small text-danger"></span>
     </div>
     <div class="form-group">
-        <label asp-for="Address">Адрес</label>
-        <textarea asp-for="Address" class="form-control" rows="3" placeholder="гр. София, ул Михайлов № 43...."></textarea>
+        <label asp-for="Address"><b>Address:</b></label>
+        <textarea asp-for="Address" class="form-control" rows="3" placeholder="1644 Froe Street, Charleston...."></textarea>
         <span asp-validation-for="Address" class="small text-danger"></span>
     </div>
     <div class="col-3">
-        <label asp-for="PhoneNumber" class="form-label">Телефон</label>
-        <input asp-for="PhoneNumber" class="form-control" placeholder="02 2255...">
+        <label asp-for="PhoneNumber" class="form-label"><b>Phone number:</b></label>
+        <input asp-for="PhoneNumber" class="form-control" placeholder="022255...">
         <span asp-validation-for="PhoneNumber" class="small text-danger"></span>
 
     </div>
     <div class="col-3">
-        <label asp-for="MobilePhoneNumber" class="form-label">Мобилен телефон</label>
-        <input asp-for="MobilePhoneNumber" class="form-control" placeholder="+359 88...">
+        <label asp-for="MobilePhoneNumber" class="form-label"><b>Mobile number:</b></label>
+        <input asp-for="MobilePhoneNumber" class="form-control" placeholder="+35988...">
         <span asp-validation-for="MobilePhoneNumber" class="small text-danger"></span>
 
     </div>
     <div class="col-3">
-        <label asp-for="Email" class="form-label">Email</label>
-        <input asp-for="Email" class="form-control" placeholder="Имейл адрес...">
+        <label asp-for="Email" class="form-label"><b>Email:</b></label>
+        <input asp-for="Email" class="form-control" placeholder="Email...">
         <span asp-validation-for="Email" class="small text-danger"></span>
     </div>
-    <div class="col-3">
-        <label asp-for="FAX" class="form-label">Факс</label>
-        <input asp-for="FAX" class="form-control" placeholder="123 456...">
-        <span asp-validation-for="FAX" class="small text-danger"></span>
-    </div>
     <div class="form-group">
-        <label asp-for="Notes">Бележки</label>
-        <textarea asp-for="Notes" class="form-control" rows="3" placeholder="Компанията се занимава с застраховки на ...."></textarea>
+        <label asp-for="Notes"><b>Notes:</b></label>
+        <textarea asp-for="Notes" class="form-control" rows="3" placeholder="The company was created in 2011...."></textarea>
         <span asp-validation-for="Notes" class="small text-danger"></span>
     </div>
-    <div>
-        <input class="btn btn-primary" type="submit" value="Запиши" />
-        <button class="btn btn-secondary" type="reset">Отказ</button>
+    <div class="text-center">
+        <input class="btn btn-primary" type="submit" value="Register" />
+        <button class="btn btn-secondary" type="reset">Cancel</button>
     </div>
 </form>

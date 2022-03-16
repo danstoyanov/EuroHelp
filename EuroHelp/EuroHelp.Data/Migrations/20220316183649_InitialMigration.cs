@@ -174,16 +174,15 @@ namespace EuroHelp.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
-                    CompanyName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DamageType = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
+                    CompanyName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     EventDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     RegistrationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    EventType = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    BulgarianRegNumber = table.Column<int>(type: "int", nullable: true),
-                    ForeignRegNumber = table.Column<int>(type: "int", nullable: true),
-                    Property = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    InjuredPerson = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    NotifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IdentityNumber = table.Column<int>(type: "int", nullable: false),
+                    PersonFirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PersonSecondName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    EventPlace = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Comment = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ConsumerId = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     CompanyId = table.Column<string>(type: "nvarchar(450)", nullable: true)
@@ -218,9 +217,7 @@ namespace EuroHelp.Data.Migrations
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
-                    Code = table.Column<int>(type: "int", nullable: false),
                     Bulstat = table.Column<int>(type: "int", nullable: false),
-                    CompanyEnglName = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: true),
                     Address = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: true),
                     PhoneNumber = table.Column<string>(type: "nvarchar(8)", maxLength: 8, nullable: false),
                     MobilePhoneNumber = table.Column<string>(type: "nvarchar(12)", maxLength: 12, nullable: false),

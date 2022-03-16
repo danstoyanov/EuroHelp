@@ -19,9 +19,6 @@ namespace EuroHelp.Web.Models.Damages
         public string EventDate { get; set; }
 
         [Required]
-        public string EventType { get; set; }
-
-        [Required]
         public int? IdentityNumber { get; set; }
 
         public string PersonFirstName { get; set; }
