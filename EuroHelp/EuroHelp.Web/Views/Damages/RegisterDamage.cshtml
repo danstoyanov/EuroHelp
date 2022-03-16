@@ -4,7 +4,7 @@
     ViewData["Title"] = "Register Demage";
 }
 
-<h1 style="margin: 2%; text-align: center;">🤕 Register new damage</h1>
+<h2 style="margin: 2%; text-align: center;">🤕 Register new damage</h2>
 <hr class="bg-primary w-100">
 
 <form class="row g-4" method="post">
@@ -41,9 +41,9 @@
         <span asp-validation-for="EventDate" class="small text-danger"></span>
     </div>
     <div class="col-3">
-        <label asp-for="BulgarianRegNumber" class="form-label"><b>National Identification Number:</b></label>
-        <input asp-for="BulgarianRegNumber" class="form-control" placeholder="National Identification Number....">
-        <span asp-validation-for="BulgarianRegNumber" class="small text-danger"></span>
+        <label asp-for="IdentityNumber" class="form-label"><b>National identification number:</b></label>
+        <input asp-for="IdentityNumber" class="form-control" placeholder="National Identification Number....">
+        <span asp-validation-for="IdentityNumber" class="small text-danger"></span>
     </div>
     <div class="col-3">
         <label asp-for="PersonFirstName" class="form-label"><b>Person first name:</b></label>
@@ -59,6 +59,11 @@
         <label asp-for="EventPlace" class="form-label"><b>Event place:</b></label>
         <input asp-for="EventPlace" class="form-control" placeholder="Bulgaria, Sofia...">
         <span asp-validation-for="EventPlace" class="small text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Comment">Comment: </label>
+        <textarea asp-for="Comment" class="form-control" rows="3" placeholder="Компанията се занимава с застраховки на ...."></textarea>
+        <span asp-validation-for="Comment" class="small text-danger"></span>
     </div>
     <div class="row-g text-center">
         <input class="btn btn-primary" type="submit" value="Register" />

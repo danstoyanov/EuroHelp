@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-using EuroHelp.Data.Models;
 using EuroHelp.Web.Models.Companies;
 
 using static EuroHelp.Web.Global.GlobalModelsConstants.Damage;
@@ -23,13 +22,15 @@ namespace EuroHelp.Web.Models.Damages
         public string EventType { get; set; }
 
         [Required]
-        public int? BulgarianRegNumber { get; set; }
-
-        public string EventPlace { get; set; }
+        public int? IdentityNumber { get; set; }
 
         public string PersonFirstName { get; set; }
 
         public string PersonSecondName { get; set; }
+
+        public string EventPlace { get; set; }
+
+        public string Comment { get; set; }
 
         public string CompanyId { get; set; }
 

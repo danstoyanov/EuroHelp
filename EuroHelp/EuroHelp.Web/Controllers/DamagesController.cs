@@ -1,14 +1,13 @@
 ﻿using System.Globalization;
-
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
+
 
 using EuroHelp.Data;
 using EuroHelp.Data.Models;
-
 using EuroHelp.Web.Models.Damages;
 using EuroHelp.Web.Models.Companies;
 using EuroHelp.Web.Infrastructure;
-using Microsoft.AspNetCore.Authorization;
 
 namespace EuroHelp.Web.Controllers
 {
@@ -27,9 +26,8 @@ namespace EuroHelp.Web.Controllers
             return View(new RegisterDamageFormModel
             {
                 Companies = this.GetInsuranceCompanies()
-            }) ;
+            });
         }
-
 
         [HttpPost]
         [Authorize]
@@ -59,7 +57,6 @@ namespace EuroHelp.Web.Controllers
                 CompanyName = currCompany.Name,
                 EventDate = eventDate,
                 EventType = damage.EventType,
-                BulgarianRegNumber = damage.BulgarianRegNumber,
                 ConsumerId = currConsumer.Id,
                 CompanyId = damage.CompanyId
             };
@@ -86,11 +83,6 @@ namespace EuroHelp.Web.Controllers
                     RegistrationDate = d.RegistrationDate.ToString("dd/MM/yyyy"),
                     EventDate = d.EventDate.ToString("dd/MM/yyyy"),
                     EventType = d.EventType,
-                    BulgarianRegNumber = d.BulgarianRegNumber,
-                    ForeignRegNumber = d.ForeignRegNumber,
-                    Property = d.Property,
-                    InjuredPerson = d.InjuredPerson,
-                    NotifiedBy = d.NotifiedBy
                 })
                 .ToList();
 
@@ -148,11 +140,6 @@ namespace EuroHelp.Web.Controllers
                 EventDate = currDamage.EventDate.ToString(),
                 RegistrationDate = currDamage.RegistrationDate.ToString(),
                 EventType = currDamage.EventType,
-                BulgarianRegNumber = currDamage.BulgarianRegNumber,
-                ForeignRegNumber = currDamage.ForeignRegNumber,
-                Property = currDamage.Property,
-                InjuredPerson = currDamage.InjuredPerson,
-                NotifiedBy = currDamage.NotifiedBy
             };
 
             return View(model);
@@ -174,10 +161,6 @@ namespace EuroHelp.Web.Controllers
 
             damage.Name = model.Name;
             damage.EventDate = DateTime.Parse(model.EventDate);
-            damage.BulgarianRegNumber = model.BulgarianRegNumber;
-            damage.ForeignRegNumber = model.BulgarianRegNumber;
-            damage.Property = model.Property;
-            damage.InjuredPerson = model.InjuredPerson;
 
             this.data.SaveChanges();
 
