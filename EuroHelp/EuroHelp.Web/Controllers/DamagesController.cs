@@ -1,22 +1,24 @@
-﻿using System.Globalization;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Authorization;
-
-
-using EuroHelp.Data;
+﻿using EuroHelp.Data;
 using EuroHelp.Data.Models;
-using EuroHelp.Web.Models.Damages;
-using EuroHelp.Web.Models.Companies;
+using EuroHelp.Services.Damages;
 using EuroHelp.Web.Infrastructure;
+using EuroHelp.Web.Models.Companies;
+using EuroHelp.Web.Models.Damages;
+
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace EuroHelp.Web.Controllers
 {
     public class DamagesController : Controller
     {
+        private readonly IDamageService damages;
         private readonly EuroHelpDbContext data;
 
-        public DamagesController(EuroHelpDbContext data)
+        public DamagesController(EuroHelpDbContext data,
+            IDamageService damages)
         {
+            this.damages = damages;
             this.data = data;
         }
 
@@ -38,35 +40,30 @@ namespace EuroHelp.Web.Controllers
                 return RedirectToAction("AccessDenied", "Home");
             }
 
+            // check for here !
             var currConsumer = this.data
                 .Users
                 .Where(u => u.Id == this.User.GetId())
                 .FirstOrDefault();
 
+            // check for here !
             var currCompany = this.data
                 .InsuranceCompanies
                 .Where(c => c.Id == damage.CompanyId)
                 .FirstOrDefault();
 
-            var eventDate = DateTime.Parse(damage.EventDate);
-
-            var newDamage = new Damage()
-            {
-                Id = damage.Id,
-                DamageType = damage.DamageType,
-                CompanyName = currCompany.Name,
-                EventDate = eventDate,
-                IdentityNumber = damage.IdentityNumber,
-                PersonFirstName = damage.PersonFirstName,
-                PersonSecondName = damage.PersonSecondName,
-                EventPlace = damage.EventPlace,
-                Comment = damage.Comment,
-                ConsumerId = currConsumer.Id,
-                CompanyId = damage.CompanyId,
-            };
-
-            this.data.Damages.Add(newDamage);
-            this.data.SaveChanges();
+            this.damages.Create(
+                damage.Id,
+                damage.DamageType,
+                damage.EventDate,
+                damage.IdentityNumber,
+                damage.PersonFirstName,
+                damage.PersonSecondName,
+                damage.EventPlace,
+                damage.Comment,
+                damage.ConsumerId,
+                damage.CompanyId,
+                currCompany.Name);
 
             return RedirectToAction("AllDamages", "Damages");
         }

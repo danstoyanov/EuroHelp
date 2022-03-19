@@ -1,45 +1,45 @@
 ﻿@model RegisterConsumerFormModel
 
 @{
-    ViewData["Title"] = "Regiester Consumer";
+    ViewData["Title"] = "Become client";
 }
 
-<h1 class="text-center mt-2">🤝 Регистрация клиент</h1>
+<h2 class="text-center mt-2">🤝 Become client</h2>
 <hr class="bg-primary w-100">
 
 <form class="mx-auto w-50" method="post">
     <div class="form-group">
         <div class="d-flex justify-content-start">
-            <label asp-for="Username" class="h4 mb-2 text-dark">Име на профил</label>
+            <label asp-for="Username" class="h4 mb-2 text-dark">Username</label>
         </div>
-        <input asp-for="Username" class="form-control" placeholder="Име на профил...">
+        <input asp-for="Username" class="form-control" placeholder="Username...">
     </div>
     <div class="form-group">
         <div class="d-flex justify-content-start">
-            <label asp-for="FirstName" class="h4 mb-2 text-dark">Име</label>
+            <label asp-for="FirstName" class="h4 mb-2 text-dark">First name</label>
         </div>
-        <input asp-for="FirstName" class="form-control" placeholder="Име...">
+        <input asp-for="FirstName" class="form-control" placeholder="Name...">
     </div>
     <div class="form-group">
         <div class="d-flex justify-content-start">
-            <label asp-for="LastName" class="h4 mb-2 text-dark">Фамилия</label>
+            <label asp-for="LastName" class="h4 mb-2 text-dark">Second name</label>
         </div>
-        <input asp-for="LastName" class="form-control" placeholder="Фамилия...">
+        <input asp-for="LastName" class="form-control" placeholder="Second name...">
     </div>
     <div class="col-12">
-        <label asp-for="Gender" class="form-label h4 mb-2 text-dark">Пол</label>
+        <label asp-for="Gender" class="form-label h4 mb-2 text-dark">Gender</label>
         <select asp-for="Gender" class="form-select">
-            <option>Мъж</option>
-            <option>Жена</option>
+            <option>Male</option>
+            <option>Female</option>
         </select>
     </div>
     <div class="form-group">
         <div class="text-dark  d-flex justify-content-start">
-            <label asp-for="Email" class="h4 mb-2">Имейл</label>
+            <label asp-for="Email" class="h4 mb-2">Email</label>
         </div>
-        <input asp-for="Email" class="form-control" placeholder="Имейл...">
+        <input asp-for="Email" class="form-control" placeholder="Email...">
     </div>
     <div class="d-flex justify-content-center">
-        <button type="submit" class="btn btn-block btn-primary text-white mb-3" value="Register">Регистрация</button>
+        <button type="submit" class="btn btn-block btn-primary text-white mb-3" value="Register">Register</button>
     </div>
 </form>

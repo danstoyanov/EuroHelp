@@ -39,17 +39,16 @@
                     <partial name="_LoginPartial" />
                 </div>
             </div>
-            </nav>
+        </nav>
     </header>
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
-
-    <footer class="border-top footer text-muted">
+    <footer class="bg-primary border-top footer text-white">
         <div class="container">
-            &copy; 2022 - EuroHelp.Web - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2022 EuroHelp<a asp-area="" asp-controller="Home" asp-action="Privacy"></a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
@@ -58,3 +57,4 @@
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
+

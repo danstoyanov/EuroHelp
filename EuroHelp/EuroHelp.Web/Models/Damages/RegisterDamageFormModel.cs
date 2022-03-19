@@ -19,7 +19,7 @@ namespace EuroHelp.Web.Models.Damages
         public string EventDate { get; set; }
 
         [Required]
-        public int? IdentityNumber { get; set; }
+        public int IdentityNumber { get; set; }
 
         public string PersonFirstName { get; set; }
 
@@ -28,6 +28,8 @@ namespace EuroHelp.Web.Models.Damages
         public string EventPlace { get; set; }
 
         public string Comment { get; set; }
+
+        public string ConsumerId {get; set;}
 
         public string CompanyId { get; set; }
 

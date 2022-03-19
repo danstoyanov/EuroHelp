@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 using EuroHelp.Data;
+using EuroHelp.Services.Damages;
 
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
@@ -25,6 +26,9 @@ builder.Services
 
 builder.Services
     .AddControllersWithViews();
+
+builder.Services
+    .AddTransient<IDamageService, DamageService>();
 
 var app = builder.Build();
 
