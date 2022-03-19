@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 using EuroHelp.Data;
 using EuroHelp.Services.Damages;
+using EuroHelp.Services.InsuranceCompanies;
 
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
@@ -29,6 +30,9 @@ builder.Services
 
 builder.Services
     .AddTransient<IDamageService, DamageService>();
+
+builder.Services
+    .AddTransient<ICompanyService, CompanyService>();
 
 var app = builder.Build();
 
