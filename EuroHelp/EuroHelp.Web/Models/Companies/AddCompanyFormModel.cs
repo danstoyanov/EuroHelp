@@ -1,7 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-using EuroHelp.Data.Models;
-
 using static EuroHelp.Web.Global.GlobalModelsConstants.InsuranceCompany;
 
 namespace EuroHelp.Web.Models.Companies
@@ -12,49 +10,37 @@ namespace EuroHelp.Web.Models.Companies
         public string Id { get; set; }
 
         [Required]
-        [StringLength(NameMaxLength, MinimumLength = NameMinLength)]
+        [MinLength(NameMinLength)]
+        [MaxLength(NameMaxLength)]
         public string Name { get; set; }
 
         [Required]
-        [Range(CodeMinValue, CodeMaxValue)]
-        public int Code { get; set; }
-
-        [Required]
-        [Range(BulstatMinValue, BulstatMaxValue)]
+        [Range(MinBulstatValue, MaxBulstatValue)]
         public int Bulstat { get; set; }
 
         [Required]
-        [StringLength(NameMaxLength,
-            MinimumLength = NameMinLength,
-            ErrorMessage = "The name must be must be a string with a minimum length of 3")]
-        public string CompanyEnglName { get; set; }
-
+        [MinLength(MinBulstatValue)]
+        [MaxLength(MaxBulstatValue)]
         public string Address { get; set; }
 
         [Required]
-        [StringLength(MaxPhoneNumber, MinimumLength = 5)]
+        [MaxLength(PhoneNumberLength)]
         public string PhoneNumber { get; set; }
 
         [Required]
-        [StringLength(MaxMobilePhoneNumber, MinimumLength = 5)]
+        [MaxLength(MobilePhoneNumberLength)]
         public string MobilePhoneNumber { get; set; }
 
         [Required]
-        [StringLength(EmailMaxLength, MinimumLength = 4)]
+        [RegularExpression(EmailRegEx)]
         public string Email { get; set; }
 
+        [Required]
+        [Range(FaxMinLength, FaxMaxLength)]
         public int FAX { get; set; }
 
         [Required]
-        [StringLength(NotesMaxLength,
-            MinimumLength = 3,
-            ErrorMessage = "The note can't be less 3 characters !!")]
+        [MaxLength(NotesMaxLength)]
         public string Notes { get; set; }
-
-        public string UserId { get; set; }
-
-        public Consumer User { get; set; }
-
-        public List<Damage> Damages { get; set; }
     }
 }

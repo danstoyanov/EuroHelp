@@ -5,17 +5,21 @@ using EuroHelp.Data;
 using EuroHelp.Data.Models;
 using EuroHelp.Web.Models.Companies;
 using EuroHelp.Web.Infrastructure;
+using EuroHelp.Services.InsuranceCompanies;
 
 namespace EuroHelp.Web.Controllers
 {
     public class CompaniesController : Controller
     {
+        private readonly ICompanyService companies;
         private readonly EuroHelpDbContext data;
 
         public CompaniesController(
-            EuroHelpDbContext data)
+            EuroHelpDbContext data,
+            ICompanyService companies)
         {
             this.data = data;
+            this.companies = companies;
         }
 
         [Authorize]
@@ -33,7 +37,6 @@ namespace EuroHelp.Web.Controllers
         [Authorize]
         public IActionResult CompanyMembers(AddCompanyFormModel company)
         {
-
             if (!this.IsEmployee())
             {
                 return RedirectToAction("AccessDenied", "Home");
@@ -41,30 +44,31 @@ namespace EuroHelp.Web.Controllers
 
             if (this.data.InsuranceCompanies.Any(c => c.Id == company.Id))
             {
-                return BadRequest();
+                this.ModelState.AddModelError(nameof(company.Id), "This Id alrady exist in current data !");
+
+                return View(company);
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return View(company);
             }
 
             var employee = this.data.Employees
                 .Where(u => u.Id == this.User.GetId())
                 .FirstOrDefault();
 
-            var newCompany = new InsuranceCompany
-            {
-                Id = company.Id,
-                Name = company.Name,
-                Bulstat = company.Bulstat,
-                Address = company.Address,
-                PhoneNumber = company.PhoneNumber,
-                MobilePhoneNumber = company.MobilePhoneNumber,
-                Email = company.Email,
-                FAX = company.FAX,
-                Notes = company.Notes,
-                EmployeeId = employee.Id,
-                Employee = employee
-            };
-
-            this.data.InsuranceCompanies.Add(newCompany);
-            this.data.SaveChanges();
+            this.companies.Create(
+                company.Id,
+                company.Name,
+                company.Bulstat,
+                company.Address,
+                company.PhoneNumber,
+                company.MobilePhoneNumber,
+                company.Email,
+                company.FAX,
+                company.Notes,
+                employee.Id);
 
             return RedirectToAction("Index", "Home");
         }
