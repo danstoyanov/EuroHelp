@@ -1,19 +1,22 @@
-﻿using System.Text;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Authorization;
-
-using EuroHelp.Data;
+﻿using EuroHelp.Data;
+using EuroHelp.Services.References;
 using EuroHelp.Web.Infrastructure;
 using EuroHelp.Web.Models.References;
+
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace EuroHelp.Web.Controllers
 {
     public class ReferencesController : Controller
     {
+        private readonly IReferenceService references;
         private readonly EuroHelpDbContext data;
 
-        public ReferencesController(EuroHelpDbContext data)
+        public ReferencesController(EuroHelpDbContext data,
+            IReferenceService references)
         {
+            this.references = references;
             this.data = data;
         }
 
@@ -37,26 +40,11 @@ namespace EuroHelp.Web.Controllers
                 return RedirectToAction("AccessDenied", "Home");
             }
 
-            var builder = new StringBuilder();
+            // more validations !!!
 
-            var parsedStartDate = DateTime.Parse(file.StartDate);
-            var parsedEndDate = DateTime.Parse(file.EndDate);
+            var generatedFile = this.references.GenerateFile(file.StartDate, file.EndDate);
 
-            builder.AppendLine("Име на щета, Застрафователна компания, Дата на събитие");
-
-            var damages = this.data.Damages
-                .Where(d => d.EventDate >= parsedStartDate && d.EventDate <= parsedEndDate)
-                .ToList();
-
-            foreach (var damage in damages)
-            {
-                builder.AppendLine($"{damage.DamageType}, {damage.CompanyName}, {damage.EventDate}");
-            }
-
-            var data = Encoding.UTF8.GetBytes(builder.ToString());
-            var result = Encoding.UTF8.GetPreamble().Concat(data).ToArray();
-
-            return File(result, "text/csv", "damagesByCompany.csv");
+            return File(generatedFile.FileContests, generatedFile.ContentType, generatedFile.FileName);
         }
         private bool IsEmployee()
         {
