@@ -20,13 +20,13 @@ namespace EuroHelp.Services.Damages
             };
         }
 
-        public string Create(string id, string damageType, string eventDate, int identityNumber, string personFirstName, string personSecondName, string eventPlace, string comment, string consumerId, string companyId, string companyName)
+        public string Create(string id, string damageType, DateTime eventDate, int identityNumber, string personFirstName, string personSecondName, string eventPlace, string comment, string consumerId, string companyId, string companyName)
         {
             var damageData = new Damage
             {
                 Id = id,
                 DamageType = damageType,
-                EventDate = DateTime.Parse(eventDate),
+                EventDate = eventDate,
                 IdentityNumber = identityNumber,
                 PersonFirstName = personFirstName,
                 PersonSecondName = personSecondName,
@@ -42,5 +42,6 @@ namespace EuroHelp.Services.Damages
 
             return damageData.Id;
         }
+
     }
 }

@@ -1,8 +1,7 @@
 ﻿using EuroHelp.Data;
-using EuroHelp.Data.Models;
 using EuroHelp.Services.Damages;
-using EuroHelp.Web.Infrastructure;
-using EuroHelp.Web.Models.Companies;
+using EuroHelp.Services.InsuranceCompanies;
+using EuroHelp.Services.Users;
 using EuroHelp.Web.Models.Damages;
 
 using Microsoft.AspNetCore.Authorization;
@@ -13,12 +12,18 @@ namespace EuroHelp.Web.Controllers
     public class DamagesController : Controller
     {
         private readonly IDamageService damages;
+        private readonly IUserService users;
+        private readonly ICompanyService companies;
         private readonly EuroHelpDbContext data;
 
         public DamagesController(EuroHelpDbContext data,
-            IDamageService damages)
+            IUserService users,
+            IDamageService damages,
+            ICompanyService companies)
         {
+            this.users = users;
             this.damages = damages;
+            this.companies = companies;
             this.data = data;
         }
 
@@ -27,7 +32,7 @@ namespace EuroHelp.Web.Controllers
         {
             return View(new RegisterDamageFormModel
             {
-                Companies = this.GetInsuranceCompanies()
+                Companies = this.companies.GetInsuranceCompanies()
             });
         }
 
@@ -35,22 +40,18 @@ namespace EuroHelp.Web.Controllers
         [Authorize]
         public IActionResult RegisterDamage(RegisterDamageFormModel damage)
         {
-            if (!IsConsumer())
+            if (!this.users.IsConsumer(this.User))
             {
                 return RedirectToAction("AccessDenied", "Home");
             }
 
-            // check for here !
-            var currConsumer = this.data
-                .Users
-                .Where(u => u.Id == this.User.GetId())
-                .FirstOrDefault();
+            var consumer = this.users.GetConsumer(this.User);
+            var company = this.companies.GetCompany(damage.CompanyId);
 
-            // check for here !
-            var currCompany = this.data
-                .InsuranceCompanies
-                .Where(c => c.Id == damage.CompanyId)
-                .FirstOrDefault();
+            if (company == null)
+            {
+                return BadRequest();
+            }
 
             this.damages.Create(
                 damage.Id,
@@ -61,9 +62,9 @@ namespace EuroHelp.Web.Controllers
                 damage.PersonSecondName,
                 damage.EventPlace,
                 damage.Comment,
-                damage.ConsumerId,
-                damage.CompanyId,
-                currCompany.Name);
+                consumer.Id,
+                company.Id,
+                company.Name);
 
             return RedirectToAction("AllDamages", "Damages");
         }
@@ -99,7 +100,7 @@ namespace EuroHelp.Web.Controllers
         [Authorize]
         public IActionResult DeleteDamage(string id)
         {
-            if (!this.IsEmployee())
+            if (!this.users.IsEmployee(this.User))
             {
                 return RedirectToAction("AccessDenied", "Home");
             }
@@ -126,7 +127,7 @@ namespace EuroHelp.Web.Controllers
         [Authorize]
         public IActionResult Details(string id)
         {
-            if (!this.IsEmployee())
+            if (!this.users.IsEmployee(this.User))
             {
                 return RedirectToAction("AccessDenied", "Home");
             }
@@ -152,7 +153,7 @@ namespace EuroHelp.Web.Controllers
         [Authorize]
         public IActionResult Details(EditDamageViewModel model)
         {
-            if (!this.IsEmployee())
+            if (!this.users.IsEmployee(this.User))
             {
                 return RedirectToAction("AccessDenied", "Home");
             }
@@ -173,7 +174,7 @@ namespace EuroHelp.Web.Controllers
         [Authorize]
         public IActionResult DamageSearch([FromQuery] AllDamagesQueryModel query)
         {
-            if (!this.IsEmployee())
+            if (!this.users.IsEmployee(this.User))
             {
                 return RedirectToAction("AccessDenied", "Home");
             }
@@ -209,36 +210,6 @@ namespace EuroHelp.Web.Controllers
             query.Damages = damages.OrderByDescending(d => d.EventDate).ToList();
 
             return View(query);
-        }
-
-        private IEnumerable<InsuranceCompanyViewModel> GetInsuranceCompanies()
-            => this.data
-                .InsuranceCompanies
-                .Select(c => new InsuranceCompanyViewModel
-                {
-                    Id = c.Id,
-                    Name = c.Name
-                })
-                .ToList();
-
-        private bool IsEmployee()
-        {
-            var isEmployee = this
-                .data
-                .Employees
-                .Any(e => e.Id == this.User.GetId());
-
-            return isEmployee;
-        }
-
-        private bool IsConsumer()
-        {
-            var isConsumer = this
-                .data
-                .Consumers
-                .Any(c => c.Id == this.User.GetId());
-
-            return isConsumer;
         }
     }
 }

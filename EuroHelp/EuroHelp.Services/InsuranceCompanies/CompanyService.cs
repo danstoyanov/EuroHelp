@@ -8,11 +8,19 @@ namespace EuroHelp.Services.InsuranceCompanies
         private readonly EuroHelpDbContext data;
 
         public CompanyService(EuroHelpDbContext data)
-        {
-            this.data = data;
-        }
+            => this.data = data;
 
-        public string Create(string id, string name, int bulstat, string address, string phoneNumber, string mobilePhoneNumber, string email, int fax, string notes, string employeeId)
+        public string Create(
+            string id, 
+            string name, 
+            int bulstat, 
+            string address, 
+            string phoneNumber, 
+            string mobilePhoneNumber, 
+            string email, 
+            int fax, 
+            string notes, 
+            string employeeId)
         {
             var comapnyData = new InsuranceCompany
             {
@@ -35,9 +43,27 @@ namespace EuroHelp.Services.InsuranceCompanies
         }
 
         public bool IsCompanyContains(string id)
-        {
-            return this.data.InsuranceCompanies
+            => this.data.InsuranceCompanies
                 .Any(c => c.Id == id);
+
+        public IEnumerable<InsuranceCompaniesServiceModel> GetInsuranceCompanies()
+            => this.data
+                .InsuranceCompanies
+                .Select(c => new InsuranceCompaniesServiceModel
+                {
+                    Id = c.Id,
+                    Name = c.Name
+                })
+                .ToList();
+
+        public InsuranceCompany GetCompany(string id)
+        {
+            var company = this.data
+                .InsuranceCompanies
+                .Where(c => c.Id == id)
+                .FirstOrDefault();
+
+            return company;
         }
     }
 }

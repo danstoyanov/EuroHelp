@@ -16,5 +16,9 @@ namespace EuroHelp.Services.InsuranceCompanies
             string employeeId);
 
         public bool IsCompanyContains(string id);
+
+        public InsuranceCompany GetCompany(string id);
+
+        public IEnumerable<InsuranceCompaniesServiceModel> GetInsuranceCompanies();
     }
 }

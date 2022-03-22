@@ -6,8 +6,8 @@
 
         public string Create(
             string id, 
-            string damageType, 
-            string eventDate, 
+            string damageType,
+            DateTime eventDate, 
             int identityNumber, 
             string personFirstName, 
             string personSecondName, 
