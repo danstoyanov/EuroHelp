@@ -16,6 +16,6 @@ namespace EuroHelp.Services.Users
 
         public string CreateEmployee(string id, string name, string phoneNumber);
 
-        public string CreateConsumer();
+        public string CreateConsumer(string id, string username, string firstName, string lastName, string gender);
     }
 }

@@ -51,16 +51,6 @@ namespace EuroHelp.Services.Users
             return consumer;
         }
 
-        public string CreateEmployee()
-        {
-            throw new NotImplementedException();
-        }
-
-        public string CreateConsumer()
-        {
-            throw new NotImplementedException();
-        }
-
         public string CreateEmployee(string id, string name, string phoneNumber)
         {
             var employee = new Employee
@@ -74,6 +64,23 @@ namespace EuroHelp.Services.Users
             this.data.SaveChanges();
 
             return employee.Id;
+        }
+
+        public string CreateConsumer(string id, string username, string firstName, string lastName, string gender)
+        {
+            var consumer = new Consumer
+            {
+                Id = id,
+                Username =  username,
+                FirstName = firstName,
+                LastName = lastName,
+                Gender = gender
+            };
+
+            this.data.Consumers.Add(consumer);
+            this.data.SaveChanges();
+
+            return consumer.Id;
         }
     }
 }

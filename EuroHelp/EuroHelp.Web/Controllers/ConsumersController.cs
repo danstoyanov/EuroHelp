@@ -1,47 +1,51 @@
-﻿using Microsoft.AspNetCore.Mvc;
-
-using EuroHelp.Data;
-using EuroHelp.Data.Models;
+﻿using EuroHelp.Services.Infrastructure;
+using EuroHelp.Services.Users;
 using EuroHelp.Web.Models.Users;
-using EuroHelp.Web.Infrastructure;
+
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace EuroHelp.Web.Controllers
 {
     public class ConsumersController : Controller
     {
-        private readonly EuroHelpDbContext data;
+        private readonly IUserService user;
 
-        public ConsumersController(EuroHelpDbContext data)
+        public ConsumersController(IUserService user)
         {
-            this.data = data;
+            this.user = user;
         }
 
-        public IActionResult Login()
-        {
-            return View();
-        }
-
+        [Authorize]
         public IActionResult Register()
         {
             return View();
         }
 
         [HttpPost]
+        [Authorize]
         public IActionResult Register(RegisterConsumerFormModel consumer)
         {
-            var currUserId = this.User.GetId();
-
-            var newUser = new Consumer
+            if (this.user.IsConsumer(this.User))
             {
-                Id = currUserId,
-                Username = consumer.Username,
-                FirstName = consumer.FirstName,
-                LastName = consumer.LastName,
-                Gender = consumer.Gender,
-            };
+                // model state validation logic !
+            }
 
-            this.data.Consumers.Add(newUser);
-            this.data.SaveChanges();
+            // other validation logic !!!
+ 
+            var userId = this.User.GetId();
+
+            if (userId == null)
+            {
+                return BadRequest();
+            }
+
+            this.user.CreateConsumer(
+                userId,
+                consumer.Username,
+                consumer.FirstName,
+                consumer.LastName,
+                consumer.Gender);
 
             return RedirectToAction("AllDamages", "Damages");
          }

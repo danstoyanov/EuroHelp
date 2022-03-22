@@ -13,7 +13,6 @@ namespace EuroHelp.Web.Controllers
         public readonly EuroHelpDbContext data;
         private readonly IUserService user;
 
-
         public EmployeesController(IUserService user)
         {
             this.user = user;
@@ -35,7 +34,7 @@ namespace EuroHelp.Web.Controllers
 
             var userId = this.User.GetId();
 
-            if (this.User.GetId() == null)
+            if (userId == null)
             {
                 return BadRequest();
             }
