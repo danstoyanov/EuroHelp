@@ -1,4 +1,6 @@
-﻿namespace EuroHelp.Services.InsuranceCompanies
+﻿using EuroHelp.Data.Models;
+
+namespace EuroHelp.Services.InsuranceCompanies
 {
     public interface ICompanyService
     {
@@ -12,5 +14,7 @@
             int fax, 
             string notes,
             string employeeId);
+
+        public bool IsCompanyContains(string id);
     }
 }

@@ -33,5 +33,11 @@ namespace EuroHelp.Services.InsuranceCompanies
 
             return comapnyData.Id;
         }
+
+        public bool IsCompanyContains(string id)
+        {
+            return this.data.InsuranceCompanies
+                .Any(c => c.Id == id);
+        }
     }
 }
