@@ -1,9 +1,6 @@
-﻿using System.Linq;
-using EuroHelp.Data;
-using EuroHelp.Data.Models;
-using Microsoft.AspNetCore.Builder;
+﻿using EuroHelp.Data;
+
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 
 
 namespace EuroHelp.Web.Infrastructure

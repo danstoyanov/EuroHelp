@@ -1,6 +1,6 @@
 ﻿using System.Security.Claims;
 
-namespace EuroHelp.Web.Infrastructure
+namespace EuroHelp.Services.Infrastructure
 {
     public static class ClaimsPrincipalExtensions
     {

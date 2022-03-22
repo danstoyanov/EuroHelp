@@ -5,6 +5,7 @@ using EuroHelp.Data;
 using EuroHelp.Services.Damages;
 using EuroHelp.Services.InsuranceCompanies;
 using EuroHelp.Services.References;
+using EuroHelp.Services.Users;
 
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
@@ -37,6 +38,9 @@ builder.Services
 
 builder.Services
     .AddTransient<IReferenceService, ReferenceService>();
+
+builder.Services
+    .AddTransient<IUserService, UserService>();
 
 var app = builder.Build();
 
