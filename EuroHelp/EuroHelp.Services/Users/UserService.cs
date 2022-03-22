@@ -35,9 +35,45 @@ namespace EuroHelp.Services.Users
 
         public Employee GetEmployee(ClaimsPrincipal user)
         {
-            return this.data.Employees
+            var employee = this.data.Employees
                 .Where(u => u.Id == user.GetId())
                 .FirstOrDefault();
+
+            return employee;
+        }
+
+        public Consumer GetConsumer(ClaimsPrincipal user)
+        {
+            var consumer = this.data.Consumers
+                .Where(u => u.Id == user.GetId())
+                .FirstOrDefault();
+
+            return consumer;
+        }
+
+        public string CreateEmployee()
+        {
+            throw new NotImplementedException();
+        }
+
+        public string CreateConsumer()
+        {
+            throw new NotImplementedException();
+        }
+
+        public string CreateEmployee(string id, string name, string phoneNumber)
+        {
+            var employee = new Employee
+            {
+                Id = id,
+                Name = name,
+                PhoneNumber = phoneNumber
+            };
+
+            this.data.Employees.Add(employee);
+            this.data.SaveChanges();
+
+            return employee.Id;
         }
     }
 }

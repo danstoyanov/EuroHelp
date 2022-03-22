@@ -11,5 +11,11 @@ namespace EuroHelp.Services.Users
         public bool IsConsumer(ClaimsPrincipal user);
 
         public Employee GetEmployee(ClaimsPrincipal user);
+
+        public Consumer GetConsumer(ClaimsPrincipal user);
+
+        public string CreateEmployee(string id, string name, string phoneNumber);
+
+        public string CreateConsumer();
     }
 }

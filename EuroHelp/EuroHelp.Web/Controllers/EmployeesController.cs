@@ -1,20 +1,22 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using EuroHelp.Data;
+using EuroHelp.Services.Infrastructure;
+using EuroHelp.Services.Users;
+using EuroHelp.Web.Models.Employees;
 using Microsoft.AspNetCore.Authorization;
 
-using EuroHelp.Data;
-using EuroHelp.Data.Models;
-using EuroHelp.Web.Infrastructure;
-using EuroHelp.Web.Models.Employees;
+using Microsoft.AspNetCore.Mvc;
 
 namespace EuroHelp.Web.Controllers
 {
     public class EmployeesController : Controller
     {
         public readonly EuroHelpDbContext data;
+        private readonly IUserService user;
 
-        public EmployeesController(EuroHelpDbContext data)
+
+        public EmployeesController(IUserService user)
         {
-            this.data = data;
+            this.user = user;
         }
 
         [Authorize]
@@ -24,26 +26,24 @@ namespace EuroHelp.Web.Controllers
         [Authorize]
         public IActionResult Create(BecomeEmployeeFormModel employee)
         {
+            // Model states !
+
+            if (this.user.IsEmployee(this.User))
+            {
+                // model state validation !
+            }
+
             var userId = this.User.GetId();
 
-            var userIdAlreadyEmployee = this.data
-                .Employees
-                .Any(e => e.Id == this.User.GetId());
-
-            if (userIdAlreadyEmployee)
+            if (this.User.GetId() == null)
             {
                 return BadRequest();
             }
 
-            var employeeData = new Employee
-            {
-                Id = userId,
-                Name = employee.Name,
-                PhoneNumber = employee.PhoneNumber,
-            };
-
-            this.data.Employees.Add(employeeData);
-            this.data.SaveChanges();
+            this.user.CreateEmployee(
+                userId,
+                employee.Name,
+                employee.PhoneNumber);
 
             return RedirectToAction("CompanyMembers", "Companies");
         }
