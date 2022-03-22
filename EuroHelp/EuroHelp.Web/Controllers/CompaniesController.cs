@@ -1,31 +1,29 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Authorization;
-
-using EuroHelp.Data;
-using EuroHelp.Data.Models;
+﻿using EuroHelp.Services.InsuranceCompanies;
+using EuroHelp.Services.Users;
 using EuroHelp.Web.Models.Companies;
-using EuroHelp.Web.Infrastructure;
-using EuroHelp.Services.InsuranceCompanies;
+
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace EuroHelp.Web.Controllers
 {
     public class CompaniesController : Controller
     {
+        private readonly IUserService user;
         private readonly ICompanyService companies;
-        private readonly EuroHelpDbContext data;
 
         public CompaniesController(
-            EuroHelpDbContext data,
+            IUserService user,
             ICompanyService companies)
         {
-            this.data = data;
+            this.user = user;
             this.companies = companies;
         }
 
         [Authorize]
         public IActionResult CompanyMembers()
         {
-            if (!this.IsEmployee())
+            if (!this.user.IsEmployee(this.User))
             {
                 return RedirectToAction("AccessDenied", "Home");
             }
@@ -37,15 +35,14 @@ namespace EuroHelp.Web.Controllers
         [Authorize]
         public IActionResult CompanyMembers(AddCompanyFormModel company)
         {
-            if (!this.IsEmployee())
+            if (!this.user.IsEmployee(this.User))
             {
                 return RedirectToAction("AccessDenied", "Home");
             }
 
-            if (this.data.InsuranceCompanies.Any(c => c.Id == company.Id))
+            if (this.companies.IsCompanyContains(company.Id))
             {
-                this.ModelState.AddModelError(nameof(company.Id), "This Id alrady exist in current data !");
-
+                this.ModelState.AddModelError(nameof(company.Id), "This company Id alrady exist in current data !");
                 return View(company);
             }
 
@@ -54,9 +51,12 @@ namespace EuroHelp.Web.Controllers
                 return View(company);
             }
 
-            var employee = this.data.Employees
-                .Where(u => u.Id == this.User.GetId())
-                .FirstOrDefault();
+            var employee = this.user.GetEmployee(this.User);
+
+            if (employee == null)
+            {
+                return BadRequest();
+            }
 
             this.companies.Create(
                 company.Id,
@@ -71,16 +71,6 @@ namespace EuroHelp.Web.Controllers
                 employee.Id);
 
             return RedirectToAction("Index", "Home");
-        }
-
-        private bool IsEmployee()
-        {
-            var isEmployee = this
-                .data
-                .Employees
-                .Any(e => e.Id == this.User.GetId());
-
-            return isEmployee;
         }
     }
 }
