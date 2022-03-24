@@ -1,8 +1,6 @@
-﻿using EuroHelp.Services.Damages;
-
-namespace EuroHelp.Web.Models.Damages
+﻿namespace EuroHelp.Services.Damages
 {
-    public class AllDamagesQueryModel
+    public class DamageServiceSearchModel
     {
         public string SearchId { get; set; }
 

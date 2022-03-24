@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\EuroHelp.Data\EuroHelp.Data.csproj" />
+  </ItemGroup>
+
 </Project>

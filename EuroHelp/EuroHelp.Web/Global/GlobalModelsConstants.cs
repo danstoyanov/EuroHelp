@@ -20,11 +20,17 @@
 
         public class Damage
         {
+            public const int NameMinLength = 2;
             public const int NameMaxLength = 30;
-            public const int BgRegMinValue = 10000;
-            public const int BgRegMaxValue = 99999;
-            public const int OtherRegMinValue = 10000;
-            public const int OtherRegMaxValue = 99999;
+            public const int PersonNameMinLength = 3;
+            public const int PersonNameMaxLength = 20;
+            public const int CommentMinLength = 10;
+            public const int CommentMaxLength = 250;
+            public const string DateFormat = "{MM/dd/2000}";
+            public const int IdentityNumberMinValue = 5;
+            public const int IdentityNumberMaxValue = 10;
+            public const int EventPlaceNameMinLength = 3;
+            public const int EventPlaceNameMaxLength = 30;
         }
     }
 }

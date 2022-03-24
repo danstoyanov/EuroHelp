@@ -1,6 +1,6 @@
-﻿namespace EuroHelp.Web.Models.Damages
+﻿namespace EuroHelp.Services.Damages
 {
-    public class DamagesListingViewModel
+    public class DamageServiceListingModel
     {
         public string Id { get; set; }
 

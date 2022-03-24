@@ -1,5 +1,4 @@
-﻿using EuroHelp.Data;
-using EuroHelp.Services.Damages;
+﻿using EuroHelp.Services.Damages;
 using EuroHelp.Services.InsuranceCompanies;
 using EuroHelp.Services.Users;
 using EuroHelp.Web.Models.Damages;
@@ -14,9 +13,8 @@ namespace EuroHelp.Web.Controllers
         private readonly IDamageService damages;
         private readonly IUserService users;
         private readonly ICompanyService companies;
-        private readonly EuroHelpDbContext data;
 
-        public DamagesController(EuroHelpDbContext data,
+        public DamagesController(
             IUserService users,
             IDamageService damages,
             ICompanyService companies)
@@ -24,7 +22,6 @@ namespace EuroHelp.Web.Controllers
             this.users = users;
             this.damages = damages;
             this.companies = companies;
-            this.data = data;
         }
 
         [Authorize]
@@ -69,27 +66,16 @@ namespace EuroHelp.Web.Controllers
             return RedirectToAction("AllDamages", "Damages");
         }
 
+        // ADD Validations or some checks !!!!!!!!
         [Authorize]
         public IActionResult AllDamages([FromQuery] AllDamagesQueryModel query)
         {
-            var damagesQuery = this.data.Damages
-                .OrderByDescending(d => d.EventDate)
-                .AsQueryable();
+            var damages = this.damages.All();
 
-            var damages = damagesQuery
-                .Select(d => new DamagesListingViewModel
-                {
-                    Id = d.Id,
-                    DamageType = d.DamageType,
-                    CompanyName = d.CompanyName,
-                    EventDate = d.EventDate.ToString("dd/MM/yyyy"),
-                    RegisterDate = d.RegistrationDate.ToString("dd/MM/yyyy"),
-                    IdentityNumber = d.IdentityNumber,
-                    PersonFirstName = d.PersonFirstName,
-                    PersonSecondName = d.PersonSecondName,
-                    EventPlace = d.EventPlace,
-                })
-                .ToList();
+            if (damages == null)
+            {
+                return BadRequest();
+            }
 
             query.Damages = damages;
 
@@ -105,20 +91,12 @@ namespace EuroHelp.Web.Controllers
                 return RedirectToAction("AccessDenied", "Home");
             }
 
-            var currDamage = this.data
-                .Damages
-                .Where(d => d.Id == id)
-                .FirstOrDefault();
+            if (!this.damages.IsValid(id))
+            {
+                return BadRequest();
+            }
 
-            if (currDamage == null)
-            {
-                return View("Error");
-            }
-            else
-            {
-                this.data.Damages.Remove(currDamage);
-                this.data.SaveChanges();
-            }
+            this.damages.Delete(id);
 
             return RedirectToAction("AllDamages", "Damages");
         }
@@ -132,18 +110,24 @@ namespace EuroHelp.Web.Controllers
                 return RedirectToAction("AccessDenied", "Home");
             }
 
-            var currDamage = this.data
-                .Damages
-                .Where(d => d.Id == id)
-                .FirstOrDefault();
+            if (!this.damages.IsValid(id))
+            {
+                return BadRequest();
+            }
+
+            var damage = this.damages
+                .GetDamage(id);
 
             var model = new EditDamageViewModel
             {
-                Id = currDamage.Id,
-                Name = currDamage.DamageType,
-                CompanyName = currDamage.CompanyName,
-                EventDate = currDamage.EventDate.ToString(),
-                RegistrationDate = currDamage.RegistrationDate.ToString(),
+                Id = damage.Id,
+                DamageType = damage.DamageType,
+                CompanyName = damage.CompanyName,
+                EventDate = damage.EventDate.ToString(),
+                RegistrationDate = damage.RegistrationDate.ToString(),
+                PersonFirstName = damage.PersonFirstName,
+                PersonSecondName = damage.PersonSecondName,
+                IdentityNumber = damage.IdentityNumber
             };
 
             return View(model);
@@ -158,15 +142,18 @@ namespace EuroHelp.Web.Controllers
                 return RedirectToAction("AccessDenied", "Home");
             }
 
-            var damage = this.data
-                .Damages
-                .Where(d => d.Id == model.Id)
-                .FirstOrDefault();
+            if (!this.damages.IsValid(model.Id))
+            {
+                return BadRequest();
+            }
 
-            damage.DamageType = model.Name;
-            damage.EventDate = DateTime.Parse(model.EventDate);
-
-            this.data.SaveChanges();
+            this.damages.Edit(
+                model.Id,
+                model.DamageType,
+                model.EventDate,
+                model.PersonFirstName,
+                model.PersonSecondName,
+                model.IdentityNumber);
 
             return RedirectToAction("AllDamages", "Damages");
         }
@@ -179,35 +166,14 @@ namespace EuroHelp.Web.Controllers
                 return RedirectToAction("AccessDenied", "Home");
             }
 
-            var damagesQuery = this.data.Damages.AsQueryable();
+            var damages = this.damages.Search(query.SearchId, query.SearchCompanyName);
 
-            if (query.SearchId != null)
+            if (damages == null)
             {
-                damagesQuery = this.data.Damages
-                    .Where(d => d.Id == query.SearchId)
-                    .OrderByDescending(d => d.CompanyName)
-                    .AsQueryable();
-            }
-            else if (query.SearchCompanyName != null)
-            {
-                damagesQuery = this.data.Damages
-                    .Where(d => d.CompanyName == query.SearchCompanyName)
-                    .OrderByDescending(d => d.CompanyName)
-                    .AsQueryable();
+                return BadRequest();
             }
 
-            var damages = damagesQuery
-                  .Select(d => new DamagesListingViewModel
-                  {
-                      Id = d.Id,
-                      DamageType = d.DamageType,
-                      RegisterDate = d.RegistrationDate.ToString("dd/MM/yyyy"),
-                      EventDate = d.EventDate.ToString("dd/MM/yyyy"),
-                      CompanyName = d.CompanyName
-                  })
-                  .ToList();
-
-            query.Damages = damages.OrderByDescending(d => d.EventDate).ToList();
+            query.Damages = damages;
 
             return View(query);
         }

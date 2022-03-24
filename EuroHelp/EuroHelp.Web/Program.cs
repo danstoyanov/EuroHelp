@@ -1,11 +1,11 @@
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-
 using EuroHelp.Data;
 using EuroHelp.Services.Damages;
 using EuroHelp.Services.InsuranceCompanies;
 using EuroHelp.Services.References;
 using EuroHelp.Services.Users;
+
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");

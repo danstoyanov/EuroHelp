@@ -1,6 +1,5 @@
-﻿using EuroHelp.Data;
-using EuroHelp.Services.References;
-using EuroHelp.Web.Infrastructure;
+﻿using EuroHelp.Services.References;
+using EuroHelp.Services.Users;
 using EuroHelp.Web.Models.References;
 
 using Microsoft.AspNetCore.Authorization;
@@ -11,19 +10,21 @@ namespace EuroHelp.Web.Controllers
     public class ReferencesController : Controller
     {
         private readonly IReferenceService references;
-        private readonly EuroHelpDbContext data;
+        private readonly IUserService user;
 
-        public ReferencesController(EuroHelpDbContext data,
-            IReferenceService references)
+        public ReferencesController(
+            IReferenceService references,
+            IUserService user)
         {
+            this.user = user;
             this.references = references;
-            this.data = data;
         }
 
         [Authorize]
         public IActionResult GenerateReference()
         {
-            if (!this.IsEmployee())
+
+            if (!this.user.IsEmployee(this.User))
             {
                 return RedirectToAction("AccessDenied", "Home");
             }
@@ -35,25 +36,14 @@ namespace EuroHelp.Web.Controllers
         [Authorize]
         public IActionResult GenerateByCompanyName(ExportFile file)
         {
-            if (!this.IsEmployee())
+            if (!this.user.IsEmployee(this.User))
             {
                 return RedirectToAction("AccessDenied", "Home");
             }
 
-            // more validations !!!
-
             var generatedFile = this.references.GenerateFile(file.StartDate, file.EndDate);
 
             return File(generatedFile.FileContests, generatedFile.ContentType, generatedFile.FileName);
-        }
-        private bool IsEmployee()
-        {
-            var isEmployee = this
-                .data
-                .Employees
-                .Any(e => e.Id == this.User.GetId());
-
-            return isEmployee;
         }
     }
 }

@@ -33,11 +33,10 @@
                 <option value="@company.Id">@company.Name</option>
             }
         </select>
-        <span asp-validation-for="CompanyId" class="small text-danger"></span>
     </div>
     <div class="col-3">
         <label asp-for="EventDate" class="form-label"><b>Event date:</b></label>
-        <input asp-for="EventDate" type="date" class="form-control" placeholder="">
+        <input asp-for="EventDate" type="date" class="form-control" value="01.01.2010">
         <span asp-validation-for="EventDate" class="small text-danger"></span>
     </div>
     <div class="col-3">
@@ -70,4 +69,3 @@
         <button class="btn btn-secondary" type="reset">Cancel</button>
     </div>
 </form>
-
