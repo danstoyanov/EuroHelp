@@ -32,5 +32,23 @@
             public const int EventPlaceNameMinLength = 3;
             public const int EventPlaceNameMaxLength = 30;
         }
+
+        public class Employee
+        {
+            public const int EmployeeMinNameLength = 3;
+            public const int EmployeeMaxNameLength = 25;
+            public const int PhoneNumberLength = 8;
+        }
+
+        public class Consumer
+        {
+            public const int ConsumerUserNameMinLength = 5;
+            public const int ConsumerUserNameMaxLength = 30;
+            public const int ConsumerUserFirstNameMinLength = 5;
+            public const int ConsumerUserFirstNameMaxLength = 30;
+            public const int ConsumerUserLastNameMinLength = 5;
+            public const int ConsumerUserLastNameMaxLength = 30;
+            public const string EmailRegEx = @"^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$";
+        }
     }
 }

@@ -13,12 +13,14 @@
             <label asp-for="Name" class="h4 mb-2 text-dark">Employee name:</label>
         </div>
         <input asp-for="Name" class="form-control" placeholder="Employee name...">
+        <span asp-validation-for="Name" class="small text-danger"></span>
     </div>
     <div class="form-group">
         <div class="d-flex justify-content-start">
             <label asp-for="PhoneNumber" class="h4 mb-2 text-dark">Employee phone number:</label>
         </div>
         <input asp-for="PhoneNumber" class="form-control" placeholder="088388...">
+        <span asp-validation-for="PhoneNumber" class="small text-danger"></span>
     </div>
     <div class="d-flex justify-content-center">
         <button type="submit" class="btn btn-block btn-primary text-white mb-3" value="Register">Register</button>

@@ -13,18 +13,21 @@
             <label asp-for="Username" class="h4 mb-2 text-dark">Username</label>
         </div>
         <input asp-for="Username" class="form-control" placeholder="Username...">
+        <span asp-validation-for="Username" class="small text-danger"></span>
     </div>
     <div class="form-group">
         <div class="d-flex justify-content-start">
             <label asp-for="FirstName" class="h4 mb-2 text-dark">First name</label>
         </div>
         <input asp-for="FirstName" class="form-control" placeholder="Name...">
+        <span asp-validation-for="FirstName" class="small text-danger"></span>
     </div>
     <div class="form-group">
         <div class="d-flex justify-content-start">
             <label asp-for="LastName" class="h4 mb-2 text-dark">Second name</label>
         </div>
         <input asp-for="LastName" class="form-control" placeholder="Second name...">
+        <span asp-validation-for="LastName" class="small text-danger"></span>
     </div>
     <div class="col-12">
         <label asp-for="Gender" class="form-label h4 mb-2 text-dark">Gender</label>
@@ -32,12 +35,14 @@
             <option>Male</option>
             <option>Female</option>
         </select>
+        <span asp-validation-for="Gender" class="small text-danger"></span>
     </div>
     <div class="form-group">
         <div class="text-dark  d-flex justify-content-start">
             <label asp-for="Email" class="h4 mb-2">Email</label>
         </div>
         <input asp-for="Email" class="form-control" placeholder="Email...">
+        <span asp-validation-for="Email" class="small text-danger"></span>
     </div>
     <div class="d-flex justify-content-center">
         <button type="submit" class="btn btn-block btn-primary text-white mb-3" value="Register">Register</button>

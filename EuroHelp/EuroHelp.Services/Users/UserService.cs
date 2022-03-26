@@ -82,5 +82,11 @@ namespace EuroHelp.Services.Users
 
             return consumer.Id;
         }
+
+        public bool IsUsernameContains(string username)
+        {
+            return this.data.Consumers
+                .Any(c => c.Username == username);
+        }
     }
 }

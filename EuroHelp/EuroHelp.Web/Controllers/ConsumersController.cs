@@ -28,11 +28,19 @@ namespace EuroHelp.Web.Controllers
         {
             if (this.user.IsConsumer(this.User))
             {
-                // model state validation logic !
+                this.ModelState.AddModelError(nameof(consumer.Username), "This user is alredy consumer !");
             }
 
-            // other validation logic !!!
- 
+            if (this.user.IsUsernameContains(consumer.Username))
+            {
+                this.ModelState.AddModelError(nameof(consumer.Username), "This username alredy exist !!");
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return View(consumer);
+            }
+
             var userId = this.User.GetId();
 
             if (userId == null)
