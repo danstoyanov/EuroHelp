@@ -15,7 +15,7 @@ builder.Services
     options.UseSqlServer(connectionString));
 
 builder.Services
-    .AddDatabaseDeveloperPageExceptionFilter();
+    .AddDatabaseDeveloperPageExceptionFilter(); 
 
 builder.Services
     .AddDefaultIdentity<IdentityUser>(options =>
@@ -62,11 +62,6 @@ app.Use(async (context, next) =>
         context.Request.Path = "/NotFound";
         await next();
     }
-    else if (context.Response.StatusCode == 500)
-    {
-        context.Request.Path = "/NotFound";
-        await next();
-    }
 });
 
 app.UseHttpsRedirection()
@@ -80,3 +75,33 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 app.MapRazorPages();
 app.Run();
+
+
+/*  Tasks:
+ *  
+ *  
+ *  [-] Add Model statements in every controller action ! 
+ *      [-] Damages
+ *      [-] Reference
+ *      
+ *      [x] Consumer
+ *      [x] Companies
+ *      [x] Employee
+ *      
+ *  [-] Add checks for every action when something is not valid !
+ *  [-] Clear some of the controllers with only one or two actions !
+ *  [-] Check the names of the:
+ *      [-] Service methods     
+ *      [-] Data models !   
+ *      [-] View models !
+ *      [-] Controller names ! 
+ *      [-] Controller actions !     
+ *  [-] Add the roles in the app !
+ *  [-] Fix the pages when we have many listed objects !
+ *  [-] Add listing Company view model with pictures and others !!!! 
+ *  [-] 
+ *  [-] 
+ *  
+ *  
+ *  
+ */

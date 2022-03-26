@@ -25,11 +25,14 @@ namespace EuroHelp.Web.Controllers
         [Authorize]
         public IActionResult Create(BecomeEmployeeFormModel employee)
         {
-            // Model states !
-
             if (this.user.IsEmployee(this.User))
             {
-                // model state validation !
+                this.ModelState.AddModelError(nameof(employee.Name), "This user is alredy employee !");
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return View(employee);
             }
 
             var userId = this.User.GetId();
