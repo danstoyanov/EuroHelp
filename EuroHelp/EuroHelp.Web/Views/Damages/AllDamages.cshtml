@@ -1,4 +1,5 @@
 ﻿@model AllDamagesQueryModel
+@inject IUserService CurrUser
 
 @{
     ViewData["Title"] = "List of Damages";
@@ -52,7 +53,10 @@
                             <form method="post" asp-controller="Damages" asp-action="DeleteDamage" asp-route-id="@damage.Id">
                                 <div class="m-sm-4">
                                     <a asp-action="Details" asp-controller="Damages" asp-route-id="@damage.Id" class="btn btn-primary">Details</a>
-                                    <button type="submit" class="btn btn-danger m-sm-auto">Delete</button>
+                                    @if (CurrUser.IsEmployee(User))
+                                    {
+                                        <button type="submit" class="btn btn-danger m-sm-auto">Delete</button>
+                                    }
                                 </div>
                             </form>
                         </div>
