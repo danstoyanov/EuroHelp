@@ -42,10 +42,17 @@ namespace EuroHelp.Web.Controllers
                 return RedirectToAction("AccessDenied", "Home");
             }
 
+            if (ModelState.IsValid)
+            {
+                damage.Companies = this.companies.GetInsuranceCompanies();
+                return View(damage);
+            }
+
+            // Fix .....
             var consumer = this.users.GetConsumer(this.User);
             var company = this.companies.GetCompany(damage.CompanyId);
 
-            if (company == null)
+            if (company == null || consumer == null)
             {
                 return BadRequest();
             }
