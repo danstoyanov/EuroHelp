@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-using static EuroHelp.Web.Global.GlobalModelsConstants.InsuranceCompany;
+using static EuroHelp.Global.GlobalModelsConstants.InsuranceCompany;
 
 namespace EuroHelp.Web.Models.Companies
 {

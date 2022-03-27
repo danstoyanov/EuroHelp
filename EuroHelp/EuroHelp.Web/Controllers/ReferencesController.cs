@@ -23,7 +23,6 @@ namespace EuroHelp.Web.Controllers
         [Authorize]
         public IActionResult GenerateReference()
         {
-
             if (!this.user.IsEmployee(this.User))
             {
                 return RedirectToAction("AccessDenied", "Home");
@@ -39,6 +38,16 @@ namespace EuroHelp.Web.Controllers
             if (!this.user.IsEmployee(this.User))
             {
                 return RedirectToAction("AccessDenied", "Home");
+            }
+
+            if (file.StartDate == null || file.EndDate == null)
+            {
+                return RedirectToAction("GenerateReference", "References");
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return View(file);
             }
 
             var generatedFile = this.references.GenerateFile(file.StartDate, file.EndDate);

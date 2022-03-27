@@ -9,6 +9,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EuroHelp.Data", "EuroHelp.D
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EuroHelp.Services", "EuroHelp.Services\EuroHelp.Services.csproj", "{E182CDCA-9303-4B12-A3AE-D34B638DF39C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EuroHelp.Global", "EuroHelp.Global\EuroHelp.Global.csproj", "{483A7A4B-F51A-4E15-9CD5-B8189C581E4E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EuroHelp.Tests", "EuroHelp.Tests\EuroHelp.Tests.csproj", "{089E05BA-2C70-48D3-ADB2-DB3B7CCF3ABE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +31,14 @@ Global
 		{E182CDCA-9303-4B12-A3AE-D34B638DF39C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E182CDCA-9303-4B12-A3AE-D34B638DF39C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E182CDCA-9303-4B12-A3AE-D34B638DF39C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{483A7A4B-F51A-4E15-9CD5-B8189C581E4E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{483A7A4B-F51A-4E15-9CD5-B8189C581E4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{483A7A4B-F51A-4E15-9CD5-B8189C581E4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{483A7A4B-F51A-4E15-9CD5-B8189C581E4E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{089E05BA-2C70-48D3-ADB2-DB3B7CCF3ABE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{089E05BA-2C70-48D3-ADB2-DB3B7CCF3ABE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{089E05BA-2C70-48D3-ADB2-DB3B7CCF3ABE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{089E05BA-2C70-48D3-ADB2-DB3B7CCF3ABE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

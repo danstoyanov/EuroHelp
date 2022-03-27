@@ -2,7 +2,7 @@
 
 using EuroHelp.Services.InsuranceCompanies;
 
-using static EuroHelp.Web.Global.GlobalModelsConstants.Damage;
+using static EuroHelp.Global.GlobalModelsConstants.Damage;
 
 namespace EuroHelp.Web.Models.Damages
 {
@@ -40,6 +40,7 @@ namespace EuroHelp.Web.Models.Damages
         [StringLength(CommentMaxLength, MinimumLength = CommentMinLength)]
         public string Comment { get; set; }
 
+        [Display(Name = "Company")]
         public string CompanyId { get; set; }
 
         public IEnumerable<InsuranceCompaniesServiceModel> Companies { get; set; }

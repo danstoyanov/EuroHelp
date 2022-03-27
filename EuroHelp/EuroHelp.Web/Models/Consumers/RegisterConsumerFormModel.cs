@@ -2,7 +2,7 @@
 
 using System.ComponentModel.DataAnnotations;
 
-using static EuroHelp.Web.Global.GlobalModelsConstants.Consumer;
+using static EuroHelp.Global.GlobalModelsConstants.Consumer;
 
 namespace EuroHelp.Web.Models.Users
 {

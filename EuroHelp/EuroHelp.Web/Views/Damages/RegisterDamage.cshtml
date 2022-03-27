@@ -24,6 +24,7 @@
             <option>Medical damage</option>
             <option>Business damage</option>
         </select>
+        <span asp-validation-for="DamageType" class="small text-danger"></span>
     </div>
     <div class="col-4">
         <label asp-for="CompanyId" class="form-label"><b>Insurance company:</b></label>
@@ -33,6 +34,7 @@
                 <option value="@company.Id">@company.Name</option>
             }
         </select>
+        <span asp-validation-for="CompanyId" class="small text-danger"></span>
     </div>
     <div class="col-3">
         <label asp-for="EventDate" class="form-label"><b>Event date:</b></label>

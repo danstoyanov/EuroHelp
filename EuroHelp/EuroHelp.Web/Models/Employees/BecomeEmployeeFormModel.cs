@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-using static EuroHelp.Web.Global.GlobalModelsConstants.Employee;
+using static EuroHelp.Global.GlobalModelsConstants.Employee;
 
 namespace EuroHelp.Web.Models.Employees
 {

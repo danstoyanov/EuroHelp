@@ -27,6 +27,11 @@ namespace EuroHelp.Web.Controllers
         [Authorize]
         public IActionResult RegisterDamage()
         {
+            if (!this.users.IsConsumer(this.User))
+            {
+                return RedirectToAction("Register", "Consumers");
+            }
+
             return View(new RegisterDamageFormModel
             {
                 Companies = this.companies.GetInsuranceCompanies()
@@ -42,13 +47,12 @@ namespace EuroHelp.Web.Controllers
                 return RedirectToAction("AccessDenied", "Home");
             }
 
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 damage.Companies = this.companies.GetInsuranceCompanies();
                 return View(damage);
             }
 
-            // Fix .....
             var consumer = this.users.GetConsumer(this.User);
             var company = this.companies.GetCompany(damage.CompanyId);
 
@@ -73,7 +77,6 @@ namespace EuroHelp.Web.Controllers
             return RedirectToAction("AllDamages", "Damages");
         }
 
-        // ADD Validations or some checks !!!!!!!!
         [Authorize]
         public IActionResult AllDamages([FromQuery] AllDamagesQueryModel query)
         {

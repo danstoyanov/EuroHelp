@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<TargetFramework>net6.0</TargetFramework>
-		<Nullable>enable</Nullable>
+		<Nullable>disable</Nullable>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<UserSecretsId>aspnet-EuroHelp.Web-0E0063C3-4308-435D-88DF-6DA09023A4B5</UserSecretsId>
 	</PropertyGroup>
@@ -24,6 +24,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<ProjectReference Include="..\EuroHelp.Global\EuroHelp.Global.csproj" />
 		<ProjectReference Include="..\EuroHelp.Services\EuroHelp.Services.csproj" />
 	</ItemGroup>
 

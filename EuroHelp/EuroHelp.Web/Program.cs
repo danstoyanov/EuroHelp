@@ -79,15 +79,6 @@ app.Run();
 
 /*  Tasks:
  *  
- *  
- *  [-] Add Model statements in every controller action ! 
- *      [-] Damages
- *      [-] Reference
- *      
- *      [x] Consumer
- *      [x] Companies
- *      [x] Employee
- *      
  *  [-] Add checks for every action when something is not valid !
  *  [-] Clear some of the controllers with only one or two actions !
  *  [-] Check the names of the:
@@ -99,9 +90,13 @@ app.Run();
  *  [-] Add the roles in the app !
  *  [-] Fix the pages when we have many listed objects !
  *  [-] Add listing Company view model with pictures and others !!!! 
- *  [-] 
- *  [-] 
  *  
  *  
  *  
+ *  [x] Add Model statements in every controller action ! 
+ *  [x] Reference
+ *  [x] Damages
+ *  [x] Consumer
+ *  [x] Companies
+ *  [x] Employee
  */
