@@ -6,16 +6,31 @@
 <ul class="navbar-nav">
     @if (SignInManager.IsSignedIn(User))
     {
+        if (CurrUser.IsEmployee(User))
+        {
+            <li class="nav-item">
+                <a class="nav-link" asp-area="Identity" asp-page="" title="Employee manager">Employee manager</a>
+            </li>
+        }
+
+        if (CurrUser.IsConsumer(User))
+        {
+            <li class="nav-item">
+                <a class="nav-link" asp-area="Identity" asp-page="" title="Consumer manager">Consumer manager</a>
+            </li>
+        }
+
         <li class="nav-item">
             <a class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Profile</a>
         </li>
+
         @if (!CurrUser.IsEmployee(User) && !CurrUser.IsConsumer(User))
         {
             <li class="nav-item">
-                <a class="nav-link" asp-controller="Consumers" asp-action="Register">Become client</a>
+                <a class="nav-link" asp-controller="Consumers" asp-action="Register" title="Register like consumer">Become consumer</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" asp-controller="Employees" asp-action="Create">Become employee</a>
+                <a class="nav-link" asp-controller="Employees" asp-action="Create"  title="Register like employee">Become employee</a>
             </li>
         }
         <li class="nav-item">

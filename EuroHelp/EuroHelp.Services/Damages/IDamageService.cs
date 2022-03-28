@@ -10,6 +10,9 @@ namespace EuroHelp.Services.Damages
         public Damage GetDamage(string id);
 
         public List<DamageServiceListingModel> All();
+
+        public List<DamageServiceListingModel> DamagesByConsumer(string id);
+
         public List<DamageServiceListingModel> Search(string id, string companyName);
 
         public string Create(

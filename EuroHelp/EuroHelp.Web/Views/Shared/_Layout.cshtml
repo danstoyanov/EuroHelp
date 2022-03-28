@@ -25,29 +25,32 @@
                 <div class="collapse navbar-collapse" id="navbarColor01">
                     @if (SignInManager.IsSignedIn(User))
                     {
-                        <ul class="navbar-nav me-auto">
-                            @if (CurrUser.IsConsumer(User))
-                            {
-                                <li class="nav-item">
-                                    <a class="nav-link" asp-controller="Damages" asp-action="RegisterDamage">Add damage</a>
-                                </li>
-                            }
+                    <ul class="navbar-nav me-auto">
+                        @if (CurrUser.IsConsumer(User))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="Damages" asp-action="Mine">My damages</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="Damages" asp-action="RegisterDamage">Add damage</a>
+                            </li>
+                        }
+                        @if (CurrUser.IsEmployee(User))
+                        {
                             <li class="nav-item">
                                 <a class="nav-link" asp-controller="Damages" asp-action="AllDamages">All damages</a>
                             </li>
-                            @if (CurrUser.IsEmployee(User))
-                            {
-                                <li class="nav-item">
-                                    <a class="nav-link" asp-controller="References" asp-action="GenerateReference">Generate reference</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" asp-controller="Companies" asp-action="CompanyMembers">Add insurance company</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" asp-controller="Damages" asp-action="DamageSearch">Search damage</a>
-                                </li>
-                            }
-                        </ul>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="References" asp-action="GenerateReference">Generate reference</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="Companies" asp-action="CompanyMembers">Add insurance company</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="Damages" asp-action="DamageSearch">Search damage</a>
+                            </li>
+                        }
+                    </ul>
                     }
                     <partial name="_LoginPartial" />
                 </div>

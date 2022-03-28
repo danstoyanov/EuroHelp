@@ -74,12 +74,22 @@ namespace EuroHelp.Web.Controllers
                 company.Id,
                 company.Name);
 
+            if (this.users.IsConsumer(User))
+            {
+                return RedirectToAction("Mine", "Damages");
+            }
+
             return RedirectToAction("AllDamages", "Damages");
         }
 
         [Authorize]
         public IActionResult AllDamages([FromQuery] AllDamagesQueryModel query)
         {
+            if (!this.users.IsEmployee(this.User))
+            {
+                return RedirectToAction("AccessDenied", "Home");
+            }
+
             var damages = this.damages.All();
 
             if (damages == null)
@@ -96,10 +106,10 @@ namespace EuroHelp.Web.Controllers
         [Authorize]
         public IActionResult DeleteDamage(string id)
         {
-            if (!this.users.IsEmployee(this.User))
-            {
-                return RedirectToAction("AccessDenied", "Home");
-            }
+            //if (!this.users.IsEmployee(this.User))
+            //{
+            //    return RedirectToAction("AccessDenied", "Home");
+            //}
 
             if (!this.damages.IsValid(id))
             {
@@ -108,7 +118,26 @@ namespace EuroHelp.Web.Controllers
 
             this.damages.Delete(id);
 
-            return RedirectToAction("AllDamages", "Damages");
+            if (this.users.IsEmployee(this.User))
+            {
+                return RedirectToAction("AllDamages", "Damages");
+            }
+
+            return RedirectToAction("Mine", "Damages");
+        }
+
+        [Authorize]
+        public IActionResult Mine()
+        {
+            if (!this.users.IsConsumer(this.User))
+            {
+                return RedirectToAction("AccessDenied", "Home");
+            }
+
+            var consumer = this.users.GetConsumer(this.User);
+
+            var myDamages = this.damages.DamagesByConsumer(consumer.Id);
+            return View(myDamages);
         }
 
         [HttpGet]

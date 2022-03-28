@@ -1,0 +1,70 @@
+﻿@model IEnumerable<DamageServiceListingModel>
+
+@{
+    ViewBag.Title = "My damages";
+}
+
+<section class="py-5">
+    @if (Model.Any())
+    {
+        <table class="table">
+            @foreach (var damage in Model)
+            {
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="col-20">
+                                <label for="opionNumber" class="form-label">Damage type: </label>
+                                <input class="form-control" type="text" placeholder="@damage.DamageType" aria-label="Disabled input example" disabled>
+                                <label for="opionNumber" class="form-label">Insurance company: </label>
+                                <input class="form-control" type="text" placeholder="@damage.CompanyName" aria-label="Disabled input example" disabled>
+                                <label for="opionNumber" class="form-label">Тип събитие: </label>
+                                <input class="form-control" type="text" placeholder="@damage.CompanyName" aria-label="Disabled input example" disabled>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="col-20">
+                                <label for="opionNumber" class="form-label">Event date: </label>
+                                <input class="form-control" type="text" placeholder="@damage.EventDate" aria-label="Disabled input example" disabled>
+                                <label for="opionNumber" class="form-label">Register date: </label>
+                                <input class="form-control" type="text" placeholder="@damage.RegisterDate" aria-label="Disabled input example" disabled>
+                                <label for="opionNumber" class="form-label">Identity number: </label>
+                                <input class="form-control" type="text" placeholder="@damage.IdentityNumber" aria-label="Disabled input example" disabled>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="col-20">
+                                <label for="opionNumber" class="form-label">Identity number: </label>
+                                <input class="form-control" type="text" placeholder="@damage.IdentityNumber" aria-label="Disabled input example" disabled>
+                                <label for="opionNumber" class="form-label">Person first name: </label>
+                                <input class="form-control" type="text" placeholder="@damage.PersonFirstName" aria-label="Disabled input example" disabled>
+                                <label for="opionNumber" class="form-label">Person second name: </label>
+                                <input class="form-control" type="text" placeholder="@damage.PersonSecondName" aria-label="Disabled input example" disabled>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="col-20">
+                                <label for="opionNumber" class="form-label">Damage ID:</label>
+                                <input class="form-control" type="text" placeholder="@damage.Id" aria-label="Disabled input example" disabled>
+                                <label for="opionNumber" class="form-label">Event place: </label>
+                                <input class="form-control" type="text" placeholder="@damage.EventPlace" aria-label="Disabled input example" disabled>
+                                <form method="post" asp-controller="Damages" asp-action="DeleteDamage" asp-route-id="@damage.Id">
+                                    <div class="m-sm-4">
+                                        <a asp-action="Details" asp-controller="Damages" asp-route-id="@damage.Id" class="btn btn-primary">Details</a>
+                                        <button type="submit" class="btn btn-danger m-sm-auto">Delete</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                    </tr>
+                </tbody>
+            }
+        </table>
+    }
+    else
+    {
+        <h2>You don't have registered damages !!!</h2>
+    }
+</section>

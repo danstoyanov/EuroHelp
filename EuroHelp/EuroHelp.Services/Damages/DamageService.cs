@@ -22,7 +22,7 @@ namespace EuroHelp.Services.Damages
         public List<DamageServiceListingModel> All()
         {
             var damagesQuery = this.data.Damages
-                .OrderByDescending(d => d.EventDate)
+                .OrderByDescending(d => d.RegistrationDate)
                 .AsQueryable();
 
             var damages = damagesQuery
@@ -42,6 +42,24 @@ namespace EuroHelp.Services.Damages
 
             return damages;
         }
+
+        public List<DamageServiceListingModel> DamagesByConsumer(string id)
+            => this.data
+            .Damages
+            .Where(d => d.ConsumerId == id)
+            .Select(d => new DamageServiceListingModel
+            {
+                Id = d.Id,
+                DamageType = d.DamageType,
+                CompanyName = d.CompanyName,
+                EventDate = d.EventDate.ToString("dd/MM/yyyy"),
+                RegisterDate = d.RegistrationDate.ToString("dd/MM/yyyy"),
+                IdentityNumber = d.IdentityNumber,
+                PersonFirstName = d.PersonFirstName,
+                PersonSecondName = d.PersonSecondName,
+                EventPlace = d.EventPlace,
+            })
+            .ToList();
 
         public string Create(string id, string damageType, DateTime eventDate, int identityNumber, string personFirstName,
             string personSecondName, string eventPlace, string comment, string consumerId, string companyId, string companyName)
