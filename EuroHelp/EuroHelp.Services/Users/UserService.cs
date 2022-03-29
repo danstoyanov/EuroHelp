@@ -57,7 +57,8 @@ namespace EuroHelp.Services.Users
             {
                 Id = id,
                 Name = name,
-                PhoneNumber = phoneNumber
+                PhoneNumber = phoneNumber,
+                UserId = id
             };
 
             this.data.Employees.Add(employee);
@@ -71,10 +72,11 @@ namespace EuroHelp.Services.Users
             var consumer = new Consumer
             {
                 Id = id,
-                Username =  username,
+                UserName = username,
                 FirstName = firstName,
                 LastName = lastName,
-                Gender = gender
+                Gender = gender,
+                UserId = id
             };
 
             this.data.Consumers.Add(consumer);
@@ -86,7 +88,7 @@ namespace EuroHelp.Services.Users
         public bool IsUsernameContains(string username)
         {
             return this.data.Consumers
-                .Any(c => c.Username == username);
+                .Any(c => c.UserName == username);
         }
     }
 }

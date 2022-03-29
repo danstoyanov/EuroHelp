@@ -16,6 +16,9 @@ namespace EuroHelp.Data.Models
         [MaxLength(20)]
         public string PhoneNumber { get; set; }
 
+        [Required]
+        public string UserId { get; set; }
+
         public List<InsuranceCompany> Companies { get; set; } = new List<InsuranceCompany>();
     }
 }

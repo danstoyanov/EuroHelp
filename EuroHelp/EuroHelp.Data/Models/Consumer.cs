@@ -12,8 +12,11 @@ namespace EuroHelp.Data.Models
         public string Id { get; set; }
 
         [Required]
-        [MaxLength(DefaultUsernameMaxLength)]
-        public string? Username { get; set; }
+        [MaxLength(FullNameMaxLength)]
+        public string? UserName { get; set; }
+
+        [Required]
+        public string UserId { get; set; }
 
         [Required]
         [Display(Name = "First Name")]

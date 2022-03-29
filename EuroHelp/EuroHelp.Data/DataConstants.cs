@@ -5,8 +5,8 @@
         public class User
         {
             public const int IdMaxLength = 40;
-            public const int NameMaxLength = 25;
-            public const int DefaultUsernameMaxLength = 20;
+            public const int NameMaxLength = 30;
+            public const int FullNameMaxLength = 40;
         }
         public class InsuranceCompany
         {

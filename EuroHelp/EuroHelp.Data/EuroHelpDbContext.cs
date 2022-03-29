@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace EuroHelp.Data
 {
-    public class EuroHelpDbContext : IdentityDbContext
+    public class EuroHelpDbContext : IdentityDbContext<User> 
     {
         public EuroHelpDbContext(DbContextOptions<EuroHelpDbContext> options)
             : base(options)
@@ -34,6 +34,18 @@ namespace EuroHelp.Data
                 .HasOne(c => c.Employee)
                 .WithMany(e => e.Companies)
                 .HasForeignKey(c => c.EmployeeId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Employee>()
+                .HasOne<User>()
+                .WithOne()
+                .HasForeignKey<Employee>(e => e.UserId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Consumer>()
+                .HasOne<User>()
+                .WithOne()
+                .HasForeignKey<Consumer>(c => c.UserId)
                 .OnDelete(DeleteBehavior.Restrict);
 
             base.OnModelCreating(modelBuilder);
