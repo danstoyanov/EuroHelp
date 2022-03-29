@@ -7,6 +7,7 @@ using EuroHelp.Services.Damages;
 using EuroHelp.Services.InsuranceCompanies;
 using EuroHelp.Services.References;
 using EuroHelp.Services.Users;
+using EuroHelp.Services.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
@@ -45,6 +46,8 @@ builder.Services
     .AddTransient<IUserService, UserService>();
 
 var app = builder.Build();
+
+app.PrepareDatabase();
 
 if (app.Environment.IsDevelopment())
 {
