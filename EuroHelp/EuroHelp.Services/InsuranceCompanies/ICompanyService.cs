@@ -4,7 +4,7 @@ namespace EuroHelp.Services.InsuranceCompanies
 {
     public interface ICompanyService
     {
-        public string Create(string id, 
+        public string Create( 
             string name, 
             int bulstat, 
             string address, 

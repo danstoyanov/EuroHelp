@@ -62,7 +62,6 @@ namespace EuroHelp.Web.Controllers
             }
 
             this.damages.Create(
-                damage.Id,
                 damage.DamageType,
                 damage.EventDate,
                 damage.IdentityNumber,

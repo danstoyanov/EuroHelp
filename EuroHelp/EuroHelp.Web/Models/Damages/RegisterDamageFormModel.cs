@@ -9,9 +9,6 @@ namespace EuroHelp.Web.Models.Damages
     public class RegisterDamageFormModel
     {
         [Required]
-        public string Id { get; set; }
-
-        [Required]
         [StringLength(NameMaxLength, MinimumLength = NameMinLength)]
         public string? DamageType { get; set; }
 

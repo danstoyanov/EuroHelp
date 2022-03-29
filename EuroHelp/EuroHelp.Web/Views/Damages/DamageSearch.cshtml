@@ -64,7 +64,7 @@
             @foreach (var damage in Model.Damages)
             {
                 <tr>
-                    <td>@damage.Id</td>
+                    <td>@damage.Id.Substring(0, 8)</td>
                     <td>@damage.RegisterDate</td>
                     <td>@damage.EventDate</td>
                     <td>@damage.DamageType</td>

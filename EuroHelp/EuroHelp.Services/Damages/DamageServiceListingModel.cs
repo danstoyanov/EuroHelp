@@ -8,11 +8,11 @@
 
         public string? CompanyName { get; set; }
 
+        public string InsuranceCompanyId {get; set;}
+
         public string EventDate { get; set; }
 
         public string RegisterDate { get; set; }
-
-        public string EventType { get; set; }
 
         public int? IdentityNumber { get; set; }
 

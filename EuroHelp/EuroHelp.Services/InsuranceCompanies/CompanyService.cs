@@ -11,7 +11,6 @@ namespace EuroHelp.Services.InsuranceCompanies
             => this.data = data;
 
         public string Create(
-            string id, 
             string name, 
             int bulstat, 
             string address, 
@@ -24,7 +23,6 @@ namespace EuroHelp.Services.InsuranceCompanies
         {
             var comapnyData = new InsuranceCompany
             {
-                Id = id,
                 Name = name,
                 Bulstat = bulstat,
                 Address = address,

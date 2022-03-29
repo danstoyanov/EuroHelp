@@ -18,8 +18,8 @@
                                 <input class="form-control" type="text" placeholder="@damage.DamageType" aria-label="Disabled input example" disabled>
                                 <label for="opionNumber" class="form-label">Insurance company: </label>
                                 <input class="form-control" type="text" placeholder="@damage.CompanyName" aria-label="Disabled input example" disabled>
-                                <label for="opionNumber" class="form-label">Тип събитие: </label>
-                                <input class="form-control" type="text" placeholder="@damage.CompanyName" aria-label="Disabled input example" disabled>
+                                <label for="opionNumber" class="form-label">Event place: </label>
+                                <input class="form-control" type="text" placeholder="@damage.EventPlace" aria-label="Disabled input example" disabled>
                             </div>
                         </td>
                         <td>
@@ -45,9 +45,9 @@
                         <td>
                             <div class="col-20">
                                 <label for="opionNumber" class="form-label">Damage ID:</label>
-                                <input class="form-control" type="text" placeholder="@damage.Id" aria-label="Disabled input example" disabled>
-                                <label for="opionNumber" class="form-label">Event place: </label>
-                                <input class="form-control" type="text" placeholder="@damage.EventPlace" aria-label="Disabled input example" disabled>
+                                <input class="form-control" type="text" placeholder="@damage.Id.Substring(0,8)" aria-label="Disabled input example" disabled>
+                                <label for="opionNumber" class="form-label">Insurance company ID:</label>
+                                <input class="form-control" type="text" placeholder="@damage.InsuranceCompanyId.Substring(0,8)" aria-label="Disabled input example" disabled>
                                 <form method="post" asp-controller="Damages" asp-action="DeleteDamage" asp-route-id="@damage.Id">
                                     <div class="m-sm-4">
                                         <a asp-action="Details" asp-controller="Damages" asp-route-id="@damage.Id" class="btn btn-primary">Details</a>
@@ -65,6 +65,8 @@
     }
     else
     {
-        <h2>You don't have registered damages !!!</h2>
+        <div class="text-center">
+            <h2>You don't have registered damages !!!</h2>
+        </div>
     }
 </section>

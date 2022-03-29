@@ -16,7 +16,6 @@ namespace EuroHelp.Services.Damages
         public List<DamageServiceListingModel> Search(string id, string companyName);
 
         public string Create(
-            string id,
             string damageType,
             DateTime eventDate,
             int identityNumber,

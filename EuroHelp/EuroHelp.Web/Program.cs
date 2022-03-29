@@ -1,11 +1,12 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+
 using EuroHelp.Data;
+using EuroHelp.Data.Models;
 using EuroHelp.Services.Damages;
 using EuroHelp.Services.InsuranceCompanies;
 using EuroHelp.Services.References;
 using EuroHelp.Services.Users;
-
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
@@ -15,16 +16,17 @@ builder.Services
     options.UseSqlServer(connectionString));
 
 builder.Services
-    .AddDatabaseDeveloperPageExceptionFilter(); 
+    .AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services
-    .AddDefaultIdentity<IdentityUser>(options =>
+    .AddDefaultIdentity<User>(options =>
     {
         options.Password.RequireDigit = false;
         options.Password.RequireLowercase = false;
         options.Password.RequireNonAlphanumeric = false;
         options.Password.RequireUppercase = false;
     })
+    .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<EuroHelpDbContext>();
 
 builder.Services
@@ -74,7 +76,7 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 app.MapRazorPages();
-app.Run();
+app.UseAuthentication();app.Run();
 
 
 /*  Tasks:
@@ -90,7 +92,9 @@ app.Run();
  *  [-] Add the roles in the app !
  *  [-] Fix the pages when we have many listed objects !
  *  [-] Add listing Company view model with pictures and others !!!! 
- *  
+ *  [-] When you add new compny check if the currCompany exists in Database !!!
+ *  [-] 
+ *  [-] 
  *  
  *  
  *  [x] Add Model statements in every controller action ! 

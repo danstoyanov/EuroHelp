@@ -2,7 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 
 using EuroHelp.Data.Models;
-using Microsoft.AspNetCore.Identity;
 
 namespace EuroHelp.Data
 {

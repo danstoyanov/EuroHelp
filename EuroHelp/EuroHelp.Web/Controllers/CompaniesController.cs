@@ -40,12 +40,6 @@ namespace EuroHelp.Web.Controllers
                 return RedirectToAction("AccessDenied", "Home");
             }
 
-            if (this.companies.IsCompanyContains(company.Id))
-            {
-                this.ModelState.AddModelError(nameof(company.Id), "This company Id alrady exist in current data !");
-                return View(company);
-            }
-
             if (!ModelState.IsValid)
             {
                 return View(company);
@@ -59,7 +53,6 @@ namespace EuroHelp.Web.Controllers
             }
 
             this.companies.Create(
-                company.Id,
                 company.Name,
                 company.Bulstat,
                 company.Address,

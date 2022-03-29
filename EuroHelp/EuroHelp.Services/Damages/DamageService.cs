@@ -34,6 +34,7 @@ namespace EuroHelp.Services.Damages
                     EventDate = d.EventDate.ToString("dd/MM/yyyy"),
                     RegisterDate = d.RegistrationDate.ToString("dd/MM/yyyy"),
                     IdentityNumber = d.IdentityNumber,
+                    InsuranceCompanyId = d.CompanyId,
                     PersonFirstName = d.PersonFirstName,
                     PersonSecondName = d.PersonSecondName,
                     EventPlace = d.EventPlace,
@@ -61,12 +62,11 @@ namespace EuroHelp.Services.Damages
             })
             .ToList();
 
-        public string Create(string id, string damageType, DateTime eventDate, int identityNumber, string personFirstName,
+        public string Create(string damageType, DateTime eventDate, int identityNumber, string personFirstName,
             string personSecondName, string eventPlace, string comment, string consumerId, string companyId, string companyName)
         {
             var damageData = new Damage
             {
-                Id = id,
                 DamageType = damageType,
                 EventDate = eventDate,
                 IdentityNumber = identityNumber,

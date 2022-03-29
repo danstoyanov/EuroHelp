@@ -6,10 +6,6 @@ namespace EuroHelp.Web.Models.Companies
 {
     public class AddCompanyFormModel
     {
-        [Required(ErrorMessage = "The current ID is not valid !")]
-        [Display(Name = "ID")]
-        public string Id { get; set; }
-
         [Required]
         [MinLength(NameMinLength)]
         [MaxLength(NameMaxLength)]
