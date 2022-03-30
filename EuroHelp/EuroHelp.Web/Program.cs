@@ -73,13 +73,22 @@ app.UseHttpsRedirection()
     .UseStaticFiles()
     .UseRouting()
     .UseAuthentication()
-    .UseAuthorization();
+    .UseAuthorization()
+    .UseEndpoints(endpoints =>
+    {
+        endpoints.MapControllerRoute(
+            name: "Areas",
+            pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+
+        endpoints.MapDefaultControllerRoute();
+        endpoints.MapRazorPages();
+    });
 
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 app.MapRazorPages();
-app.UseAuthentication();app.Run();
+app.UseAuthentication(); app.Run();
 
 
 /*  Tasks:
@@ -88,18 +97,46 @@ app.UseAuthentication();app.Run();
  *  [-] Clear some of the controllers with only one or two actions !
  *  [-] Check the names of the:
  *      [-] Service methods     
- *      [-] Data models !   
- *      [-] View models !
+ *      [-] Data models !         
+ *      [-] View models !          
  *      [-] Controller names ! 
  *      [-] Controller actions !     
- *  [-] Add the roles in the app !
+ *  [-] Add ADMIN area with controllers and wiews !!!!
+ *      [-] Add Admin Controller !
+ *      [-] Add Admin View Pannel!
+ *          [-] The admin user will have page for all information about:
+ *              [-] All registered companies
+ *              [-] All registered employees
+ *              [-] All references 
+ *              [-] All consumers
+ *          [-] The admin can delete damages !
+ *          [-] The admin can delete employee !
+ *          [-] The admin can delete consumer !
+ *          [-] The admin can delete insurance company !
+ *          [-] When someone try to go in Admin page => return RedirectToAction("AccesDenied" "Home");
+ *          [-] When the customer add new damage, the administrator must approve the registration.
+ *          [-] When employee try to delete damage the admisnistator must approve this action. 
+ *      [-] Add View Model !
+ *      [-] Add Admin Service !
+ *  [-] Database:
+ *      [-] Add Reference to DB with {Id, Reference date, fromDate, toDate, Employee Id}
+ *      [-] Add Types of Insurance companies {Id, Type, CompanyId}
+ *      [-] Fix 
+ *  [-] TempData: 
+ *      [-] Add new damage !
+ *      [-] Delete damage !
+ *      [-] Add company !
+ *      [-] Add employee !
+ *      [-] Generate damage reference file by 'random' criteria !
+ *  [-] Other Views:
+ *      [-]
+ *      [-]
+ *  
  *  [-] Fix the pages when we have many listed objects !
  *  [-] Add listing Company view model with pictures and others !!!! 
  *  [-] When you add new compny check if the currCompany exists in Database !!!
- *  [-] 
- *  [-] 
  *  
- *  
+ *  [x] Add the roles in the app !
  *  [x] Add Model statements in every controller action ! 
  *  [x] Reference
  *  [x] Damages
