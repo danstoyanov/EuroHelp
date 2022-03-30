@@ -51,6 +51,24 @@
                                 <a class="nav-link" asp-controller="Damages" asp-action="DamageSearch">Search damage</a>
                             </li>
                         }
+                        @if (User.IsAdmin())
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="Admin" asp-controller="Manage" asp-action="Damages">Damages manager</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="Admin" asp-controller="Manage" asp-action="InsuranceCompanies">Insurnace companies manager</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="Admin" asp-controller="Manage" asp-action="Employees">Employees manager</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="Admin" asp-controller="Manage" asp-action="Consumers">Consumers manager</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="References" asp-action="GenerateReference">Generate reference</a>
+                            </li>
+                        }
                     </ul>
                     }
                     <partial name="_LoginPartial" />

@@ -17,7 +17,6 @@ namespace EuroHelp.Services.Infrastructure
             MigrateDatabase(services);
 
             SeedAdministrator(services);
-            // other seeds !!!
 
             return app;
         }

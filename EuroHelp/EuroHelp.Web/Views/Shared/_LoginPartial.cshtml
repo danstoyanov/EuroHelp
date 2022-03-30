@@ -21,17 +21,24 @@
             </li>
         }
 
+        if (User.IsAdmin())
+        {
+            <li class="nav-item">
+                <a class="nav-link" asp-area="Admin" asp-controller="Admin" asp-action="AdminManager" title="Admin manager">Admin manager</a>
+            </li>
+        }
+
         <li class="nav-item">
             <a class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Profile</a>
         </li>
 
-        @if (!CurrUser.IsEmployee(User) && !CurrUser.IsConsumer(User))
+        @if (!User.IsAdmin() && !CurrUser.IsEmployee(User) && !CurrUser.IsConsumer(User))
         {
             <li class="nav-item">
                 <a class="nav-link" asp-controller="Consumers" asp-action="Register" title="Register like consumer">Become consumer</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" asp-controller="Employees" asp-action="Create"  title="Register like employee">Become employee</a>
+                <a class="nav-link" asp-controller="Employees" asp-action="Create" title="Register like employee">Become employee</a>
             </li>
         }
         <li class="nav-item">

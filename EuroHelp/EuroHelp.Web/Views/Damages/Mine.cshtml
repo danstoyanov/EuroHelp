@@ -4,13 +4,16 @@
     ViewBag.Title = "My damages";
 }
 
+<h2 style="margin: 2%; text-align: center;">My damages</h2>
+<hr class="bg-primary w-100">
+
 <section class="py-5">
     @if (Model.Any())
     {
         <table class="table">
-            @foreach (var damage in Model)
-            {
-                <tbody>
+            <tbody>
+                @foreach (var damage in Model)
+                {
                     <tr>
                         <td>
                             <div class="col-20">
@@ -28,8 +31,8 @@
                                 <input class="form-control" type="text" placeholder="@damage.EventDate" aria-label="Disabled input example" disabled>
                                 <label for="opionNumber" class="form-label">Register date: </label>
                                 <input class="form-control" type="text" placeholder="@damage.RegisterDate" aria-label="Disabled input example" disabled>
-                                <label for="opionNumber" class="form-label">Identity number: </label>
-                                <input class="form-control" type="text" placeholder="@damage.IdentityNumber" aria-label="Disabled input example" disabled>
+                                <label for="opionNumber" class="form-label">Damage ID:</label>
+                                <input class="form-control" type="text" placeholder="@damage.Id.Substring(0,8)" aria-label="Disabled input example" disabled>
                             </div>
                         </td>
                         <td>
@@ -44,13 +47,11 @@
                         </td>
                         <td>
                             <div class="col-20">
-                                <label for="opionNumber" class="form-label">Damage ID:</label>
-                                <input class="form-control" type="text" placeholder="@damage.Id.Substring(0,8)" aria-label="Disabled input example" disabled>
-                                <label for="opionNumber" class="form-label">Insurance company ID:</label>
-                                <input class="form-control" type="text" placeholder="@damage.InsuranceCompanyId.Substring(0,8)" aria-label="Disabled input example" disabled>
                                 <form method="post" asp-controller="Damages" asp-action="DeleteDamage" asp-route-id="@damage.Id">
                                     <div class="m-sm-4">
                                         <a asp-action="Details" asp-controller="Damages" asp-route-id="@damage.Id" class="btn btn-primary">Details</a>
+                                    </div>
+                                    <div class="m-sm-4">
                                         <button type="submit" class="btn btn-danger m-sm-auto">Delete</button>
                                     </div>
                                 </form>
@@ -59,8 +60,8 @@
                     </tr>
                     <tr>
                     </tr>
-                </tbody>
-            }
+                }
+            </tbody>
         </table>
     }
     else
