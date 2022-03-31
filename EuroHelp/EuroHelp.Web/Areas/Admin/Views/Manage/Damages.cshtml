@@ -1,6 +1,7 @@
 ﻿<h2 style="margin: 2%; text-align: center;">Damages manager</h2>
 <hr class="bg-primary w-100">
 
+
 <form method="post" class="row g-3">
     <table id="table_id" class="display">
         <thead class="thead-dark">
@@ -14,49 +15,22 @@
             </tr>
         </thead>
         <tbody>
-
-            <tr>
-                <td>1311</td>
-                <td>Broken Arm</td>
-                <td>Otto</td>
-                <td>Protect Auto Corp.</td>
-                <td><b>NO</b></td>
-                <td>
-                    <button class="btn btn-success">APPROVE</button>
-                    <button class="btn btn-warning">EDIT</button>
-                    <button class="btn btn-info">INFO</button>
-                    <button class="btn btn-danger">DELETE</button>
-                </td>
-            </tr>
-
-            <tr>
-                <td>1301</td>
-                <td>Broken Arm</td>
-                <td>Otto</td>
-                <td>mdo</td>
-                <td><b>NO</b></td>
-                <td>
-                    <button class="btn btn-success">APPROVE</button>
-                    <button class="btn btn-warning">EDIT</button>
-                    <button class="btn btn-info">INFO</button>
-                    <button class="btn btn-danger">DELETE</button>
-                </td>
-            </tr>
-
-            <tr>
-                <td>1411</td>
-                <td>Broken Arm</td>
-                <td>Otto</td>
-                <td>mdo</td>
-                <td><b>NO</b></td>
-                <td>
-                    <button class="btn btn-success disabled">APPROVE</button>
-                    <button class="btn btn-warning">EDIT</button>
-                    <button class="btn btn-info">INFO</button>
-                    <button class="btn btn-danger">DELETE</button>
-                </td>
-            </tr>
-
+            @for (int i = 0; i < 123; i++)
+            {
+                <tr>
+                    <td>@i</td>
+                    <td>Broken Arm</td>
+                    <td>Otto</td>
+                    <td>Protect Auto Corp.</td>
+                    <td><b>NO</b></td>
+                    <td>
+                        <button class="btn btn-success">APPROVE</button>
+                        <button class="btn btn-warning">EDIT</button>
+                        <button class="btn btn-info">INFO</button>
+                        <button class="btn btn-danger">DELETE</button>
+                    </td>
+                </tr>
+            }
         </tbody>
     </table>
 </form>

@@ -4,70 +4,64 @@
     ViewBag.Title = "My damages";
 }
 
-<h2 style="margin: 2%; text-align: center;">My damages</h2>
+<h2 style="margin: 2%; text-align: center;">👋 My damages</h2>
 <hr class="bg-primary w-100">
 
-<section class="py-5">
-    @if (Model.Any())
-    {
-        <table class="table">
-            <tbody>
-                @foreach (var damage in Model)
-                {
-                    <tr>
-                        <td>
-                            <div class="col-20">
-                                <label for="opionNumber" class="form-label">Damage type: </label>
-                                <input class="form-control" type="text" placeholder="@damage.DamageType" aria-label="Disabled input example" disabled>
-                                <label for="opionNumber" class="form-label">Insurance company: </label>
-                                <input class="form-control" type="text" placeholder="@damage.CompanyName" aria-label="Disabled input example" disabled>
-                                <label for="opionNumber" class="form-label">Event place: </label>
-                                <input class="form-control" type="text" placeholder="@damage.EventPlace" aria-label="Disabled input example" disabled>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="col-20">
-                                <label for="opionNumber" class="form-label">Event date: </label>
-                                <input class="form-control" type="text" placeholder="@damage.EventDate" aria-label="Disabled input example" disabled>
-                                <label for="opionNumber" class="form-label">Register date: </label>
-                                <input class="form-control" type="text" placeholder="@damage.RegisterDate" aria-label="Disabled input example" disabled>
-                                <label for="opionNumber" class="form-label">Damage ID:</label>
-                                <input class="form-control" type="text" placeholder="@damage.Id.Substring(0,8)" aria-label="Disabled input example" disabled>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="col-20">
-                                <label for="opionNumber" class="form-label">Identity number: </label>
-                                <input class="form-control" type="text" placeholder="@damage.IdentityNumber" aria-label="Disabled input example" disabled>
-                                <label for="opionNumber" class="form-label">Person first name: </label>
-                                <input class="form-control" type="text" placeholder="@damage.PersonFirstName" aria-label="Disabled input example" disabled>
-                                <label for="opionNumber" class="form-label">Person second name: </label>
-                                <input class="form-control" type="text" placeholder="@damage.PersonSecondName" aria-label="Disabled input example" disabled>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="col-20">
-                                <form method="post" asp-controller="Damages" asp-action="DeleteDamage" asp-route-id="@damage.Id">
-                                    <div class="m-sm-4">
-                                        <a asp-action="Details" asp-controller="Damages" asp-route-id="@damage.Id" class="btn btn-primary">Details</a>
-                                    </div>
-                                    <div class="m-sm-4">
-                                        <button type="submit" class="btn btn-danger m-sm-auto">Delete</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                    </tr>
-                }
-            </tbody>
-        </table>
-    }
-    else
-    {
-        <div class="text-center">
-            <h2>You don't have registered damages !!!</h2>
-        </div>
-    }
-</section>
+@if (Model.Any())
+{
+    <div class="row">
+        @foreach (var damage in Model)
+        {
+            <div class="col-md-4">
+                <div class="card mb-3">
+                    <div class="card-header text-center">
+                        <h2>@damage.DamageType</h2>
+                        @switch (damage.DamageType)
+                        {
+                            case "Car damage":
+                                <img class="card-img-top-eurohelp" src="~/images/insurance/car.png" />
+                                break;
+                            case "Home damage":
+                                <img class="card-img-top-eurohelp" src="~/images/insurance/home.png" />
+                                break;
+                            case "Pet damage":
+                                <img class="card-img-top-eurohelp" src="~/images/insurance/pet.png" />
+                                break;
+                            case "Travel damage":
+                                <img class="card-img-top-eurohelp" src="~/images/insurance/travel.png" />
+                                break;
+                            case "Medical damage":
+                                <img class="card-img-top-eurohelp" src="~/images/insurance/medicine.png" />
+                                break;
+                            case "Business damage":
+                                <img class="card-img-top-eurohelp" src="~/images/insurance/business.png" />
+                                break;
+                            default:
+                                <img class="card-img-top-eurohelp" src="~/images/insurance/bad.png" />
+                                break;
+                        }
+                    </div>
+                    <div class="card-body">
+                        <h6><b>ID: </b>@damage.Id.Substring(0, 5)</h6>
+                        <h6><b>Damage type: </b>@damage.DamageType</h6>
+                        <h6><b>Event place: </b>@damage.EventPlace</h6>
+                        <h6><b>Insurance company: </b>@damage.CompanyName</h6>
+                        <h6><b>Owner: </b>@damage.PersonFirstName @damage.PersonSecondName</h6>
+                    </div>
+                    <div class="card-footer">
+                        <form class="text-center" method="post" asp-controller="Damages" asp-action="DeleteDamage" asp-route-id="@damage.Id">
+                            <button asp-action="Details" asp-controller="Damages" asp-route-id="@damage.Id" class="btn btn-warning">EDIT</button>
+                            <button type="submit" class="btn btn-danger m-sm-auto">DELETE</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
+else
+{
+    <div class="text-center">
+        <h2>You don't have registered damages !!!</h2>
+    </div>
+}

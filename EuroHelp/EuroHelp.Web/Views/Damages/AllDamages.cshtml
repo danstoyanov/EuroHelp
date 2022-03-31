@@ -5,91 +5,124 @@
     ViewData["Title"] = "List of Damages";
 }
 
-<h2 style="margin: 2%; text-align: center;">📋 List with all registered damages</h2>
+<h2 style="margin: 2%; text-align: center;">📋 List With All Registered Damages</h2>
 <hr class="bg-primary w-100">
 
-<section class="py-5">
-    <table class="table" id="DamagesDataTable">
-        @foreach (var damage in Model.Damages)
-        {
-            <tbody>
-                <tr>
-                    <td>
-                        <div class="col-20">
-                            <label for="opionNumber" class="form-label">Damage type: </label>
-                            <input class="form-control" type="text" placeholder="@damage.DamageType" aria-label="Disabled input example" disabled>
-                            <label for="opionNumber" class="form-label">Insurance company: </label>
-                            <input class="form-control" type="text" placeholder="@damage.CompanyName" aria-label="Disabled input example" disabled>
-                            <label for="opionNumber" class="form-label">Event place: </label>
-                            <input class="form-control" type="text" placeholder="@damage.EventPlace" aria-label="Disabled input example" disabled>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="col-20">
-                            <label for="opionNumber" class="form-label">Event date: </label>
-                            <input class="form-control" type="text" placeholder="@damage.EventDate" aria-label="Disabled input example" disabled>
-                            <label for="opionNumber" class="form-label">Register date: </label>
-                            <input class="form-control" type="text" placeholder="@damage.RegisterDate" aria-label="Disabled input example" disabled>
-                            <label for="opionNumber" class="form-label">Identity number: </label>
-                            <input class="form-control" type="text" placeholder="@damage.IdentityNumber" aria-label="Disabled input example" disabled>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="col-20">
-                            <label for="opionNumber" class="form-label">Identity number: </label>
-                            <input class="form-control" type="text" placeholder="@damage.IdentityNumber" aria-label="Disabled input example" disabled>
-                            <label for="opionNumber" class="form-label">Person first name: </label>
-                            <input class="form-control" type="text" placeholder="@damage.PersonFirstName" aria-label="Disabled input example" disabled>
-                            <label for="opionNumber" class="form-label">Person second name: </label>
-                            <input class="form-control" type="text" placeholder="@damage.PersonSecondName" aria-label="Disabled input example" disabled>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="col-20">
-                            <label for="opionNumber" class="form-label">Damage ID:</label>
-                            <input class="form-control" type="text" placeholder="@damage.Id.Substring(0,8)" aria-label="Disabled input example" disabled>
-                            <label for="opionNumber" class="form-label">Insurance company ID:</label>
-                            <input class="form-control" type="text" placeholder="@damage.InsuranceCompanyId.Substring(0,8)" aria-label="Disabled input example" disabled>
-                            <form method="post" asp-controller="Damages" asp-action="DeleteDamage" asp-route-id="@damage.Id">
-                                <div class="m-sm-4">
-                                    <a asp-action="Details" asp-controller="Damages" asp-route-id="@damage.Id" class="btn btn-primary">Details</a>
-                                    @if (CurrUser.IsEmployee(User))
-                                    {
-                                        <button type="submit" class="btn btn-danger m-sm-auto">Delete</button>
-                                    }
-                                </div>
-                            </form>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                </tr>
-            </tbody>
-        }
-    </table>
-</section>
+<form method="get">
+    <div class="row">
+        <div class="form-group col-md-4">
+            <div class="form-group">
+                <label><b>Damage Type:</b></label>
+                <select class="form-control">
+                    <option value="">All</option>
+                    @foreach (var type in Model.DamageTypes)
+                    {
+                        <option value="@type">@type</option>
+                    }
+                </select>
+            </div>
+        </div>
 
+        <div class="form-group col-md-4">
+            <label asp-for="SearchTerm"><b>Search Tearm:</b></label>
+            <input asp-for="SearchTerm" class="form-control" placeholder="Business damage, etc...">
+        </div>
 
-@section Scripts
-{
-    <script>
-    $(document).ready(function () {
-            $('#DamagesDataTable').DataTable();
-        });
-    </script>
+        <div class="form-group col-md-4">
+            <div class="form-group">
+                <label asp-for="Sorting"><b>Sorting Tearm:</b></label>
+                <select asp-for="Sorting" class="form-control">
+                    <option value="0" selected>Event Date</option>
+                    <option value="1">Event Type</option>
+                    <option value="2">Insurance Company</option>
+                </select>
+            </div>
+        </div>
+    </div>
+</form>
+
+@{
+    var previousPage = Model.CurrentPage - 1;
+    if (previousPage < 1)
+    {
+        previousPage = 1;
+    }
+
+    var maxPage = Math.Ceiling((double)Model.TotalDamages / AllDamagesQueryModel.DamagesPerPage);
 }
 
+<div class="row mb-5">
+    <div class="col-md-6">
+        <a class="btn btn-primary @(Model.CurrentPage == 1 ? "disabled" : string.Empty)" style="margin-top: 10px"
+           asp-controller="Damages"
+           asp-action="AllDamages"
+           asp-route-currentPage="@previousPage"
+           asp-route-brand="@Model.DamageType"
+           asp-route-searchTerm="@Model.SearchTerm"
+           asp-route-sorting="@((int)Model.Sorting)"><<</a>
+    </div>
 
-@*<nav aria-label="Page navigation example">
-        <ul class="pagination justify-content-center">
-            <li class="page-item disabled">
-                <a class="page-link" href="#" tabindex="-1">Previous</a>
-            </li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item">
-                <a class="page-link" href="#">Next</a>
-            </li>
-        </ul>
-    </nav>*@
+    @{
+        var shouldButtonBeDisabled = Model.CurrentPage == maxPage ||
+                                     !Model.Damages.Any();
+    }
+
+    <div class="col-md-6">
+        <a class="btn btn-primary float-end @(shouldButtonBeDisabled ? "disabled" : string.Empty)" style="margin-top: 10px"
+           asp-controller="Damages"
+           asp-action="AllDamages"
+           asp-route-currentPage="@(Model.CurrentPage + 1)"
+           asp-route-brand="@Model.DamageType"
+           asp-route-searchTerm="@Model.SearchTerm"
+           asp-route-sorting="@((int)Model.Sorting)">>></a>
+    </div>
+</div>
+
+<div class="row">
+    @foreach (var damage in Model.Damages)
+    {
+        <div class="col-md-4">
+            <div class="card mb-3">
+                <div class="card-header text-center">
+                    <h2>@damage.DamageType</h2>
+                    @switch (damage.DamageType)
+                    {
+                        case "Car damage":
+                            <img class="card-img-top-eurohelp" src="~/images/insurance/car.png" />
+                            break;
+                        case "Home damage":
+                            <img class="card-img-top-eurohelp" src="~/images/insurance/home.png" />
+                            break;
+                        case "Pet damage":
+                            <img class="card-img-top-eurohelp" src="~/images/insurance/pet.png" />
+                            break;
+                        case "Travel damage":
+                            <img class="card-img-top-eurohelp" src="~/images/insurance/travel.png" />
+                            break;
+                        case "Medical damage":
+                            <img class="card-img-top-eurohelp" src="~/images/insurance/medicine.png" />
+                            break;
+                        case "Business damage":
+                            <img class="card-img-top-eurohelp" src="~/images/insurance/business.png" />
+                            break;
+                        default:
+                            <img class="card-img-top-eurohelp" src="~/images/insurance/bad.png" />
+                            break;
+                    }
+                </div>
+                <div class="card-body">
+                    <h6><b>ID: </b>@damage.Id.Substring(0, 5)</h6>
+                    <h6><b>Damage type: </b>@damage.DamageType</h6>
+                    <h6><b>Event place: </b>@damage.EventPlace</h6>
+                    <h6><b>Insurance company: </b>@damage.CompanyName</h6>
+                    <h6><b>Owner: </b>@damage.PersonFirstName @damage.PersonSecondName</h6>
+                </div>
+                <div class="card-footer text-center">
+                    <button class="btn btn-info">INFO</button>
+                    <button class="btn btn-warning">EDIT</button>
+                    <button class="btn btn-danger">DELETE</button>
+                </div>
+            </div>
+        </div>
+    }
+</div>

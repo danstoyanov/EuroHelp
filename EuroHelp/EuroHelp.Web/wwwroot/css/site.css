@@ -60,6 +60,16 @@ body {
     background-size: cover;
 }
 
+.card-img-top-eurohelp {
+    position: relative;
+    float: initial;
+    width: 160px;
+    height: 160px;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
 h2 {
     color: #0070FC;
     text-shadow: 1px 1px 1px;
