@@ -5,6 +5,14 @@
     {
       "library": "twitter-bootstrap@5.1.3",
       "destination": "wwwroot/lib/twitter-bootstrap/"
+    },
+    {
+      "library": "datatables@1.10.21",
+      "destination": "wwwroot/lib/datatables",
+      "files": [
+        "css/jquery.dataTables.min.css",
+        "js/jquery.dataTables.min.js"
+      ]
     }
   ]
 }
