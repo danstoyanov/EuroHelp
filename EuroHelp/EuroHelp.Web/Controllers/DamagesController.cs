@@ -84,19 +84,23 @@ namespace EuroHelp.Web.Controllers
         [Authorize]
         public IActionResult AllDamages([FromQuery] AllDamagesQueryModel query)
         {
-            if (!this.users.IsEmployee(this.User))
+            if (!this.users.IsEmployee(User))
             {
                 return RedirectToAction("AccessDenied", "Home");
             }
 
-            var damages = this.damages.All();
+            var queryResult = this.damages.All(
+                query.DamageType,
+                query.SearchTerm,
+                query.Sorting,
+                query.CurrentPage,
+                AllDamagesQueryModel.DamagesPerPage);
 
-            if (damages == null)
-            {
-                return BadRequest();
-            }
+            var damageTypes = this.damages.AllDamageTypes();
 
-            query.Damages = damages;
+            query.DamageTypes = damageTypes;
+            query.TotalDamages = queryResult.TotalDamages;
+            query.Damages = queryResult.Damages;
 
             return View(query);
         }
@@ -143,11 +147,6 @@ namespace EuroHelp.Web.Controllers
         [Authorize]
         public IActionResult Details(string id)
         {
-            if (!this.users.IsEmployee(this.User))
-            {
-                return RedirectToAction("AccessDenied", "Home");
-            }
-
             if (!this.damages.IsValid(id))
             {
                 return BadRequest();
@@ -175,11 +174,6 @@ namespace EuroHelp.Web.Controllers
         [Authorize]
         public IActionResult Details(EditDamageViewModel model)
         {
-            if (!this.users.IsEmployee(this.User))
-            {
-                return RedirectToAction("AccessDenied", "Home");
-            }
-
             if (!this.damages.IsValid(model.Id))
             {
                 return BadRequest();
@@ -197,23 +191,27 @@ namespace EuroHelp.Web.Controllers
         }
 
         [Authorize]
-        public IActionResult DamageSearch([FromQuery] AllDamagesQueryModel query)
+        public IActionResult Info(string id)
         {
-            if (!this.users.IsEmployee(this.User))
+            // validation
+            // and checking this item !
+            var currDamage = this.damages.GetDamage(id);
+
+            var result = new DamageServiceListingModel
             {
-                return RedirectToAction("AccessDenied", "Home");
-            }
+                DamageType = currDamage.DamageType,
+                CompanyName = currDamage.CompanyName,
+                EventPlace = currDamage.EventPlace,
+                EventDate = currDamage.EventDate.ToString(),
+                RegisterDate = currDamage.RegistrationDate.ToString(),
+                IdentityNumber = currDamage.IdentityNumber,
+                PersonFirstName = currDamage.PersonFirstName,
+                PersonSecondName = currDamage.PersonSecondName,
+                InsuranceCompanyId = currDamage.CompanyId,
+                Id = currDamage.Id
+            };
 
-            var damages = this.damages.Search(query.SearchId, query.SearchCompanyName);
-
-            if (damages == null)
-            {
-                return BadRequest();
-            }
-
-            query.Damages = damages;
-
-            return View(query);
+            return View(result);
         }
     }
 }

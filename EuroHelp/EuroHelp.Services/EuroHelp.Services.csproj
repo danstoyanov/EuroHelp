@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\EuroHelp.Data\EuroHelp.Data.csproj" />
+    <ProjectReference Include="..\EuroHelp.Global\EuroHelp.Global.csproj" />
   </ItemGroup>
 
 </Project>

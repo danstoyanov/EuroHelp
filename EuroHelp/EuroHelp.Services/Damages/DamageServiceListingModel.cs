@@ -22,6 +22,8 @@
 
         public string EventPlace { get; set; }
 
+        public string DamageImage { get; set; }
+
         public string Comment { get; set; }
     }
 }

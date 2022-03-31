@@ -117,11 +117,13 @@
                     <h6><b>Insurance company: </b>@damage.CompanyName</h6>
                     <h6><b>Owner: </b>@damage.PersonFirstName @damage.PersonSecondName</h6>
                 </div>
-                <div class="card-footer text-center">
-                    <button class="btn btn-info">INFO</button>
-                    <button class="btn btn-warning">EDIT</button>
-                    <button class="btn btn-danger">DELETE</button>
-                </div>
+                <form method="post" asp-controller="Damages" asp-action="DeleteDamage" asp-route-id="@damage.Id">
+                    <div class="card-footer text-center">
+                        <a asp-action="Info" asp-controller="Damages" asp-route-id="@damage.Id" class="btn btn-info">INFO</a>
+                        <a asp-action="Details" asp-controller="Damages" asp-route-id="@damage.Id" class="btn btn-warning">EDIT</a>
+                        <button asp-action="DeleteDamage" asp-controller="Damages" asp-route-id="@damage.Id" class="btn btn-danger">DELETE</button>
+                    </div>
+                </form>
             </div>
         </div>
     }

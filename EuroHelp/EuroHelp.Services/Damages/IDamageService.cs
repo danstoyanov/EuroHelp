@@ -4,16 +4,24 @@ namespace EuroHelp.Services.Damages
 {
     public interface IDamageService
     {
-        public void Edit(string id, string damageType, string eventDate,
-            string personFirstName, string personSecondName, int? identityNumber);
+        public void Edit(
+            string id, 
+            string damageType, 
+            string eventDate,
+            string personFirstName, 
+            string personSecondName, 
+            int? identityNumber);
 
         public Damage GetDamage(string id);
 
-        public List<DamageServiceListingModel> All();
+        public DamageQueryServiceModel All(
+            string damageType, 
+            string searchTerm, 
+            DamageSorting sorting, 
+            int currentPage,
+            int damagesPerPage);
 
         public List<DamageServiceListingModel> DamagesByConsumer(string id);
-
-        public List<DamageServiceListingModel> Search(string id, string companyName);
 
         public string Create(
             string damageType,
@@ -30,5 +38,7 @@ namespace EuroHelp.Services.Damages
         public void Delete(string id);
 
         public bool IsValid(string id);
+
+        public IEnumerable<string> AllDamageTypes();
     }
 }

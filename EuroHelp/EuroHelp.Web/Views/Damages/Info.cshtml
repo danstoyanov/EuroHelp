@@ -1,0 +1,67 @@
+﻿@model DamageServiceListingModel
+@inject IUserService CurrUser
+
+@{
+    ViewData["Title"] = "Damage Info ";
+}
+
+<h2 style="margin: 2%; text-align: center;">ℹ Damage Info</h2>
+<hr class="bg-primary w-100">
+
+<section class="py-5">
+    <table class="table" id="DamagesDataTable">
+            <tbody>
+                <tr>
+                    <td>
+                        <div class="col-20">
+                            <label for="opionNumber" class="form-label">Damage type: </label>
+                            <input class="form-control" type="text" placeholder="@Model.DamageType" aria-label="Disabled input example" disabled>
+                            <label for="opionNumber" class="form-label">Insurance company: </label>
+                            <input class="form-control" type="text" placeholder="@Model.CompanyName" aria-label="Disabled input example" disabled>
+                            <label for="opionNumber" class="form-label">Event place: </label>
+                            <input class="form-control" type="text" placeholder="@Model.EventPlace" aria-label="Disabled input example" disabled>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="col-20">
+                            <label for="opionNumber" class="form-label">Event date: </label>
+                            <input class="form-control" type="text" placeholder="@Model.EventDate" aria-label="Disabled input example" disabled>
+                            <label for="opionNumber" class="form-label">Register date: </label>
+                            <input class="form-control" type="text" placeholder="@Model.RegisterDate" aria-label="Disabled input example" disabled>
+                            <label for="opionNumber" class="form-label">Identity number: </label>
+                            <input class="form-control" type="text" placeholder="@Model.IdentityNumber" aria-label="Disabled input example" disabled>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="col-20">
+                            <label for="opionNumber" class="form-label">Identity number: </label>
+                            <input class="form-control" type="text" placeholder="@Model.IdentityNumber" aria-label="Disabled input example" disabled>
+                            <label for="opionNumber" class="form-label">Person first name: </label>
+                            <input class="form-control" type="text" placeholder="@Model.PersonFirstName" aria-label="Disabled input example" disabled>
+                            <label for="opionNumber" class="form-label">Person second name: </label>
+                            <input class="form-control" type="text" placeholder="@Model.PersonSecondName" aria-label="Disabled input example" disabled>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="col-20">
+                            <label for="opionNumber" class="form-label">Damage ID:</label>
+                            <input class="form-control" type="text" placeholder="@Model.Id.Substring(0,8)" aria-label="Disabled input example" disabled>
+                            <label for="opionNumber" class="form-label">Insurance company ID:</label>
+                            <input class="form-control" type="text" placeholder="@Model.InsuranceCompanyId.Substring(0,8)" aria-label="Disabled input example" disabled>
+                            <form method="post" asp-controller="Damages" asp-action="DeleteDamage" asp-route-id="@Model.Id">
+                                <div class="m-sm-4">
+                                    <a asp-action="Details" asp-controller="Damages" asp-route-id="@Model.Id" class="btn btn-warning">EDIT</a>
+                                    @if (CurrUser.IsEmployee(User))
+                                    {
+                                        <button type="submit" class="btn btn-danger m-sm-auto">DELETE</button>
+                                    }
+                                </div>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                </tr>
+            </tbody>
+    </table>
+</section>

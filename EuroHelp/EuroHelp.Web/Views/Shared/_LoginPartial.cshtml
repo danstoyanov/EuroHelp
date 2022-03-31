@@ -10,21 +10,21 @@
         if (CurrUser.IsEmployee(User))
         {
             <li class="nav-item">
-                <a class="nav-link" asp-area="Identity" asp-page="" title="Employee manager">Employee manager</a>
+                <a class="nav-link" asp-controller="Home" asp-action="Index" title="You are Employer !">Hello Employer !</a>
             </li>
         }
 
         if (CurrUser.IsConsumer(User))
         {
             <li class="nav-item">
-                <a class="nav-link" asp-area="Identity" asp-page="" title="Consumer manager">Consumer manager</a>
+                <a class="nav-link" asp-controller="Home" asp-action="Index" title="You are Consumer !">Hello Consumer !</a>
             </li>
         }
 
         if (User.IsAdmin())
         {
             <li class="nav-item">
-                <a class="nav-link" asp-area="Admin" asp-controller="Admin" asp-action="AdminManager" title="Admin manager">Admin manager</a>
+                <a class="nav-link" asp-area="Admin" asp-controller="Admin" asp-action="AdminManager" title="Admin manager">Admin Manager</a>
             </li>
         }
 

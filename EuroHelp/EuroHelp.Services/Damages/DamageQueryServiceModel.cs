@@ -2,8 +2,13 @@
 {
     public class DamageQueryServiceModel
     {
-        public string Id { get; set; }
+        public int CurrentPage { get; init; }
 
-        public string Name { get; set; }
+        public int CarsPerPage { get; init; }
+
+        public int TotalDamages { get; init; }
+
+        public IEnumerable<DamageServiceListingModel> Damages { get; init; }
+
     }
 }
