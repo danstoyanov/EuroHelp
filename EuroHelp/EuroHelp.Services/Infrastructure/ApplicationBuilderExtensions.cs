@@ -17,6 +17,10 @@ namespace EuroHelp.Services.Infrastructure
             MigrateDatabase(services);
 
             SeedAdministrator(services);
+            // SeedInsuranceCompanies
+            // SeedEmployee
+            // SeedDamages
+            // SeedConsumer
 
             return app;
         }

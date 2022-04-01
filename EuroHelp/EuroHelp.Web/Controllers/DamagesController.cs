@@ -109,10 +109,10 @@ namespace EuroHelp.Web.Controllers
         [Authorize]
         public IActionResult DeleteDamage(string id)
         {
-            //if (!this.users.IsEmployee(this.User))
-            //{
-            //    return RedirectToAction("AccessDenied", "Home");
-            //}
+            if (!this.users.IsEmployee(this.User) && !this.User.IsInRole("Administrator"))
+            {
+                return RedirectToAction("AccessDenied", "Home");
+            }
 
             if (!this.damages.IsValid(id))
             {
@@ -121,12 +121,12 @@ namespace EuroHelp.Web.Controllers
 
             this.damages.Delete(id);
 
-            if (this.users.IsEmployee(this.User))
+            if (this.User.IsInRole("Administrator"))
             {
-                return RedirectToAction("AllDamages", "Damages");
+                return RedirectToAction("Damages", "Manage", new { area = "Admin" });
             }
 
-            return RedirectToAction("Mine", "Damages");
+            return RedirectToAction("AllDamages", "Damages");
         }
 
         [Authorize]
@@ -174,6 +174,11 @@ namespace EuroHelp.Web.Controllers
         [Authorize]
         public IActionResult Details(EditDamageViewModel model)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
             if (!this.damages.IsValid(model.Id))
             {
                 return BadRequest();
@@ -208,6 +213,7 @@ namespace EuroHelp.Web.Controllers
                 PersonFirstName = currDamage.PersonFirstName,
                 PersonSecondName = currDamage.PersonSecondName,
                 InsuranceCompanyId = currDamage.CompanyId,
+                IsApproved = currDamage.IsApproved,
                 Id = currDamage.Id
             };
 

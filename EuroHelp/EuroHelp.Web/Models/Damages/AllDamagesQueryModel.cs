@@ -17,6 +17,8 @@ namespace EuroHelp.Web.Models.Damages
 
         public DamageSorting Sorting { get; init; }
 
+        public string IsApproved { get; set; }
+
         public int TotalDamages { get; set; }
 
         public IEnumerable<string> DamageTypes { get; set; }
