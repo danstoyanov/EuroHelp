@@ -9,11 +9,6 @@ namespace EuroHelp.Web.Areas.Admin.Controllers
     [Authorize(Roles = AdministratorRoleName)]
     public class AdminController : Controller
     {
-        public IActionResult AdminManager()
-        {
-            // With statistics about 
 
-            return View();
-        }
     }
 }

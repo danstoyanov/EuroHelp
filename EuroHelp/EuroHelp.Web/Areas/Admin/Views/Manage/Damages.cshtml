@@ -1,6 +1,11 @@
-﻿<h2 style="margin: 2%; text-align: center;">Damages manager</h2>
-<hr class="bg-primary w-100">
+﻿@model List<AllDamagesModel>
 
+@{
+    ViewData["Title"] = "All Damages";
+}
+
+<h2 style="margin: 2%; text-align: center;">Damages manager</h2>
+<hr class="bg-primary w-100">
 
 <form method="post" class="row g-3">
     <table id="table_id" class="display">
@@ -10,29 +15,47 @@
                 <th>Damage type</th>
                 <th>Consumer</th>
                 <th>Insurance Company</th>
-                <th>Confirm</th>
+                <th>Event Date</th>
+                <th>Registration Date</th>
+                <th>Approved</th>
                 <th>Select</th>
             </tr>
         </thead>
         <tbody>
-            @for (int i = 0; i < 123; i++)
+            @foreach (var damage in Model)
             {
                 <tr>
-                    <td>@i</td>
-                    <td>Broken Arm</td>
-                    <td>Otto</td>
-                    <td>Protect Auto Corp.</td>
-                    <td><b>NO</b></td>
+                    <td>@damage.Id.Substring(0, 8)</td>
+                    <td>@damage.DamageType</td>
+                    <td>@damage.PersonFirstName</td>
+                    <td>@damage.CompanyName</td>
+                    <td>@damage.EventDate</td>
+                    <td>@damage.RegisterDate</td>
+                    <td><b>@damage.IsApproved</b></td>
                     <td>
-                        <button class="btn btn-success">APPROVE</button>
-                        <button class="btn btn-warning">EDIT</button>
-                        <button class="btn btn-info">INFO</button>
-                        <button class="btn btn-danger">DELETE</button>
+                        @if (damage.IsApproved == "NO")
+                        {
+                            <button asp-area="Admin"
+                                    asp-action="ChangeDamageStatus"
+                                    asp-controller="Manage"
+                                    asp-route-id="@damage.Id"
+                                    class="btn btn-success">
+                                APPROVE
+                            </button>
+                        }
+                        else
+                        {
+                            <button class="btn btn-success disabled">APPROVE</button>
+                        }
+                        <button asp-area="Home" asp-action="Info" asp-controller="Damages" asp-route-id="@damage.Id" class="btn btn-info">INFO</button>
+                        <button asp-area="Home" asp-action="DeleteDamage" asp-controller="Damages" asp-route-id="@damage.Id" class="btn btn-danger">DELETE</button>
                     </td>
                 </tr>
+
             }
         </tbody>
     </table>
+
 </form>
 
 @section Scripts
@@ -43,3 +66,4 @@
         });
     </script>
 }
+

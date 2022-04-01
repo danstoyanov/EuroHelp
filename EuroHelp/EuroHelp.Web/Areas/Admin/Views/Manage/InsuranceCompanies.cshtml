@@ -1,4 +1,6 @@
-﻿<h2 style="margin: 2%; text-align: center;">Insurance companies manager</h2>
+﻿@model List<AllInsuranceCompaniesViewModel>
+
+<h2 style="margin: 2%; text-align: center;">Insurance companies manager</h2>
 <hr class="bg-primary w-100">
 
 <form method="post" class="row g-3">
@@ -6,57 +8,34 @@
         <thead class="thead-dark">
             <tr>
                 <th>ID</th>
-                <th>Damage type</th>
-                <th>Consumer</th>
-                <th>Insurance Company</th>
-                <th>Confirm</th>
+                <th>Company Name</th>
+                <th>Bulstat</th>
+                <th>FAX</th>
+                <th>Address</th>
+                <th>Phone Number</th>
+                <th>Email</th>
+                <th>Status</th>
                 <th>Select</th>
             </tr>
         </thead>
         <tbody>
-
+            @foreach (var company in Model)
+            {
             <tr>
-                <td>1311</td>
-                <td>Broken Arm</td>
-                <td>Otto</td>
-                <td>Protect Auto Corp.</td>
-                <td><b>NO</b></td>
+                <td>@company.Id.Substring(0, 8)</td>
+                <td>@company.Name</td>
+                <td>@company.Bulstat</td>
+                <td>@company.FAX</td>
+                <td>@company.Address</td>
+                <td>@company.PhoneNumber</td>
+                <td>@company.Email</td>
+                <td><b>Non active</b></td>
                 <td>
-                    <button class="btn btn-success">APPROVE</button>
-                    <button class="btn btn-warning">EDIT</button>
+                    <button class="btn btn-success">CHANGE</button>
                     <button class="btn btn-info">INFO</button>
-                    <button class="btn btn-danger">DELETE</button>
                 </td>
             </tr>
-
-            <tr>
-                <td>1301</td>
-                <td>Broken Arm</td>
-                <td>Otto</td>
-                <td>mdo</td>
-                <td><b>NO</b></td>
-                <td>
-                    <button class="btn btn-success">APPROVE</button>
-                    <button class="btn btn-warning">EDIT</button>
-                    <button class="btn btn-info">INFO</button>
-                    <button class="btn btn-danger">DELETE</button>
-                </td>
-            </tr>
-
-            <tr>
-                <td>1411</td>
-                <td>Broken Arm</td>
-                <td>Otto</td>
-                <td>mdo</td>
-                <td><b>NO</b></td>
-                <td>
-                    <button class="btn btn-success disabled">APPROVE</button>
-                    <button class="btn btn-warning">EDIT</button>
-                    <button class="btn btn-info">INFO</button>
-                    <button class="btn btn-danger">DELETE</button>
-                </td>
-            </tr>
-
+            }
         </tbody>
     </table>
 </form>

@@ -1,0 +1,87 @@
+﻿@model AdminStatisticsViewModel
+
+<h2 style="margin: 2%; text-align: center;">🤵 Admin Manager</h2>
+<hr class="bg-primary w-100">
+
+<form class="row" method="post">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+                <div class="card-header text-center">
+                    <h5>TOTAL DAMAGES</h5>
+                </div>
+                <div class="card-body text-center">
+                    <h1>@Model.TotalDamages</h1>
+                </div>
+                <div class="card-footer text-center">
+                    <a asp-action="Damages" asp-controller="Manage" class="btn btn-outline-light">INFO</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+                <div class="card-header text-center">
+                    <h5>TOTAL USERS</h5>
+                </div>
+                <div class="card-body text-center">
+                    <h1>@Model.TotalUsers</h1>
+                </div>
+                <div class="card-footer text-center">
+                    <a asp-action="Employees" asp-controller="Manage" class="btn btn-outline-light">INFO</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+                <div class="card-header text-center">
+                    <h5>TOTAL CONSUMERS</h5>
+                </div>
+                <div class="card-body text-center">
+                    <h1>@Model.TotalConsumers</h1>
+                </div>
+                <div class="card-footer text-center">
+                    <a asp-action="Consumers" asp-controller="Manage" class="btn btn-outline-light">INFO</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+                <div class="card-header text-center">
+                    <h5>TOTAL EMPLOYEES</h5>
+                </div>
+                <div class="card-body text-center">
+                    <h1>@Model.TotalEmployees</h1>
+                </div>
+                <div class="card-footer text-center">
+                    <a asp-action="Employees" asp-controller="Manage" class="btn btn-outline-light">INFO</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+                <div class="card-header text-center">
+                    <h5>TOTAL CONPANIES</h5>
+                </div>
+                <div class="card-body text-center">
+                    <h1>@Model.TotalCompanies</h1>
+                </div>
+                <div class="card-footer text-center">
+                    <a asp-action="InsuranceCompanies" asp-controller="Manage" class="btn btn-outline-light">INFO</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+                <div class="card-header text-center">
+                    <h5>TOTAL REFERENCES</h5>
+                </div>
+                <div class="card-body text-center">
+                    <h1>0</h1>
+                </div>
+                <div class="card-footer text-center">
+                    <a asp-action="GenerateReference" asp-controller="Manage" class="btn btn-outline-light">INFO</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

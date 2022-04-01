@@ -1,4 +1,6 @@
-﻿<h2 style="margin: 2%; text-align: center;">Employee manager</h2>
+﻿@model List<AllEmployeesViewModel>
+
+<h2 style="margin: 2%; text-align: center;">Employee manager</h2>
 <hr class="bg-primary w-100">
 
 <form method="post" class="row g-3">
@@ -6,57 +8,27 @@
         <thead class="thead-dark">
             <tr>
                 <th>ID</th>
-                <th>Damage type</th>
-                <th>Consumer</th>
-                <th>Insurance Company</th>
-                <th>Confirm</th>
+                <th>Employee Name</th>
+                <th>Phone Number</th>
+                <th>Status</th>
                 <th>Select</th>
             </tr>
         </thead>
         <tbody>
-
-            <tr>
-                <td>1311</td>
-                <td>Broken Arm</td>
-                <td>Otto</td>
-                <td>Protect Auto Corp.</td>
-                <td><b>NO</b></td>
-                <td>
-                    <button class="btn btn-success">APPROVE</button>
-                    <button class="btn btn-warning">EDIT</button>
-                    <button class="btn btn-info">INFO</button>
-                    <button class="btn btn-danger">DELETE</button>
-                </td>
-            </tr>
-
-            <tr>
-                <td>1301</td>
-                <td>Broken Arm</td>
-                <td>Otto</td>
-                <td>mdo</td>
-                <td><b>NO</b></td>
-                <td>
-                    <button class="btn btn-success">APPROVE</button>
-                    <button class="btn btn-warning">EDIT</button>
-                    <button class="btn btn-info">INFO</button>
-                    <button class="btn btn-danger">DELETE</button>
-                </td>
-            </tr>
-
-            <tr>
-                <td>1411</td>
-                <td>Broken Arm</td>
-                <td>Otto</td>
-                <td>mdo</td>
-                <td><b>NO</b></td>
-                <td>
-                    <button class="btn btn-success disabled">APPROVE</button>
-                    <button class="btn btn-warning">EDIT</button>
-                    <button class="btn btn-info">INFO</button>
-                    <button class="btn btn-danger">DELETE</button>
-                </td>
-            </tr>
-
+            @foreach (var employee in Model)
+            {
+                <tr>
+                    <td>@employee.Id</td>
+                    <td>@employee.Name</td>
+                    <td>@employee.PhoneNumber</td>
+                    <td><b>NO</b></td>
+                    <td>
+                        <button class="btn btn-success">CHANGE</button>
+                        <button class="btn btn-warning">EDIT</button>
+                        <button class="btn btn-info">INFO</button>
+                    </td>
+                </tr>
+            }
         </tbody>
     </table>
 </form>
