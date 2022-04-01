@@ -81,50 +81,53 @@
 <div class="row">
     @foreach (var damage in Model.Damages)
     {
-        <div class="col-md-4">
-            <div class="card mb-3">
-                <div class="card-header text-center">
-                    <h2>@damage.DamageType</h2>
-                    @switch (damage.DamageType)
-                    {
-                        case "Car damage":
-                            <img class="card-img-top-eurohelp" src="~/images/insurance/car.png" />
-                            break;
-                        case "Home damage":
-                            <img class="card-img-top-eurohelp" src="~/images/insurance/home.png" />
-                            break;
-                        case "Pet damage":
-                            <img class="card-img-top-eurohelp" src="~/images/insurance/pet.png" />
-                            break;
-                        case "Travel damage":
-                            <img class="card-img-top-eurohelp" src="~/images/insurance/travel.png" />
-                            break;
-                        case "Medical damage":
-                            <img class="card-img-top-eurohelp" src="~/images/insurance/medicine.png" />
-                            break;
-                        case "Business damage":
-                            <img class="card-img-top-eurohelp" src="~/images/insurance/business.png" />
-                            break;
-                        default:
-                            <img class="card-img-top-eurohelp" src="~/images/insurance/bad.png" />
-                            break;
-                    }
-                </div>
-                <div class="card-body">
-                    <h6><b>ID: </b>@damage.Id.Substring(0, 5)</h6>
-                    <h6><b>Damage type: </b>@damage.DamageType</h6>
-                    <h6><b>Event place: </b>@damage.EventPlace</h6>
-                    <h6><b>Insurance company: </b>@damage.CompanyName</h6>
-                    <h6><b>Owner: </b>@damage.PersonFirstName @damage.PersonSecondName</h6>
-                </div>
-                <form method="post" asp-controller="Damages" asp-action="DeleteDamage" asp-route-id="@damage.Id">
-                    <div class="card-footer text-center">
-                        <a asp-action="Info" asp-controller="Damages" asp-route-id="@damage.Id" class="btn btn-info">INFO</a>
-                        <a asp-action="Details" asp-controller="Damages" asp-route-id="@damage.Id" class="btn btn-warning">EDIT</a>
-                        <button asp-action="DeleteDamage" asp-controller="Damages" asp-route-id="@damage.Id" class="btn btn-danger">DELETE</button>
+        @if (damage.IsApproved != "NO")
+        {
+            <div class="col-md-4">
+                <div class="card mb-3">
+                    <div class="card-header text-center">
+                        <h2>@damage.DamageType</h2>
+                        @switch (damage.DamageType)
+                        {
+                            case "Car damage":
+                                <img class="card-img-top-eurohelp" src="~/images/insurance/car.png" />
+                                break;
+                            case "Home damage":
+                                <img class="card-img-top-eurohelp" src="~/images/insurance/home.png" />
+                                break;
+                            case "Pet damage":
+                                <img class="card-img-top-eurohelp" src="~/images/insurance/pet.png" />
+                                break;
+                            case "Travel damage":
+                                <img class="card-img-top-eurohelp" src="~/images/insurance/travel.png" />
+                                break;
+                            case "Medical damage":
+                                <img class="card-img-top-eurohelp" src="~/images/insurance/medicine.png" />
+                                break;
+                            case "Business damage":
+                                <img class="card-img-top-eurohelp" src="~/images/insurance/business.png" />
+                                break;
+                            default:
+                                <img class="card-img-top-eurohelp" src="~/images/insurance/bad.png" />
+                                break;
+                        }
                     </div>
-                </form>
+                    <div class="card-body">
+                        <h6><b>ID: </b>@damage.Id.Substring(0, 5)</h6>
+                        <h6><b>Damage type: </b>@damage.DamageType</h6>
+                        <h6><b>Event place: </b>@damage.EventPlace</h6>
+                        <h6><b>Insurance company: </b>@damage.CompanyName</h6>
+                        <h6><b>Owner: </b>@damage.PersonFirstName @damage.PersonSecondName</h6>
+                    </div>
+                    <form method="post" asp-controller="Damages" asp-action="DeleteDamage" asp-route-id="@damage.Id">
+                        <div class="card-footer text-center">
+                            <a asp-action="Info" asp-controller="Damages" asp-route-id="@damage.Id" class="btn btn-info">INFO</a>
+                            <a asp-action="Details" asp-controller="Damages" asp-route-id="@damage.Id" class="btn btn-warning">EDIT</a>
+                            <button asp-action="DeleteDamage" asp-controller="Damages" asp-route-id="@damage.Id" class="btn btn-danger">DELETE</button>
+                        </div>
+                    </form>
+                </div>
             </div>
-        </div>
+        }
     }
 </div>
