@@ -19,6 +19,21 @@ namespace EuroHelp.Services.Damages
             return damage;
         }
 
+        public List<DamageServiceListingModel> GetAll()
+                =>  this.data.Damages
+                    .Select(d => new DamageServiceListingModel
+                    {
+                        Id = d.Id,
+                        DamageType = d.DamageType,
+                        PersonFirstName = d.PersonFirstName,
+                        PersonSecondName = d.PersonSecondName,
+                        CompanyName = d.CompanyName,
+                        EventDate = d.EventDate.ToString("MMMM dd, yyyy"),
+                        RegisterDate = d.RegistrationDate.ToString("MMMM dd, yyyy"),
+                        IsApproved = d.IsApproved
+                    })
+                    .ToList();
+
         public List<DamageServiceListingModel> DamagesByConsumer(string id)
             => this.data
             .Damages
@@ -34,18 +49,19 @@ namespace EuroHelp.Services.Damages
                 PersonFirstName = d.PersonFirstName,
                 PersonSecondName = d.PersonSecondName,
                 EventPlace = d.EventPlace,
+                IsApproved = d.IsApproved
             })
             .ToList();
         public string Create(
-            string damageType, 
-            DateTime eventDate, 
-            int identityNumber, 
+            string damageType,
+            DateTime eventDate,
+            int identityNumber,
             string personFirstName,
-            string personSecondName, 
-            string eventPlace, 
-            string comment, 
-            string consumerId, 
-            string companyId, 
+            string personSecondName,
+            string eventPlace,
+            string comment,
+            string consumerId,
+            string companyId,
             string companyName)
         {
             var damageData = new Damage
@@ -95,11 +111,11 @@ namespace EuroHelp.Services.Damages
             return true;
         }
 
-        public void Edit(string id, 
-            string damageType, 
+        public void Edit(string id,
+            string damageType,
             string eventDate,
-            string personFirstName, 
-            string personSecondName, 
+            string personFirstName,
+            string personSecondName,
             int? identityNumber)
         {
             var damage = this.data.Damages
@@ -116,10 +132,10 @@ namespace EuroHelp.Services.Damages
         }
 
         public DamageQueryServiceModel All(
-            string damageType, 
-            string searchTerm, 
-            DamageSorting sorting, 
-            int currentPage, 
+            string damageType,
+            string searchTerm,
+            DamageSorting sorting,
+            int currentPage,
             int damagesPerPage)
         {
             var damagesQuery = this.data.Damages.AsQueryable();
@@ -137,7 +153,7 @@ namespace EuroHelp.Services.Damages
                 .Contains(searchTerm.ToLower()));
             }
 
-            damagesQuery = sorting switch 
+            damagesQuery = sorting switch
             {
                 DamageSorting.EventDate => damagesQuery.OrderByDescending(d => d.EventDate),
                 DamageSorting.RegisterDate => damagesQuery.OrderByDescending(d => d.RegistrationDate),
@@ -155,11 +171,11 @@ namespace EuroHelp.Services.Damages
                 TotalDamages = totalDamages,
                 CurrentPage = currentPage,
                 CarsPerPage = damagesPerPage,
-                Damages = damages 
+                Damages = damages
             };
         }
 
-        private static IEnumerable<DamageServiceListingModel> GetDamages(IQueryable<Damage> damageQuery)
+        public static IEnumerable<DamageServiceListingModel> GetDamages(IQueryable<Damage> damageQuery)
             => damageQuery
                 .Select(d => new DamageServiceListingModel
                 {
@@ -169,6 +185,7 @@ namespace EuroHelp.Services.Damages
                     CompanyName = d.CompanyName,
                     PersonFirstName = d.PersonFirstName,
                     PersonSecondName = d.PersonSecondName,
+                    IsApproved = d.IsApproved
                 })
                 .ToList();
 
@@ -179,5 +196,18 @@ namespace EuroHelp.Services.Damages
                 .Distinct()
                 .OrderBy(d => d)
                 .ToList();
+
+        public string ChangeStatus(string id)
+        {
+            var damage = this.data.Damages
+                .Where(d => d.Id == id)
+                .FirstOrDefault();
+
+            damage.IsApproved = "YES";
+
+            this.data.SaveChanges();
+
+            return damage.IsApproved;
+        }
     }
 }

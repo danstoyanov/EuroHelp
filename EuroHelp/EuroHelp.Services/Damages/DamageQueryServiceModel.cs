@@ -9,6 +9,5 @@
         public int TotalDamages { get; init; }
 
         public IEnumerable<DamageServiceListingModel> Damages { get; init; }
-
     }
 }

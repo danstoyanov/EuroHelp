@@ -1,7 +1,6 @@
 ﻿using EuroHelp.Data;
 using EuroHelp.Data.Models;
 using EuroHelp.Services.Infrastructure;
-
 using System.Security.Claims;
 
 namespace EuroHelp.Services.Users
@@ -90,5 +89,27 @@ namespace EuroHelp.Services.Users
             return this.data.Consumers
                 .Any(c => c.UserName == username);
         }
+
+        public List<EmployeesListServiceModel> GetEmployees()
+           => this.data.Employees
+            .Select(e => new EmployeesListServiceModel
+            {
+                Id = e.Id,
+                Name = e.Name,
+                PhoneNumber = e.PhoneNumber,
+            })
+            .ToList();
+
+        public List<ConsumersListServiceModel> GetConsumers()
+            => this.data.Consumers
+            .Select(c => new ConsumersListServiceModel
+            {
+                Id = c.Id,
+                UserName = c.UserName,
+                FirstName = c.FirstName,
+                LastName = c.LastName,
+                Gender = c.Gender,
+            })
+            .ToList();
     }
 }

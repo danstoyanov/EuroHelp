@@ -12,9 +12,13 @@ namespace EuroHelp.Services.Users
 
         public Employee GetEmployee(ClaimsPrincipal user);
 
-        public bool IsUsernameContains(string username);
-
         public Consumer GetConsumer(ClaimsPrincipal user);
+
+        public List<EmployeesListServiceModel> GetEmployees();
+
+        public List<ConsumersListServiceModel> GetConsumers();
+
+        public bool IsUsernameContains(string username);
 
         public string CreateEmployee(string id, string name, string phoneNumber);
 

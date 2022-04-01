@@ -14,6 +14,10 @@ namespace EuroHelp.Services.Damages
 
         public Damage GetDamage(string id);
 
+        public string ChangeStatus(string id);
+
+        public List<DamageServiceListingModel> GetAll();
+
         public DamageQueryServiceModel All(
             string damageType, 
             string searchTerm, 

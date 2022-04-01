@@ -10,6 +10,20 @@ namespace EuroHelp.Services.InsuranceCompanies
         public CompanyService(EuroHelpDbContext data)
             => this.data = data;
 
+        public List<AllInsuranceCompaniesServiceModel> GetAll()
+            => this.data.InsuranceCompanies
+            .Select(ic => new AllInsuranceCompaniesServiceModel
+            {
+                Id = ic.Id,
+                Name = ic.Name,
+                Bulstat = ic.Bulstat,
+                FAX = ic.FAX,
+                Address = ic.Address,
+                PhoneNumber = ic.PhoneNumber,
+                Email = ic.Email
+            })
+            .ToList();
+
         public string Create(
             string name, 
             int bulstat, 

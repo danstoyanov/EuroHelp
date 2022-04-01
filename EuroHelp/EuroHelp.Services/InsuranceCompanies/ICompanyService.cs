@@ -19,6 +19,8 @@ namespace EuroHelp.Services.InsuranceCompanies
 
         public InsuranceCompany GetCompany(string id);
 
+        public List<AllInsuranceCompaniesServiceModel> GetAll();
+
         public IEnumerable<InsuranceCompaniesServiceModel> GetInsuranceCompanies();
     }
 }
