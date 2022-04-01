@@ -36,6 +36,9 @@ namespace EuroHelp.Data.Models
 
         public string Comment { get; set; }
 
+        [Required]
+        public string IsApproved { get; set; } = "NO";
+
         public string? ConsumerId { get; set; }
 
         [ForeignKey("UserId")]
