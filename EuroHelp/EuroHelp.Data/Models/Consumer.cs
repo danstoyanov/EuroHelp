@@ -28,6 +28,9 @@ namespace EuroHelp.Data.Models
         [Required]
         public string Gender { get; set; }
 
+        [Required]
+        public string Status { get; set; } = "Active";
+
         public List<Damage> Damages { get; set; } = new List<Damage>();
 
         public List<InsuranceCompany> InsuranceCompanies { get; set; } = new List<InsuranceCompany>();

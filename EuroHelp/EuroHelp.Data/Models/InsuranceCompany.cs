@@ -33,6 +33,9 @@ namespace EuroHelp.Data.Models
         [MaxLength(EmailMaxLength)]
         public string? Email { get; set; }
 
+        [Required]
+        public string Status { get; set; } = "Non active";
+
         [Range(FaxMinValue, FaxMaxValue)]
         public int FAX { get; set; }
 

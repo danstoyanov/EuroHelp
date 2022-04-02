@@ -18,6 +18,9 @@ namespace EuroHelp.Data.Models
         [Required]
         public string UserId { get; set; }
 
+        [Required]
+        public string Status { get; set; } = "Non active";
+
         public List<InsuranceCompany> Companies { get; set; } = new List<InsuranceCompany>();
     }
 }
