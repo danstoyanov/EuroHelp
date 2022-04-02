@@ -18,13 +18,31 @@
             @foreach (var employee in Model)
             {
                 <tr>
-                    <td>@employee.Id</td>
+                    <td>@employee.Id.Substring(0, 8)</td>
                     <td>@employee.Name</td>
                     <td>@employee.PhoneNumber</td>
-                    <td><b>NO</b></td>
+                    <td><b>@employee.Status</b></td>
                     <td>
-                        <button class="btn btn-success">CHANGE</button>
-                        <button class="btn btn-warning">EDIT</button>
+                        @if (employee.Status == "Active")
+                        {
+                            <button asp-area="Admin"
+                                    asp-action="ChangeEmployeeStatus"
+                                    asp-controller="Manage"
+                                    asp-route-id="@employee.Id"
+                                    class="btn btn-warning">
+                                CHANGE
+                            </button>
+                        }
+                        @if (employee.Status == "Non active")
+                        {
+                            <button asp-area="Admin"
+                                    asp-action="ChangeEmployeeStatus"
+                                    asp-controller="Manage"
+                                    asp-route-id="@employee.Id"
+                                    class="btn btn-success">
+                                ACTIVATE
+                            </button>
+                        }
                         <button class="btn btn-info">INFO</button>
                     </td>
                 </tr>

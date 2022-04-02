@@ -20,19 +20,20 @@ namespace EuroHelp.Services.InsuranceCompanies
                 FAX = ic.FAX,
                 Address = ic.Address,
                 PhoneNumber = ic.PhoneNumber,
-                Email = ic.Email
+                Email = ic.Email,
+                Status = ic.Status,
             })
             .ToList();
 
         public string Create(
-            string name, 
-            int bulstat, 
-            string address, 
-            string phoneNumber, 
-            string mobilePhoneNumber, 
-            string email, 
-            int fax, 
-            string notes, 
+            string name,
+            int bulstat,
+            string address,
+            string phoneNumber,
+            string mobilePhoneNumber,
+            string email,
+            int fax,
+            string notes,
             string employeeId)
         {
             var comapnyData = new InsuranceCompany
@@ -45,7 +46,7 @@ namespace EuroHelp.Services.InsuranceCompanies
                 Email = email,
                 FAX = fax,
                 Notes = notes,
-                EmployeeId = employeeId
+                EmployeeId = employeeId,
             };
 
             this.data.InsuranceCompanies.Add(comapnyData);
@@ -76,6 +77,26 @@ namespace EuroHelp.Services.InsuranceCompanies
                 .FirstOrDefault();
 
             return company;
+        }
+
+        public string ChangeStatus(string id)
+        {
+            var insuranceCompany = this.data.InsuranceCompanies
+                .Where(ic => ic.Id == id)
+                .FirstOrDefault();
+
+            if (insuranceCompany.Status.ToLower() == "active")
+            {
+                insuranceCompany.Status = "Non active";
+            }
+            else if (insuranceCompany.Status.ToLower() == "non active")
+            {
+                insuranceCompany.Status = "Active";
+            }
+
+            this.data.SaveChanges(); 
+
+            return insuranceCompany.Status;
         }
     }
 }

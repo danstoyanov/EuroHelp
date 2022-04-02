@@ -44,6 +44,7 @@ namespace EuroHelp.Web.Areas.Admin.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Administrator")]
         public IActionResult Damages()
         {
             var damageQuery = this.damages.GetAll();
@@ -64,6 +65,7 @@ namespace EuroHelp.Web.Areas.Admin.Controllers
             return View(damages);
         }
 
+        [Authorize(Roles = "Administrator")]
         public IActionResult ChangeDamageStatus(string id)
         {
             this.damages.ChangeStatus(id);
@@ -79,17 +81,25 @@ namespace EuroHelp.Web.Areas.Admin.Controllers
             var insuranceCompanies = insuranceCompaniesQuery
                 .Select(ic => new AllInsuranceCompaniesViewModel
                 {
-                    Id = ic.Id.Substring(0, 8),
+                    Id = ic.Id,
                     Bulstat = ic.Bulstat,
                     FAX = ic.FAX,
                     Name = ic.Name,
                     Email = ic.Email,
                     Address = ic.Address,
                     PhoneNumber = ic.PhoneNumber,
+                    Status = ic.Status
                 })
                 .ToList();
 
             return View(insuranceCompanies);
+        }
+
+        public IActionResult ChangeCompanyStatus(string id)
+        {
+            this.insuranceCompanies.ChangeStatus(id);
+
+            return RedirectToAction("InsuranceCompanies", "Manage");
         }
 
         [Authorize(Roles = "Administrator")]
@@ -99,13 +109,22 @@ namespace EuroHelp.Web.Areas.Admin.Controllers
 
             var employees = employeeQuery.Select(e => new AllEmployeesViewModel
             {
-                Id = e.Id.Substring(0, 8),
+                Id = e.Id,
                 Name = e.Name,
-                PhoneNumber = e.PhoneNumber
+                PhoneNumber = e.PhoneNumber,
+                Status = e.Status
             })
             .ToList();
 
             return View(employees);
+        }
+
+        [Authorize(Roles = "Administrator")]
+        public IActionResult ChangeEmployeeStatus(string id)
+        {
+            this.users.ChangeEmployeeStatus(id);
+
+            return RedirectToAction("Employees", "Manage");
         }
 
         [Authorize(Roles = "Administrator")]
@@ -116,15 +135,25 @@ namespace EuroHelp.Web.Areas.Admin.Controllers
             var consumers = consumersQuery
                 .Select(c => new AllConsumersViewModel
                 {
-                    Id = c.Id.Substring(0, 8),
+                    Id = c.Id,
                     UserName = c.UserName,
                     FirstName = c.FirstName,
                     LastName = c.LastName,
                     Gender = c.Gender,
+                    Status = c.Status
                 })
                 .ToList();
 
             return View(consumers);
         }
+
+        [Authorize(Roles = "Administrator")]
+        public IActionResult ChangeConsumerStatus(string id)
+        {
+            this.users.ChangeConsumerStatus(id);
+
+            return RedirectToAction("Consumers", "Manage");
+        }
+
     }
 }

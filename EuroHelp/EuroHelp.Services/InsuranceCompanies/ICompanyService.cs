@@ -17,6 +17,8 @@ namespace EuroHelp.Services.InsuranceCompanies
 
         public bool IsCompanyContains(string id);
 
+        public string ChangeStatus(string id);
+
         public InsuranceCompany GetCompany(string id);
 
         public List<AllInsuranceCompaniesServiceModel> GetAll();

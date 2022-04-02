@@ -97,6 +97,7 @@ namespace EuroHelp.Services.Users
                 Id = e.Id,
                 Name = e.Name,
                 PhoneNumber = e.PhoneNumber,
+                Status = e.Status
             })
             .ToList();
 
@@ -109,7 +110,48 @@ namespace EuroHelp.Services.Users
                 FirstName = c.FirstName,
                 LastName = c.LastName,
                 Gender = c.Gender,
+                Status = c.Status
             })
             .ToList();
+
+        public string ChangeConsumerStatus(string id)
+        {
+            var consumer = this.data.Consumers
+                .Where(c => c.Id == id)
+                .FirstOrDefault();
+
+            if (consumer.Status == "Active")
+            {
+                consumer.Status = "Banned";
+            }
+            else if (consumer.Status == "Banned")
+            {
+                consumer.Status = "Active"; 
+            }
+
+            this.data.SaveChanges();
+
+            return consumer.Status;
+        }
+
+        public string ChangeEmployeeStatus(string id)
+        {
+            var consumer = this.data.Employees
+                .Where(c => c.Id == id)
+                .FirstOrDefault();
+
+            if (consumer.Status == "Active")
+            {
+                consumer.Status = "Non active";
+            }
+            else if (consumer.Status == "Non active")
+            {
+                consumer.Status = "Active";
+            }
+
+            this.data.SaveChanges();
+
+            return consumer.Status;
+        }
     }
 }

@@ -19,18 +19,37 @@
         <tbody>
             @foreach (var consumer in Model)
             {
-            <tr>
-                <td>@consumer.Id</td>
-                <td>@consumer.UserName</td>
-                <td>@consumer.FirstName</td>
-                <td>@consumer.LastName</td>
-                <td>@consumer.Gender</td>
-                <td><b>Active</b></td>
-                <td>
-                    <button class="btn btn-info">INFO</button>
-                    <button class="btn btn-danger">BAN</button>
-                </td>
-            </tr>
+                <tr>
+                    <td>@consumer.Id.Substring(0, 8)</td>
+                    <td>@consumer.UserName</td>
+                    <td>@consumer.FirstName</td>
+                    <td>@consumer.LastName</td>
+                    <td>@consumer.Gender</td>
+                    <td><b>@consumer.Status</b></td>
+                    <td>
+                        @if (consumer.Status == "Active")
+                        {
+                            <button asp-area="Admin"
+                                    asp-action="ChangeConsumerStatus"
+                                    asp-controller="Manage"
+                                    asp-route-id="@consumer.Id"
+                                    class="btn btn-danger">
+                                BAN
+                            </button>
+                        }
+                        @if (consumer.Status == "Banned")
+                        {
+                            <button asp-area="Admin"
+                                    asp-action="ChangeConsumerStatus"
+                                    asp-controller="Manage"
+                                    asp-route-id="@consumer.Id"
+                                    class="btn btn-success">
+                                UNBAN
+                            </button>
+                        }
+                        <button class="btn btn-info">INFO</button>
+                    </td>
+                </tr>
             }
         </tbody>
     </table>

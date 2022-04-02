@@ -21,20 +21,39 @@
         <tbody>
             @foreach (var company in Model)
             {
-            <tr>
-                <td>@company.Id.Substring(0, 8)</td>
-                <td>@company.Name</td>
-                <td>@company.Bulstat</td>
-                <td>@company.FAX</td>
-                <td>@company.Address</td>
-                <td>@company.PhoneNumber</td>
-                <td>@company.Email</td>
-                <td><b>Non active</b></td>
-                <td>
-                    <button class="btn btn-success">CHANGE</button>
-                    <button class="btn btn-info">INFO</button>
-                </td>
-            </tr>
+                <tr>
+                    <td>@company.Id.Substring(0, 8)</td>
+                    <td>@company.Name</td>
+                    <td>@company.Bulstat</td>
+                    <td>@company.FAX</td>
+                    <td>@company.Address</td>
+                    <td>@company.PhoneNumber</td>
+                    <td>@company.Email</td>
+                    <td><b>@company.Status</b></td>
+                    <td>
+                        @if (company.Status == "Non active")
+                        {
+                            <button asp-area="Admin"
+                                    asp-action="ChangeCompanyStatus"
+                                    asp-controller="Manage"
+                                    asp-route-id="@company.Id"
+                                    class="btn btn-success">
+                                ACTIVATE
+                            </button>
+                        }
+                        @if (company.Status == "Active")
+                        {
+                            <button asp-area="Admin"
+                                    asp-action="ChangeCompanyStatus"
+                                    asp-controller="Manage"
+                                    asp-route-id="@company.Id"
+                                    class="btn btn-danger">
+                                CHANGE
+                            </button>
+                        }
+                        <button class="btn btn-info">INFO</button>
+                    </td>
+                </tr>
             }
         </tbody>
     </table>

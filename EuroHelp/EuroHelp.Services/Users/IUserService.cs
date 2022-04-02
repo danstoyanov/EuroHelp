@@ -10,6 +10,10 @@ namespace EuroHelp.Services.Users
 
         public bool IsConsumer(ClaimsPrincipal user);
 
+        public string ChangeConsumerStatus(string id);
+
+        public string ChangeEmployeeStatus(string id);
+
         public Employee GetEmployee(ClaimsPrincipal user);
 
         public Consumer GetConsumer(ClaimsPrincipal user);
