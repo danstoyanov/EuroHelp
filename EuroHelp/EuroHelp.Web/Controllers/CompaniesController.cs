@@ -23,6 +23,13 @@ namespace EuroHelp.Web.Controllers
         [Authorize]
         public IActionResult CompanyMembers()
         {
+            var curremployee = this.user.GetEmployee(this.User);
+
+            if (curremployee.Status == "Non active")
+            {
+                return RedirectToAction("Restricted", "Home");
+            }
+
             if (!this.user.IsEmployee(this.User))
             {
                 return RedirectToAction("AccessDenied", "Home");

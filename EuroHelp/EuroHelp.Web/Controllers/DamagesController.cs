@@ -27,6 +27,13 @@ namespace EuroHelp.Web.Controllers
         [Authorize]
         public IActionResult RegisterDamage()
         {
+            var user = this.users.GetConsumer(this.User);
+
+            if (user.Status == "Banned")
+            {
+                return RedirectToAction("Banned", "Home");
+            }
+
             if (!this.users.IsConsumer(this.User))
             {
                 return RedirectToAction("Register", "Consumers");
