@@ -47,7 +47,13 @@
                                 UNBAN
                             </button>
                         }
-                        <button class="btn btn-info">INFO</button>
+                        <button asp-area="Admin"
+                                asp-action="ConsumerInfo"
+                                asp-controller="Manage"
+                                asp-route-id="@consumer.Id"
+                                class="btn btn-info">
+                            INFO
+                        </button>
                     </td>
                 </tr>
             }

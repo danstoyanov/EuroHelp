@@ -1,0 +1,41 @@
+﻿@model ConsumersListServiceModel
+
+@{
+    ViewData["Title"] = "Consumer Info";
+}
+
+<h2 style="margin: 2%; text-align: center;">ℹ Consumer Info</h2>
+<hr class="bg-primary w-100">
+
+<a asp-area="Admin" asp-controller="Manage" asp-action="Consumers" class="btn btn-outline-primary"> RETURN BACK</a>
+
+<section class="py-5">
+    <table class="table" id="DamagesDataTable">
+        <tbody>
+            <tr>
+                <td>
+                    <div class="col-20">
+                        <label for="opionNumber" class="form-label">ID: </label>
+                        <input class="form-control" type="text" placeholder="@Model.Id.Substring(0, 8)" aria-label="Disabled input example" disabled>
+                        <label for="opionNumber" class="form-label">Username: </label>
+                        <input class="form-control" type="text" placeholder="@Model.UserName" aria-label="Disabled input example" disabled>
+                        <label for="opionNumber" class="form-label">First Name: </label>
+                        <input class="form-control" type="text" placeholder="@Model.FirstName" aria-label="Disabled input example" disabled>
+                        <label for="opionNumber" class="form-label">Lst Name: </label>
+                        <input class="form-control" type="text" placeholder="@Model.LastName" aria-label="Disabled input example" disabled>
+                    </div>
+                </td>
+                <td>
+                    <div class="col-20">
+                        <label for="opionNumber" class="form-label">Gender: </label>
+                        <input class="form-control" type="text" placeholder="@Model.Gender" aria-label="Disabled input example" disabled>
+                        <label for="opionNumber" class="form-label">Status: </label>
+                        <input class="form-control" type="text" placeholder="@Model.Status" aria-label="Disabled input example" disabled>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+            </tr>
+        </tbody>
+    </table>
+</section>

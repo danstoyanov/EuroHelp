@@ -51,7 +51,11 @@
                                 CHANGE
                             </button>
                         }
-                        <button class="btn btn-info">INFO</button>
+                        <a asp-area="Admin" 
+                                asp-action="InsuranceCompaniesInfo" 
+                                asp-controller="Manage"
+                                asp-route-id="@company.Id"
+                                class="btn btn-info">INFO</a>
                     </td>
                 </tr>
             }

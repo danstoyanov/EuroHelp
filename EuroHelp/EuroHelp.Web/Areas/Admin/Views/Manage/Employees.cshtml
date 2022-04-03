@@ -43,7 +43,11 @@
                                 ACTIVATE
                             </button>
                         }
-                        <button class="btn btn-info">INFO</button>
+                        <button  asp-area="Admin"
+                                 asp-action="EmployeeInfo"
+                                 asp-controller="Manage"
+                                 asp-route-id="@employee.Id"
+                                class="btn btn-info">INFO</button>
                     </td>
                 </tr>
             }

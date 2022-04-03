@@ -1,0 +1,33 @@
+﻿@model EmployeesListServiceModel
+
+@{
+    ViewData["Title"] = "Employee Info";
+}
+
+<h2 style="margin: 2%; text-align: center;">ℹ Employee Info</h2>
+<hr class="bg-primary w-100">
+
+<a asp-area="Admin" asp-controller="Manage" asp-action="Employees" class="btn btn-outline-primary"> RETURN BACK</a>
+
+<section class="py-5">
+    <table class="table" id="EmployeeTable">
+        <tbody>
+            <tr>
+                <td>
+                    <div class="col-20">
+                        <label for="opionNumber" class="form-label">ID: </label>
+                        <input class="form-control" type="text" placeholder="@Model.Id.Substring(0, 8)" aria-label="Disabled input example" disabled>
+                        <label for="opionNumber" class="form-label">Employee Name: </label>
+                        <input class="form-control" type="text" placeholder="@Model.Name" aria-label="Disabled input example" disabled>
+                        <label for="opionNumber" class="form-label">Phone Number: </label>
+                        <input class="form-control" type="text" placeholder="@Model.PhoneNumber" aria-label="Disabled input example" disabled>
+                        <label for="opionNumber" class="form-label">Status: </label>
+                        <input class="form-control" type="text" placeholder="@Model.Status" aria-label="Disabled input example" disabled>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+            </tr>
+        </tbody>
+    </table>
+</section>

@@ -73,6 +73,7 @@ namespace EuroHelp.Web.Areas.Admin.Controllers
             return RedirectToAction("Damages", "Manage");
         }
 
+        [HttpGet]
         [Authorize(Roles = "Administrator")]
         public IActionResult InsuranceCompanies()
         {
@@ -93,6 +94,31 @@ namespace EuroHelp.Web.Areas.Admin.Controllers
                 .ToList();
 
             return View(insuranceCompanies);
+        }
+
+        [Authorize(Roles = "Administrator")]
+        public IActionResult InsuranceCompaniesInfo(string id)
+        {
+            var currCompany = this.insuranceCompanies.GetCompany(id);
+
+            if (currCompany == null)
+            {
+                return RedirectToAction("Damages", "Manage", new { area = "Sites" });
+            }
+
+            var insuranceCompany = new AllInsuranceCompaniesViewModel
+            {
+                Id = currCompany.Id,
+                Name = currCompany.Name,
+                Address = currCompany.Address,
+                FAX = currCompany.FAX,
+                Email = currCompany.Email,
+                Bulstat = currCompany.Bulstat,
+                PhoneNumber = currCompany.PhoneNumber,
+                Status = currCompany.Status
+            };
+
+            return View(insuranceCompany);
         }
 
         public IActionResult ChangeCompanyStatus(string id)
@@ -117,6 +143,25 @@ namespace EuroHelp.Web.Areas.Admin.Controllers
             .ToList();
 
             return View(employees);
+        }
+
+        [Authorize(Roles = "Administrator")]
+        public IActionResult EmployeeInfo(string id)
+        {
+            var employeeData = this.users
+                .GetEmployees()
+                .Where(e => e.Id == id)
+                .FirstOrDefault();
+
+            var employee = new EmployeesListServiceModel
+            {
+                Id = employeeData.Id,
+                Name = employeeData.Name,
+                PhoneNumber = employeeData.PhoneNumber,
+                Status = employeeData.Status
+            };
+
+            return View(employee);
         }
 
         [Authorize(Roles = "Administrator")]
@@ -148,12 +193,32 @@ namespace EuroHelp.Web.Areas.Admin.Controllers
         }
 
         [Authorize(Roles = "Administrator")]
+        public IActionResult ConsumerInfo(string id)
+        {
+            var consumerData = this.users
+                .GetConsumers()
+                .Where(c => c.Id == id)
+                .FirstOrDefault();
+
+            var consumer = new ConsumersListServiceModel
+            {
+                Id = consumerData.Id,
+                UserName = consumerData.UserName,
+                FirstName = consumerData.FirstName,
+                LastName = consumerData.LastName,
+                Gender = consumerData.Gender,
+                Status = consumerData.Status
+            };
+
+            return View(consumer);
+        }
+
+        [Authorize(Roles = "Administrator")]
         public IActionResult ChangeConsumerStatus(string id)
         {
             this.users.ChangeConsumerStatus(id);
 
             return RedirectToAction("Consumers", "Manage");
         }
-
     }
 }

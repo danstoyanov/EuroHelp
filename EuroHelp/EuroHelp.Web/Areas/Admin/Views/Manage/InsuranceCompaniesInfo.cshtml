@@ -1,0 +1,49 @@
+﻿@model AllInsuranceCompaniesViewModel
+
+@{
+    ViewData["Title"] = "Insurance Company Info";
+}
+
+<h2 style="margin: 2%; text-align: center;">ℹ Insurance Company Info</h2>
+<hr class="bg-primary w-100">
+
+<a asp-area="Admin" asp-controller="Manage" asp-action="InsuranceCompanies" class="btn btn-outline-primary"> RETURN BACK</a>
+
+<section class="py-5">
+    <table class="table" id="DamagesDataTable">
+        <tbody>
+            <tr>
+                <td>
+                    <div class="col-20">
+                        <label for="opionNumber" class="form-label">ID: </label>
+                        <input class="form-control" type="text" placeholder="@Model.Id.Substring(0, 8)" aria-label="Disabled input example" disabled>
+                        <label for="opionNumber" class="form-label">Company Name: </label>
+                        <input class="form-control" type="text" placeholder="@Model.Name" aria-label="Disabled input example" disabled>
+                        <label for="opionNumber" class="form-label">Bulstat: </label>
+                        <input class="form-control" type="text" placeholder="@Model.Bulstat" aria-label="Disabled input example" disabled>
+                    </div>
+                </td>
+                <td>
+                    <div class="col-20">
+                        <label for="opionNumber" class="form-label">FAX: </label>
+                        <input class="form-control" type="text" placeholder="@Model.FAX" aria-label="Disabled input example" disabled>
+                        <label for="opionNumber" class="form-label">Address: </label>
+                        <input class="form-control" type="text" placeholder="@Model.Address" aria-label="Disabled input example" disabled>
+                        <label for="opionNumber" class="form-label">Phone Number: </label>
+                        <input class="form-control" type="text" placeholder="@Model.PhoneNumber" aria-label="Disabled input example" disabled>
+                    </div>
+                </td>
+                <td>
+                    <div class="col-20">
+                        <label for="opionNumber" class="form-label">Email: </label>
+                        <input class="form-control" type="text" placeholder="@Model.Email" aria-label="Disabled input example" disabled>
+                        <label for="opionNumber" class="form-label">Status: </label>
+                        <input class="form-control" type="text" placeholder="@Model.Status" aria-label="Disabled input example" disabled>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+            </tr>
+        </tbody>
+    </table>
+</section>
