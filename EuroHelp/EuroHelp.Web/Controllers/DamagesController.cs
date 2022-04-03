@@ -205,9 +205,12 @@ namespace EuroHelp.Web.Controllers
         [Authorize]
         public IActionResult Info(string id)
         {
-            // validation
-            // and checking this item !
             var currDamage = this.damages.GetDamage(id);
+
+            if (currDamage == null)
+            {
+                return RedirectToAction("InvalidObject", "Home");
+            }
 
             var result = new DamageServiceListingModel
             {

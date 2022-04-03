@@ -8,6 +8,11 @@
 <h2 style="margin: 2%; text-align: center;">ℹ Damage Info</h2>
 <hr class="bg-primary w-100">
 
+@if (User.IsAdmin())
+{
+    <a asp-area="Admin" asp-controller="Manage" asp-action="Damages" class="btn btn-outline-primary">RETURN BACK</a>
+}
+
 <section class="py-5">
     <table class="table" id="DamagesDataTable">
         <tbody>
@@ -58,10 +63,6 @@
                                 {
                                     <a asp-action="Details" asp-controller="Damages" asp-route-id="@Model.Id" class="btn btn-warning">EDIT</a>
                                     <button type="submit" class="btn btn-danger m-sm-auto">DELETE</button>
-                                }
-                                @if (User.IsAdmin())
-                                {
-                                    <a asp-area="Admin" asp-controller="Manage" asp-action="Damages" class="btn btn-outline-primary">RETURN BACK</a>
                                 }
                             </div>
                         </form>
