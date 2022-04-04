@@ -103,7 +103,7 @@ namespace EuroHelp.Web.Areas.Admin.Controllers
 
             if (currCompany == null)
             {
-                return RedirectToAction("Damages", "Manage", new { area = "Sites" });
+                return RedirectToAction("InvalidObject", "Admin");
             }
 
             var insuranceCompany = new AllInsuranceCompaniesViewModel
@@ -153,6 +153,11 @@ namespace EuroHelp.Web.Areas.Admin.Controllers
                 .Where(e => e.Id == id)
                 .FirstOrDefault();
 
+            if (employeeData == null)
+            {
+                return RedirectToAction("InvalidObject", "Admin");
+            }
+
             var employee = new EmployeesListServiceModel
             {
                 Id = employeeData.Id,
@@ -199,6 +204,11 @@ namespace EuroHelp.Web.Areas.Admin.Controllers
                 .GetConsumers()
                 .Where(c => c.Id == id)
                 .FirstOrDefault();
+
+            if (consumerData == null)
+            {
+                return RedirectToAction("InvalidObject", "Admin");
+            }
 
             var consumer = new ConsumersListServiceModel
             {

@@ -3,6 +3,11 @@
 <h2 style="margin: 2%; text-align: center;">Employee manager</h2>
 <hr class="bg-primary w-100">
 
+@{ 
+    string activeStatus = "Active";
+    string nonActiveStatus = "Non active";
+}
+
 <form method="post" class="row g-3">
     <table id="table_id" class="display">
         <thead class="thead-dark">
@@ -23,7 +28,7 @@
                     <td>@employee.PhoneNumber</td>
                     <td><b>@employee.Status</b></td>
                     <td>
-                        @if (employee.Status == "Active")
+                        @if (employee.Status == activeStatus)
                         {
                             <button asp-area="Admin"
                                     asp-action="ChangeEmployeeStatus"
@@ -33,7 +38,7 @@
                                 CHANGE
                             </button>
                         }
-                        @if (employee.Status == "Non active")
+                        @if (employee.Status == nonActiveStatus)
                         {
                             <button asp-area="Admin"
                                     asp-action="ChangeEmployeeStatus"
@@ -43,11 +48,13 @@
                                 ACTIVATE
                             </button>
                         }
-                        <button  asp-area="Admin"
-                                 asp-action="EmployeeInfo"
-                                 asp-controller="Manage"
-                                 asp-route-id="@employee.Id"
-                                class="btn btn-info">INFO</button>
+                        <button asp-area="Admin"
+                                asp-action="EmployeeInfo"
+                                asp-controller="Manage"
+                                asp-route-id="@employee.Id"
+                                class="btn btn-info">
+                            INFO
+                        </button>
                     </td>
                 </tr>
             }

@@ -152,7 +152,7 @@ namespace EuroHelp.Web.Controllers
 
         [HttpGet]
         [Authorize]
-        public IActionResult Details(string id)
+        public IActionResult Edit(string id)
         {
             if (!this.damages.IsValid(id))
             {
@@ -179,7 +179,7 @@ namespace EuroHelp.Web.Controllers
 
         [HttpPost]
         [Authorize]
-        public IActionResult Details(EditDamageViewModel model)
+        public IActionResult Edit(EditDamageViewModel model)
         {
             if (!ModelState.IsValid)
             {

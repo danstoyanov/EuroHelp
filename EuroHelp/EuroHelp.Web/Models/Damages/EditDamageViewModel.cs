@@ -9,7 +9,6 @@ namespace EuroHelp.Web.Models.Damages
         [Required]
         public string? DamageType { get; set; }
 
-        [Required]
         public string CompanyName { get; set; }
 
         [Required]

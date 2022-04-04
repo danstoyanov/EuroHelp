@@ -57,11 +57,11 @@
                             <div class="m-sm-4">
                                 @if (CurrUser.IsConsumer(User))
                                 {
-                                    <a asp-action="Details" asp-controller="Damages" asp-route-id="@Model.Id" class="btn btn-warning">EDIT</a>
+                                    <a asp-action="Edit" asp-controller="Damages" asp-route-id="@Model.Id" class="btn btn-warning">EDIT</a>
                                 }
                                 @if (CurrUser.IsEmployee(User))
                                 {
-                                    <a asp-action="Details" asp-controller="Damages" asp-route-id="@Model.Id" class="btn btn-warning">EDIT</a>
+                                    <a asp-action="Edit" asp-controller="Damages" asp-route-id="@Model.Id" class="btn btn-warning">EDIT</a>
                                     <button type="submit" class="btn btn-danger m-sm-auto">DELETE</button>
                                 }
                             </div>

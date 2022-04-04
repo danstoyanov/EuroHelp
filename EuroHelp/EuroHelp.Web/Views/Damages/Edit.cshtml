@@ -1,10 +1,10 @@
 ﻿@model EditDamageViewModel
 
 @{
-    ViewData["Title"] = "Damage Modification";
+    ViewData["Title"] = "Damage Edit";
 }
 
-<h2 style="margin: 2%; text-align: center;">✍ Details</h2>
+<h2 style="margin: 2%; text-align: center;">✍ Edit</h2>
 <hr class="bg-primary w-100">
 
 <ul class="nav nav-tabs">
@@ -59,7 +59,7 @@
             </div>
             <div></div>
             <div class=" text-center">
-                <button asp-controller="Damages" asp-action="Details" type="submit" class="btn btn-primary">SAVE</button>
+                <button asp-controller="Damages" asp-action="Edit" type="submit" class="btn btn-primary">SAVE</button>
                 <a asp-controller="Damages" asp-action="AllDamages" class="btn btn-secondary">CANCEL</a>
             </div>
         </form>

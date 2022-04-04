@@ -122,7 +122,7 @@
                     <form method="post" asp-controller="Damages" asp-action="DeleteDamage" asp-route-id="@damage.Id">
                         <div class="card-footer text-center">
                             <a asp-action="Info" asp-controller="Damages" asp-route-id="@damage.Id" class="btn btn-info">INFO</a>
-                            <a asp-action="Details" asp-controller="Damages" asp-route-id="@damage.Id" class="btn btn-warning">EDIT</a>
+                            <a asp-action="Edit" asp-controller="Damages" asp-route-id="@damage.Id" class="btn btn-warning">EDIT</a>
                             <button asp-action="DeleteDamage" asp-controller="Damages" asp-route-id="@damage.Id" class="btn btn-danger">DELETE</button>
                         </div>
                     </form>
