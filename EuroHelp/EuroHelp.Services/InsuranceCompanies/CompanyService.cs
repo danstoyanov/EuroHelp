@@ -23,7 +23,7 @@ namespace EuroHelp.Services.InsuranceCompanies
                 Email = ic.Email,
                 Status = ic.Status,
             })
-            .ToList();
+            .ToList();  
 
         public string Create(
             string name,

@@ -1,11 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Linq;
+using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
+
+using Xunit;
 
 using EuroHelp.Data;
 using EuroHelp.Data.Models;
-using Xunit;
 using EuroHelp.Services.Users;
-using System.Linq;
-using System.Collections.Generic;
 
 namespace EuroHelp.Tests.Services
 {
@@ -71,6 +72,7 @@ namespace EuroHelp.Tests.Services
         public void IsConsumerUsernameContainMethodIsReturnCurrectUserName()
         {
             // Arrange
+            ClearData();
             FillData();
 
             var username1 = "consumer1";
@@ -90,11 +92,11 @@ namespace EuroHelp.Tests.Services
             ClearData();
         }
 
-
         [Fact]
         public void TheEmployeesCountIsCorrectAndReturnListOfEmployees()
         {
             // Arrange
+            ClearData();
             FillData();
 
             // Act
@@ -106,15 +108,80 @@ namespace EuroHelp.Tests.Services
             Assert.NotEmpty(this.userService.GetEmployees());
         }
 
-        private void FillData()
+        [Fact]
+        public void TheConsumersCountIsCorrectAndReturnListofConsumers()
         {
-            AddConsumers();
-            AddEmployees();
+            // Arrange
+            ClearData();
+            FillData();
+            // Act
+            var consumersCount = this.userService.GetConsumers().Count();
+
+            // Assert
+            Assert.Equal(3, consumersCount);
+            Assert.NotEqual(5, consumersCount);
+            Assert.NotEmpty(this.userService.GetConsumers());
+        }
+
+        [Fact]
+        public void ChangeConsumerStatusToBanned()
+        {
+            ClearData();
+            FillData();
+
+            var testedEmployee = this.db.Employees
+                .Where(u => u.Id == "1")
+                .FirstOrDefault();
+
+            var status = this.userService.ChangeEmployeeStatus(testedEmployee.Id);
+
+            Assert.Equal("Active", status);
+            Assert.NotEqual("Non active", status);
+
+            status = this.userService.ChangeEmployeeStatus(testedEmployee.Id);
+
+            Assert.Equal("Non active", status);
+            Assert.NotEqual("Active", status);
+        }
+
+        [Fact]
+        public void ChangeEmployeeStatusToBennaed()
+        {
+            ClearData();
+            FillData();
+
+            var testedConsumer = this.db.Consumers
+                .Where(c => c.Id == "1")
+                .FirstOrDefault();
+
+            var status = this.userService.ChangeConsumerStatus(testedConsumer.Id);
+
+            Assert.Equal("Banned", status);
+            Assert.NotEqual("Active", status);
+
+            status = this.userService.ChangeConsumerStatus(testedConsumer.Id);
+
+            Assert.Equal("Active", status);
+            Assert.NotEqual("Banned", status);
         }
 
         private void ClearData()
         {
-            this.db.Employees.RemoveRange();
+            foreach (var employee in this.db.Employees)
+            {
+                this.db.Employees.Remove(employee);
+            }
+
+            foreach (var consumer in this.db.Consumers)
+            {
+                this.db.Consumers.Remove(consumer);
+            }
+        }
+
+        private void FillData()
+        {
+            AddConsumers();
+            AddEmployees();
         }
 
         private void AddEmployees()
