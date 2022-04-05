@@ -10,7 +10,6 @@ namespace EuroHelp.Web.Controllers
 {
     public class EmployeesController : Controller
     {
-        public readonly EuroHelpDbContext data;
         private readonly IUserService user;
 
         public EmployeesController(IUserService user)

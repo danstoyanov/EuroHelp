@@ -21,7 +21,7 @@ namespace EuroHelp.Web.Controllers
         }
 
         [Authorize]
-        public IActionResult CompanyMembers()
+        public IActionResult CreateInsuranceCompany()
         {
             var curremployee = this.user.GetEmployee(this.User);
 
@@ -40,7 +40,7 @@ namespace EuroHelp.Web.Controllers
 
         [HttpPost]
         [Authorize]
-        public IActionResult CompanyMembers(AddCompanyFormModel company)
+        public IActionResult CreateInsuranceCompany(AddCompanyFormModel company)
         {
             if (!this.user.IsEmployee(this.User))
             {

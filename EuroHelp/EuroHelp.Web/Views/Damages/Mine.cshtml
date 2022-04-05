@@ -50,7 +50,7 @@
                     </div>
                     <div class="card-footer">
                         <form class="text-center" method="post" asp-controller="Damages" asp-action="DeleteDamage" asp-route-id="@damage.Id">
-                            <button asp-action="Details" asp-controller="Damages" asp-route-id="@damage.Id" class="btn btn-warning">EDIT</button>
+                            <button asp-action="Edit" asp-controller="Damages" asp-route-id="@damage.Id" class="btn btn-warning">EDIT</button>
                             <button type="submit" class="btn btn-danger m-sm-auto">DELETE</button>
                         </form>
                     </div>
