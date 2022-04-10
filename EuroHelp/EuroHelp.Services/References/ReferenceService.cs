@@ -28,7 +28,7 @@ namespace EuroHelp.Services.References
 
             foreach (var damage in damages)
             {
-                builder.AppendLine($" {damage.Id.Substring(0, 8)},{damage.DamageType}, {damage.CompanyName}, {damage.EventDate}, {damage.PersonFirstName}, {damage.PersonSecondName}");
+                builder.AppendLine($" {damage.Id},{damage.DamageType}, {damage.CompanyName}, {damage.EventDate}, {damage.PersonFirstName}, {damage.PersonSecondName}");
             }
 
             var data = Encoding.UTF8.GetBytes(builder.ToString());

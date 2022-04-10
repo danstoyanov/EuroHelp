@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
 using Xunit;
@@ -7,7 +6,6 @@ using Xunit;
 using EuroHelp.Data;
 using EuroHelp.Data.Models;
 using EuroHelp.Services.InsuranceCompanies;
-
 
 namespace EuroHelp.Tests.Services
 {
