@@ -28,4 +28,8 @@
     <ProjectReference Include="..\EuroHelp.Web\EuroHelp.Web.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Data\" />
+  </ItemGroup>
+
 </Project>

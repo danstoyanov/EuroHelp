@@ -52,6 +52,7 @@ namespace EuroHelp.Services.Damages
                 IsApproved = d.IsApproved
             })
             .ToList();
+
         public string Create(
             string damageType,
             DateTime eventDate,

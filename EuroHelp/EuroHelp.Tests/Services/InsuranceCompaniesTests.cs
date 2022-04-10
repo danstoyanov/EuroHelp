@@ -32,7 +32,7 @@ namespace EuroHelp.Tests.Services
             var companies = this.insuranceCompanyService.GetAll();
             var result = companies.Count;
 
-            Assert.Equal(3, result);
+            Assert.Equal(6, result);
             Assert.IsType<List<AllInsuranceCompaniesServiceModel>>(companies);
         }
 
