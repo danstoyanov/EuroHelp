@@ -8,10 +8,7 @@ namespace EuroHelp.Data
     public class EuroHelpDbContext : IdentityDbContext<User> 
     {
         public EuroHelpDbContext(DbContextOptions<EuroHelpDbContext> options)
-            : base(options)
-        {
-
-        }
+            : base(options) { }
 
         public DbSet<Damage> Damages { get; init; }
 
