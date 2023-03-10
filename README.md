@@ -1,10 +1,37 @@
 # EuroHelp
 
 ## Overview
-EuroHelp is web management system for insurance companies, users and employees which is easy to use for all sides. In this project 
-I use the diffriend kind of programming laguages, libraries and frameworks such as: C#, ASP.NET Core, Entity Framework Core, JS, Bootstrap and jQuery.
+EuroHelp is a web management system designed for insurance companies, users, and employees. The system is built using a combination of C#, ASP.NET Core, Entity Framework Core, JavaScript, Bootstrap, and jQuery.
 
-## Test Accounts
+### The system includes the following features:
+
+- User management: Users can sign up for accounts, log in, and update their profile information.
+- Policy management: Insurance companies can create and manage policies, and users can view and manage their policies.
+- Claim management: Users can file claims and track the status of their claims.
+- Employee management: Insurance companies can manage their employees and assign roles and permissions.
+- Reporting: The system includes a variety of reports and analytics to help insurance companies make informed decisions.
+- The system is built using modern web technologies and follows best practices for software development. It includes unit and integration tests to ensure quality and reliability.
+
+## Technologies Used
+The following technologies were used to build the system:
+
+- C#
+- ASP.NET Core
+- Entity Framework Core
+- JavaScript
+- Bootstrap
+- jQuery
+
+## Future Plans
+In the future, we plan to continue improving and expanding the system. Some planned features include:
+
+Integration with third-party services such as payment gateways and fraud detection.
+Mobile app support for users and employees.
+Advanced reporting and analytics features.
+Feedback
+We welcome feedback and suggestions for improving the system. If you have any comments or ideas, please feel free to reach out to us. We're committed to building the best possible web management system for insurance companies and their customers.
+
+## Demo
 
 **Administrator:** 
 username: admin@eurohelp.com
