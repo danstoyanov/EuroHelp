@@ -1,4 +1,4 @@
-# EuroHelp
+# 🛡️EuroHelp
 
 ## Overview
 EuroHelp is a web management system designed for insurance companies, users, and employees. The system is built using a combination of C#, ASP.NET Core, Entity Framework Core, JavaScript, Bootstrap, and jQuery.
